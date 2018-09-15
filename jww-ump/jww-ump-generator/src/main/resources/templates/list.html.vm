@@ -16,6 +16,12 @@
 <body class="childrenBody">
 <blockquote class="layui-elem-quote news_search">
     <form id="searchForm">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <div class="layui-inline">
+                    <a class="layui-btn layui-btn-normal add_btn">新增</a><a class="layui-btn layui-btn-danger batchDel">批量删除</a>
+                </div>
+            </div>
     #foreach($field in ${table.fields})
         #if(!${field.keyFlag})##生成普通字段
             <div class="layui-inline">
@@ -26,16 +32,13 @@
             </div>
         #end
     #end
+            <div class="layui-inline">
+                <div class="layui-input-block">
+                    <a class="layui-btn search_btn">查询</a><button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </div>
     </form>
-    <div class="layui-inline">
-        <a class="layui-btn search_btn">查询</a>>
-    </div>
-    <div class="layui-inline">
-        <a class="layui-btn layui-btn-normal add_btn">添加</a>
-    </div>
-    <div class="layui-inline">
-        <a class="layui-btn layui-btn-danger batchDel">批量删除</a>
-    </div>
 </blockquote>
 
 <table class="layui-table" id="${table.entityPath}Table" lay-filter="tableFilter"></table>
@@ -49,6 +52,6 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </div>
 <script type="text/javascript" src="../../layui/layui.js"></script>
-<script type="text/javascript" src="${entity}List.js"></script>
+<script type="text/javascript" src="${table.entityPath}List.js"></script>
 </body>
 </html>

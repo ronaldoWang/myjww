@@ -10,7 +10,7 @@ import com.jww.common.core.base.BaseModel;
  * </p>
  *
  * @author kevinWang
- * @since 2018-09-15
+ * @since 2018-09-16
  */
 @TableName("t_develop_customer")
 public class DevelopCustomerModel extends BaseModel {

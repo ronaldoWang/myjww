@@ -69,7 +69,7 @@ layui.config({
             var dataIds = [data.id];
             layer.confirm('您确定要删除吗？', {icon: 3, title: '确认'}, function () {
                 $.ajax({
-                    type: 'POST',
+                    type: 'DELETE',
                     url: 'developCustomer/delBatchByIds',
                     data: JSON.stringify(dataIds),
                     success: function (data) {
@@ -169,7 +169,7 @@ layui.config({
                 userIds[i] = checkStatus.data[i].id;
             }
             $.ajax({
-                type: 'POST',
+                type: 'DELETE',
                 url: 'developCustomer/delBatchByIds',
                 data: JSON.stringify(userIds),
                 success: function (data) {

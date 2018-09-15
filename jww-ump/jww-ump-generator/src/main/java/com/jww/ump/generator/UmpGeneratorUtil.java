@@ -37,7 +37,7 @@ public class UmpGeneratorUtil {
         AutoGenerator mpg = new AutoGenerator();
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir(props.getStr("global.outputdir" ));
+        gc.setOutputDir(props.getStr("global.outputdir"));
         gc.setFileOverride(true);
         // 不需要ActiveRecord特性的请改为false
         gc.setActiveRecord(false);
@@ -48,9 +48,9 @@ public class UmpGeneratorUtil {
         // XML columList
         gc.setBaseColumnList(true);
         // .setKotlin(true) 是否生成 kotlin 代码
-        gc.setAuthor(props.getStr("global.author" ));
+        gc.setAuthor(props.getStr("global.author"));
 
-        gc.setServiceName("%sService" );
+        gc.setServiceName("%sService");
 
         mpg.setGlobalConfig(gc);
 
@@ -66,47 +66,47 @@ public class UmpGeneratorUtil {
                 return super.processTypeConvert(fieldType);
             }
         });
-        dsc.setDriverName(props.getStr("datasource.drivername" ));
-        dsc.setUsername(props.getStr("datasource.username" ));
-        dsc.setPassword(props.getStr("datasource.password" ));
-        dsc.setUrl(props.getStr("datasource.url" ));
+        dsc.setDriverName(props.getStr("datasource.drivername"));
+        dsc.setUsername(props.getStr("datasource.username"));
+        dsc.setPassword(props.getStr("datasource.password"));
+        dsc.setUrl(props.getStr("datasource.url"));
         mpg.setDataSource(dsc);
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         // 此处可以修改为您的表前缀
-        strategy.setTablePrefix(props.getStr("strategy.tableprefix" ));
+        strategy.setTablePrefix(props.getStr("strategy.tableprefix"));
         // 表名生成策略
         strategy.setNaming(NamingStrategy.underline_to_camel);
         // 需要生成的表
-        strategy.setInclude(StrUtil.split(props.getStr("strategy.include" ), "," ));
+        strategy.setInclude(StrUtil.split(props.getStr("strategy.include"), ","));
         // 排除生成的表
-        strategy.setExclude(StrUtil.split(props.getStr("strategy.exclude" ), "," ));
+        strategy.setExclude(StrUtil.split(props.getStr("strategy.exclude"), ","));
         // 自定义实体父类
-        strategy.setSuperEntityClass(props.getStr("strategy.superentityclass" ));
+        strategy.setSuperEntityClass(props.getStr("strategy.superentityclass"));
         // 自定义实体，公共字段
-        strategy.setSuperEntityColumns(StrUtil.split(props.getStr("strategy.superentitycolumns" ), "," ));
+        strategy.setSuperEntityColumns(StrUtil.split(props.getStr("strategy.superentitycolumns"), ","));
         // 自定义 mapper 父类
-        strategy.setSuperMapperClass(props.getStr("strategy.supermapperclass" ));
+        strategy.setSuperMapperClass(props.getStr("strategy.supermapperclass"));
         // 自定义 service 父类
-        strategy.setSuperServiceClass(props.getStr("strategy.superserviceclass" ));
+        strategy.setSuperServiceClass(props.getStr("strategy.superserviceclass"));
         // 自定义 service 实现类父类
-        strategy.setSuperServiceImplClass(props.getStr("strategy.superserviceimplclass" ));
+        strategy.setSuperServiceImplClass(props.getStr("strategy.superserviceimplclass"));
         // 自定义 controller 父类
-        strategy.setSuperControllerClass(props.getStr("strategy.superCcontrollerclass" ));
+        strategy.setSuperControllerClass(props.getStr("strategy.superCcontrollerclass"));
         // 设置使用 restController
         strategy.setRestControllerStyle(true);
         mpg.setStrategy(strategy);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent(props.getStr("package.parent" ));
-        pc.setModuleName(props.getStr("package.modulename" ));
-        pc.setController("controller" );
-        pc.setMapper("dao.mapper" );
-        pc.setEntity("model" );
-        pc.setService("rpc.api" );
-        pc.setServiceImpl("rpc.service.impl" );
+        pc.setParent(props.getStr("package.parent") + "." + props.getStr("project.service"));
+        pc.setModuleName(props.getStr("package.modulename"));
+        pc.setController("controller");
+        pc.setMapper("dao.mapper");
+        pc.setEntity("model");
+        pc.setService("rpc.api");
+        pc.setServiceImpl("rpc.service.impl");
         mpg.setPackageInfo(pc);
 
         // 注入自定义配置，可以在 VM 中使用 cfg.abc 【可无】
@@ -114,7 +114,9 @@ public class UmpGeneratorUtil {
             @Override
             public void initMap() {
                 Map<String, Object> map = new HashMap<>(1);
-                map.put("abc", this.getConfig().getGlobalConfig().getAuthor() + "-mp" );
+                map.put("abc", this.getConfig().getGlobalConfig().getAuthor() + "-mp");
+                map.put("projectService", props.getStr("project.service"));
+                map.put("packageModuleName", props.getStr("package.modulename"));
                 this.setMap(map);
             }
         };
@@ -123,55 +125,55 @@ public class UmpGeneratorUtil {
         List<FileOutConfig> focList = new ArrayList<>();
 
         // 调整mapper xml 生成目录
-        FileOutConfig mapperXmlConfig = new FileOutConfig("/templates/mapper.xml.vm" ) {
+        FileOutConfig mapperXmlConfig = new FileOutConfig("/templates/mapper.xml.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.mapperxmldirectory" ) + props.getStr("package.modulename" ) + "\\" + tableInfo.getEntityName() + "Mapper.xml";
+                return props.getStr("fileout.mapperxmldirectory") + props.getStr("package.modulename") + "\\" + tableInfo.getEntityName() + "Mapper.xml";
             }
         };
         // 调整 htmlList 生成目录
-        FileOutConfig htmlList = new FileOutConfig("/templates/list.html.vm" ) {
+        FileOutConfig htmlList = new FileOutConfig("/templates/list.html.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.pagedirectory" ) + tableInfo.getEntityPath() + "List.html";
+                return props.getStr("fileout.pagedirectory") + tableInfo.getEntityPath() + "List.html";
             }
         };
         // 调整 htmlList 生成目录
-        FileOutConfig jsList = new FileOutConfig("/templates/list.js.vm" ) {
+        FileOutConfig jsList = new FileOutConfig("/templates/list.js.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.pagedirectory" ) + tableInfo.getEntityPath() + "List.js";
+                return props.getStr("fileout.pagedirectory") + tableInfo.getEntityPath() + "List.js";
             }
         };
 
         // 调整 htmlform 生成目录
-        FileOutConfig htmlForm = new FileOutConfig("/templates/form.html.vm" ) {
+        FileOutConfig htmlForm = new FileOutConfig("/templates/form.html.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.pagedirectory" ) + tableInfo.getEntityPath() + ".html";
+                return props.getStr("fileout.pagedirectory") + tableInfo.getEntityPath() + ".html";
             }
         };
         // 调整 jsForm 生成目录
-        FileOutConfig jsForm = new FileOutConfig("/templates/form.js.vm" ) {
+        FileOutConfig jsForm = new FileOutConfig("/templates/form.js.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.pagedirectory" ) + tableInfo.getEntityPath() + ".js";
+                return props.getStr("fileout.pagedirectory") + tableInfo.getEntityPath() + ".js";
             }
         };
 
         // 调整entity
-        FileOutConfig entityList = new FileOutConfig("/templates/entity.java.vm" ) {
+        FileOutConfig entityList = new FileOutConfig("/templates/entity.java.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.javadirectory" ) + "\\" + props.getStr("package.modulename" ) + "\\model\\" + tableInfo.getEntityName() + "Model.java";
+                return props.getStr("fileout.javadirectory") + "\\" + props.getStr("package.modulename") + "\\model\\" + tableInfo.getEntityName() + "Model.java";
             }
         };
 
         // 调整mapper java
-        FileOutConfig mapperList = new FileOutConfig("/templates/mapper.java.vm" ) {
+        FileOutConfig mapperList = new FileOutConfig("/templates/mapper.java.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.javadirectory" ) + "\\" + props.getStr("package.modulename" ) + "\\dao\\mapper\\" + tableInfo.getEntityName() + "Mapper.java";
+                return props.getStr("fileout.javadirectory") + "\\" + props.getStr("package.modulename") + "\\dao\\mapper\\" + tableInfo.getEntityName() + "Mapper.java";
             }
         };
 

@@ -9,7 +9,7 @@ import com.jww.customer.developcustomer.model.DevelopCustomerModel;
  * </p>
  *
  * @author kevinWang
- * @since 2018-09-15
+ * @since 2018-09-16
  */
 public interface DevelopCustomerService extends BaseService<DevelopCustomerModel> {
 

@@ -1,11 +1,22 @@
 package ${package.ServiceImpl};
 
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.jww.common.core.base.BaseServiceImpl;
 import ${package.Entity}.${entity}Model;
 import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -25,6 +36,35 @@ open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperNam
 @Slf4j
 @Service("${table.entityPath}Service")  ##${table.serviceName}
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}Model> implements ${table.serviceName} {
+        @Override
+        public Page<${entity}Model> selectPage(Page<${entity}Model> page) {
+            ${entity}Model ${table.entityPath}Model = new ${entity}Model();
+            ${table.entityPath}Model.setIsDel(0);
+            EntityWrapper<${entity}Model> entityWrapper = new EntityWrapper<>(${table.entityPath}Model);
+            if (ObjectUtil.isNotNull(page.getCondition())) {
+                StringBuilder conditionSql = new StringBuilder();
+                Map<String, Object> paramMap = page.getCondition();
+                paramMap.forEach((k, v) -> {
+                    if (StrUtil.isNotBlank(v + "")) {
+                        conditionSql.append(k + " like '%" + v + "%' AND ");
+                    }
+                });
+                entityWrapper.and(StrUtil.removeSuffix(conditionSql.toString(), "AND "));
+            }
+            page.setCondition(null);
+            return super.selectPage(page, entityWrapper);
+        }
 
+        public boolean deleteBatchIds(List<? extends Serializable> idList) {
+            List<${entity}Model> ${table.entityPath}ModelList = new ArrayList<${entity}Model>();
+            idList.forEach(id -> {
+                ${entity}Model entity = new ${entity}Model();
+                entity.setId((Long) id);
+                entity.setIsDel(1);
+                entity.setUpdateTime(new Date());
+                ${table.entityPath}ModelList.add(entity);
+            });
+            return super.updateBatchById(${table.entityPath}ModelList);
+        }
 }
 #end

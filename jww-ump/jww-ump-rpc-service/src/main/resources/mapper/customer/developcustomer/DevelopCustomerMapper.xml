@@ -32,7 +32,7 @@
         create_time,
         update_by,
         update_time,
-        customer_name, customer_no, sex, type, mobile_phone, summary, email, editable_
+        customer_name AS customerName, customer_no AS customerNo, sex, type, mobile_phone AS mobilePhone, summary, email, editable_ AS editable
     </sql>
 
 </mapper>
