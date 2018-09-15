@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jww</artifactId>
+        <groupId>com.jww</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>jww-common</artifactId>
+    <version>1.0.0</version>
+    <modules>
+        <module>jww-common-mdb</module>
+        <module>jww-common-web</module>
+        <module>jww-common-redis</module>
+        <module>jww-common-http</module>
+        <module>jww-common-mq</module>
+        <module>jww-common-log</module>
+        <module>jww-common-core</module>
+        <module>jww-common-pay</module>
+        <module>jww-common-dsession</module>
+        <module>jww-common-db</module>
+        <module>jww-common-oss</module>
+    </modules>
+    <packaging>pom</packaging>
+
+</project>

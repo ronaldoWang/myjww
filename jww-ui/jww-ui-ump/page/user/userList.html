@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>用户管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_495397_jzxo653foj6skyb9.css" media="all"/>
+    <link rel="stylesheet" href="../../css/common.css" media="all"/>
+    <link rel="stylesheet" href="../../css/user.css" media="all"/>
+</head>
+<body class="childrenBody">
+<blockquote class="layui-elem-quote news_search">
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <input type="text" value="" placeholder="账号、姓名、手机号" class="layui-input search_input">
+        </div>
+        <a class="layui-btn search_btn">查询</a>
+    </div>
+    <permission value="sys:user:add">
+        <div class="layui-inline">
+            <a class="layui-btn layui-btn-normal usersAdd_btn">添加用户</a>
+        </div>
+    </permission>
+    <permission value="sys:user:delete">
+        <div class="layui-inline">
+            <a class="layui-btn layui-btn-danger batchDel">批量删除</a>
+        </div>
+    </permission>
+</blockquote>
+
+<table class="layui-table" id="userTable" lay-filter="tableFilter"></table>
+
+<!-- 分页控件div -->
+<div id="pageDiv"></div>
+<!-- 工具栏模板 -->
+<div style="display: none;" id="toolBar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <permission value="sys:user:update">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    </permission>
+    <permission value="sys:user:delete">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </permission>
+</div>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="userList.js"></script>
+<script type="text/html" id="sexTpl">
+    {{#  if(d.sex === 1){ }}
+    <div>{{"男"}}</div>
+    {{#  } }}
+    {{#  if(d.sex === 2){ }}
+    <div>{{"女"}}</div>
+    {{#  } }}
+    {{#  if(d.sex === 0){ }}
+    <div>{{"保密"}}</div>
+    {{#  } }}
+</script>
+</body>
+</html>

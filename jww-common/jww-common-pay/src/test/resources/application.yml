@@ -1,0 +1,10 @@
+#配置示例
+weixin:
+  appid: wx43f9db8*********
+  secret: fbbd1bb0274836c52c*********
+  mchId: 149******2
+  secretKey: yXgnXpOQ**********hWxuGKIz
+  keyPublic: apiclient_cert.p12
+  notifyUrl: https://jww.china.com/payment/payBack/
+  signType: MD5
+
