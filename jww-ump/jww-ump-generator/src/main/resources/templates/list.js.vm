@@ -107,6 +107,7 @@ layui.config({
     });
 
     function queryParams(params) {
+        var params = new Object();
         $.each($('#searchForm').serializeArray(),function(i,item){
             params[item.name] = item.value;
         })
@@ -185,6 +186,4 @@ layui.config({
             });
         });
     })
-
-
 });

@@ -21,7 +21,6 @@ layui.config({
             {field: 'mobilePhone', title: '手机'},
             {field: 'summary', title: '概况'},
             {field: 'email', title: '邮箱'},
-            {field: 'editable', title: ''},
             {field: 'opt', title: '操作', fixed: 'right', width: 160, align: 'center', toolbar: '#toolBar'}
         ]],
         url: 'developCustomer/queryListPage',
@@ -112,6 +111,7 @@ layui.config({
     });
 
     function queryParams(params) {
+        var params = new Object();
         $.each($('#searchForm').serializeArray(),function(i,item){
             params[item.name] = item.value;
         })

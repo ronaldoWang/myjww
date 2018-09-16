@@ -177,6 +177,22 @@ public class UmpGeneratorUtil {
             }
         };
 
+        // 调整 dubbo consumer 生成目录
+        FileOutConfig dubboConsumerXml = new FileOutConfig("/templates/consumers.xml.vm") {
+            @Override
+            public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
+                return props.getStr("fileout.dubbodirectory") + tableInfo.getEntityPath() + "-customer.xml";
+            }
+        };
+
+        // 调整 dubbo providers 生成目录
+        FileOutConfig dubboProvidersXml = new FileOutConfig("/templates/providers.xml.vm") {
+            @Override
+            public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
+                return props.getStr("fileout.dubbodirectory") + tableInfo.getEntityPath() + "-providers.xml";
+            }
+        };
+
         focList.add(mapperXmlConfig);
         focList.add(htmlList);
         focList.add(jsList);
@@ -184,6 +200,8 @@ public class UmpGeneratorUtil {
         focList.add(mapperList);
         focList.add(jsForm);
         focList.add(htmlForm);
+        focList.add(dubboConsumerXml);
+        focList.add(dubboProvidersXml);
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
 
