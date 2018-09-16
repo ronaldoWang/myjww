@@ -16,6 +16,7 @@
         <module>jww-common-web</module>
         <module>jww-common-redis</module>
         <module>jww-common-http</module>
+        <module>jww-common-jwt</module>
         <module>jww-common-mq</module>
         <module>jww-common-log</module>
         <module>jww-common-core</module>

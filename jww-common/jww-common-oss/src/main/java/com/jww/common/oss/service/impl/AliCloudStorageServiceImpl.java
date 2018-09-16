@@ -30,12 +30,10 @@ public class AliCloudStorageServiceImpl implements CloudStorageService {
                 ossProperties.getAccessKeySecret());
     }
 
-    @Override
     public String upload(byte[] data, String path) {
         return upload(new ByteArrayInputStream(data), path);
     }
 
-    @Override
     public String upload(InputStream inputStream, String path) {
         try {
             client.putObject(ossProperties.getBucketName(), path, inputStream);
@@ -46,22 +44,18 @@ public class AliCloudStorageServiceImpl implements CloudStorageService {
         return ossProperties.getDomain() == null ? ossProperties.getEndPoint() : ossProperties.getDomain() + "/" + path;
     }
 
-    @Override
     public String uploadSuffix(byte[] data, String suffix) {
         return null;
     }
 
-    @Override
     public String uploadSuffix(InputStream inputStream, String suffix) {
         return null;
     }
 
-    @Override
     public InputStream download(String path) {
         return client.getObject(ossProperties.getBucketName(), path).getObjectContent();
     }
 
-    @Override
     public void delete(String path) {
         client.deleteObject(ossProperties.getBucketName(), path);
     }

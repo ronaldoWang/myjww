@@ -38,12 +38,10 @@ public class QqCloudStorageServiceImpl implements CloudStorageService {
         client = new COSClient(cred, clientConfig);
     }
 
-    @Override
     public String upload(byte[] data, String path) {
         return upload(new ByteArrayInputStream(data), path);
     }
 
-    @Override
     public String upload(InputStream inputStream, String path) {
         try {
             ObjectMetadata objectMetadata = new ObjectMetadata();
@@ -63,23 +61,19 @@ public class QqCloudStorageServiceImpl implements CloudStorageService {
         return ossProperties.getDomain() == null ? ossProperties.getEndPoint() : ossProperties.getDomain() + "/" + path;
     }
 
-    @Override
     public String uploadSuffix(byte[] data, String suffix) {
         return null;
     }
 
-    @Override
     public String uploadSuffix(InputStream inputStream, String suffix) {
         return null;
     }
 
-    @Override
     public InputStream download(String path) {
         GetObjectRequest getObjectRequest = new GetObjectRequest(ossProperties.getBucketName(), path);
         return client.getObject(getObjectRequest).getObjectContent();
     }
 
-    @Override
     public void delete(String path) {
         client.deleteObject(ossProperties.getBucketName(), path);
     }

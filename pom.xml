@@ -67,6 +67,8 @@
         <aliyun-sdk-oss.version>3.0.0</aliyun-sdk-oss.version>
         <!-- 腾讯云COS -->
         <cos_api.version>5.2.4</cos_api.version>
+        <!-- jwt实现 -->
+        <jsonwebtoken.version>0.9.0</jsonwebtoken.version>
     </properties>
 
 

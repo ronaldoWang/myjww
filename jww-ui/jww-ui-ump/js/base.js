@@ -64,10 +64,10 @@ layui.define(['jquery'], function (exports) {
                 $(elem).attr("clickPassValue", "0");
                 setTimeout(function () {
                     $(elem).attr("clickPassValue", "1");
-                }, 5000);
+                }, 2000);
                 return true;
             } else {
-                layui.layer.tips("您点击太快，稍等五秒再点击吧！", elem, {tips: [3, '#009688'], time: 1000});
+                layui.layer.tips("您点击太快，稍等两秒再点击吧！", elem, {tips: [3, '#009688'], time: 1000});
                 return false;
             }
         }
