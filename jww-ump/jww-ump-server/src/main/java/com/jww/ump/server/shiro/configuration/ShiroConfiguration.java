@@ -70,6 +70,8 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/reg", "anon");
         filterChainDefinitionMap.put("/captcha/*", "anon");
         filterChainDefinitionMap.put("/logout", "anon");
+        filterChainDefinitionMap.put("/wx/**", "anon");
+
         // 静态资源不鉴权
         filterChainDefinitionMap.put("/index.html", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");

@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 @Slf4j
 @Order(3)
-@WebFilter(filterName = "authFilter", urlPatterns = "/*")
+@WebFilter(filterName = "authFilter", urlPatterns = "/wx/*")
 public class AuthFilter implements Filter {
     /**
      * TOKEN前缀

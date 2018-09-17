@@ -9,7 +9,6 @@ import com.jww.common.core.Constants;
 import com.jww.common.core.exception.LoginException;
 import com.jww.common.core.model.LoginModel;
 import com.jww.common.core.util.SecurityUtil;
-import com.jww.common.jwt.JwtTokenHelper;
 import com.jww.common.redis.util.CacheUtil;
 import com.jww.common.web.BaseController;
 import com.jww.common.web.model.ResultModel;
@@ -157,15 +156,5 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/unauthorized", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
     public ResultModel unauthorized() {
         return ResultUtil.fail(Constants.ResultCodeEnum.UNAUTHORIZED);
-    }
-
-    @Autowired
-    private JwtTokenHelper jwtTokenHelper;
-
-    @PostMapping("/wx/login")
-    public ResultModel login() {
-        final String randomKey = jwtTokenHelper.getRandomKey();
-        final String token = jwtTokenHelper.generateToken(String.valueOf("admin"), randomKey);
-        return null;
     }
 }
