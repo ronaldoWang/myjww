@@ -27,35 +27,36 @@ import java.util.Map;
  */
 
 @Slf4j
-@Service("developCustomerService")  public class DevelopCustomerServiceImpl extends BaseServiceImpl<DevelopCustomerMapper, DevelopCustomerModel> implements DevelopCustomerService {
-        @Override
-        public Page<DevelopCustomerModel> selectPage(Page<DevelopCustomerModel> page) {
-            DevelopCustomerModel developCustomerModel = new DevelopCustomerModel();
-            developCustomerModel.setIsDel(0);
-            EntityWrapper<DevelopCustomerModel> entityWrapper = new EntityWrapper<>(developCustomerModel);
-            if (ObjectUtil.isNotNull(page.getCondition())) {
-                StringBuilder conditionSql = new StringBuilder();
-                Map<String, Object> paramMap = page.getCondition();
-                paramMap.forEach((k, v) -> {
-                    if (StrUtil.isNotBlank(v + "")) {
-                        conditionSql.append(k + " like '%" + v + "%' AND ");
-                    }
-                });
-                entityWrapper.and(StrUtil.removeSuffix(conditionSql.toString(), "AND "));
-            }
-            page.setCondition(null);
-            return super.selectPage(page, entityWrapper);
-        }
-
-        public boolean deleteBatchIds(List<? extends Serializable> idList) {
-            List<DevelopCustomerModel> developCustomerModelList = new ArrayList<DevelopCustomerModel>();
-            idList.forEach(id -> {
-                DevelopCustomerModel entity = new DevelopCustomerModel();
-                entity.setId((Long) id);
-                entity.setIsDel(1);
-                entity.setUpdateTime(new Date());
-                developCustomerModelList.add(entity);
+@Service("developCustomerService")
+public class DevelopCustomerServiceImpl extends BaseServiceImpl<DevelopCustomerMapper, DevelopCustomerModel> implements DevelopCustomerService {
+    @Override
+    public Page<DevelopCustomerModel> selectPage(Page<DevelopCustomerModel> page) {
+        DevelopCustomerModel developCustomerModel = new DevelopCustomerModel();
+        developCustomerModel.setIsDel(0);
+        EntityWrapper<DevelopCustomerModel> entityWrapper = new EntityWrapper<>(developCustomerModel);
+        if (ObjectUtil.isNotNull(page.getCondition())) {
+            StringBuilder conditionSql = new StringBuilder();
+            Map<String, Object> paramMap = page.getCondition();
+            paramMap.forEach((k, v) -> {
+                if (StrUtil.isNotBlank(v + "")) {
+                    conditionSql.append(k + " like '%" + v + "%' AND ");
+                }
             });
-            return super.updateBatchById(developCustomerModelList);
+            entityWrapper.and(StrUtil.removeSuffix(conditionSql.toString(), "AND "));
         }
+        page.setCondition(null);
+        return super.selectPage(page, entityWrapper);
+    }
+
+    public boolean deleteBatchIds(List<? extends Serializable> idList) {
+        List<DevelopCustomerModel> developCustomerModelList = new ArrayList<DevelopCustomerModel>();
+        idList.forEach(id -> {
+            DevelopCustomerModel entity = new DevelopCustomerModel();
+            entity.setId((Long) id);
+            entity.setIsDel(1);
+            entity.setUpdateTime(new Date());
+            developCustomerModelList.add(entity);
+        });
+        return super.updateBatchById(developCustomerModelList);
+    }
 }
