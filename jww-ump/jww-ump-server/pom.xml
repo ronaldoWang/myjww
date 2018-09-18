@@ -35,11 +35,11 @@
             <artifactId>jww-common-jwt</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>com.jww</groupId>
             <artifactId>jww-common-quartz</artifactId>
             <version>1.0.0</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.jww</groupId>
             <artifactId>jww-common-dsession</artifactId>

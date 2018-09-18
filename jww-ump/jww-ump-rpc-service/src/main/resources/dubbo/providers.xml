@@ -25,7 +25,7 @@
     <dubbo:service interface="com.jww.ump.rpc.api.SysDicService" ref="sysDicService" timeout="10000"/>
     <dubbo:service interface="com.jww.ump.rpc.api.SysParamService" ref="sysParamService" timeout="10000"/>
     <dubbo:service interface="com.jww.ump.rpc.api.SysLogService" ref="sysLogService" timeout="10000"/>
-    <dubbo:service interface="com.jww.ump.rpc.api.SysScheduleJobService" ref="sysScheduleJobService" timeout="10000"/>
+    <dubbo:service interface="com.jww.ump.rpc.api.JobService" ref="jobService" timeout="10000"/>
 
     <dubbo:service interface="com.jww.customer.developcustomer.rpc.api.DevelopCustomerService" ref="developCustomerService" timeout="10000"/>
 </beans>
