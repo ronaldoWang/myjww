@@ -13,6 +13,8 @@ spring:
     lock:
       waitTimeOut: 5
       lockTimeOut: 30
+  application:
+    name: jww-ump-dubbo-provider
 
 datasource:
   type: com.alibaba.druid.pool.DruidDataSource

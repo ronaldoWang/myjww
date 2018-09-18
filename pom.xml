@@ -69,6 +69,8 @@
         <cos_api.version>5.2.4</cos_api.version>
         <!-- jwt实现 -->
         <jsonwebtoken.version>0.9.0</jsonwebtoken.version>
+        <!--dubbo-zipkin-->
+        <dubbo.zipkin>1.0.2</dubbo.zipkin>
     </properties>
 
 

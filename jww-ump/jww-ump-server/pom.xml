@@ -61,6 +61,11 @@
             <artifactId>druid</artifactId>
             <version>${druid.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.jessyZu</groupId>
+            <artifactId>dubbo-zipkin-spring-starter</artifactId>
+            <version>${dubbo.zipkin}</version>
+        </dependency>
     </dependencies>
 
     <build>
