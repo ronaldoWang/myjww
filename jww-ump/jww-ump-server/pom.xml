@@ -37,6 +37,11 @@
         </dependency>
         <dependency>
             <groupId>com.jww</groupId>
+            <artifactId>jww-common-quartz</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jww</groupId>
             <artifactId>jww-common-dsession</artifactId>
             <version>1.0.0</version>
         </dependency>
@@ -64,7 +69,7 @@
         <dependency>
             <groupId>com.github.jessyZu</groupId>
             <artifactId>dubbo-zipkin-spring-starter</artifactId>
-            <version>${dubbo.zipkin}</version>
+            <version>${dubbo.zipkin.version}</version>
         </dependency>
     </dependencies>
 

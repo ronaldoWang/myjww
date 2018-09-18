@@ -20,5 +20,6 @@
     <dubbo:reference id="sysDicService" interface="com.jww.ump.rpc.api.SysDicService"/>
     <dubbo:reference id="sysParamService" interface="com.jww.ump.rpc.api.SysParamService"/>
     <dubbo:reference id="sysLogService" interface="com.jww.ump.rpc.api.SysLogService"/>
+    <dubbo:reference id="sysScheduleJobService" interface="com.jww.ump.rpc.api.SysScheduleJobService"/>
     <dubbo:reference id="developCustomerService" interface="com.jww.customer.developcustomer.rpc.api.DevelopCustomerService"/>
 </beans>
