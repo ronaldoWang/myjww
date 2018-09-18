@@ -13,6 +13,9 @@
     <dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}" client="zkclient"/>
     <!-- 定义 Dubbo 协议名称及使用的端口，dubbo 协议缺省端口为 20880，如果配置为 -1 或者没有配置 port，则会分配一个没有被占用的端口 -->
     <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}"/>
+    <!-- 开启服务监控-->
+    <!--<dubbo:monitor protocol="registry" />-->
+
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.jww.ump.rpc.api.SysUserService" ref="sysUserService" timeout="10000"/>
     <dubbo:service interface="com.jww.ump.rpc.api.SysAuthorizeService" ref="sysAuthorizeService" timeout="10000"/>
