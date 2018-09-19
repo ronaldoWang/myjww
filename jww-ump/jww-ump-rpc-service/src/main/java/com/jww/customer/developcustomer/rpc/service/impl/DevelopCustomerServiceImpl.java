@@ -12,10 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -48,7 +45,8 @@ public class DevelopCustomerServiceImpl extends BaseServiceImpl<DevelopCustomerM
         return super.selectPage(page, entityWrapper);
     }
 
-    public boolean deleteBatchIds(List<? extends Serializable> idList) {
+    @Override
+    public boolean deleteBatchIds(Collection<? extends Serializable> idList) {
         List<DevelopCustomerModel> developCustomerModelList = new ArrayList<DevelopCustomerModel>();
         idList.forEach(id -> {
             DevelopCustomerModel entity = new DevelopCustomerModel();
