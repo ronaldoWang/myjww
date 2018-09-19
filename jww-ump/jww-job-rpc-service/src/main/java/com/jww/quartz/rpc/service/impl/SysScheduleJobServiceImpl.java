@@ -121,7 +121,7 @@ public class SysScheduleJobServiceImpl extends BaseServiceImpl<SysScheduleJobMap
             ScheduleUtils.resumeJob(scheduler, jobId);
             SysScheduleJobModel entity = new SysScheduleJobModel();
             entity.setId(jobId);
-            entity.setStatus(Constants.ScheduleStatus.PAUSE.getValue());
+            entity.setStatus(Constants.ScheduleStatus.NORMAL.getValue());
             list.add(entity);
         }
         updateBatchById(list);
@@ -135,7 +135,7 @@ public class SysScheduleJobServiceImpl extends BaseServiceImpl<SysScheduleJobMap
             ScheduleUtils.pauseJob(scheduler, jobId);
             SysScheduleJobModel entity = new SysScheduleJobModel();
             entity.setId(jobId);
-            entity.setStatus(Constants.ScheduleStatus.NORMAL.getValue());
+            entity.setStatus(Constants.ScheduleStatus.PAUSE.getValue());
             list.add(entity);
         }
         updateBatchById(list);
