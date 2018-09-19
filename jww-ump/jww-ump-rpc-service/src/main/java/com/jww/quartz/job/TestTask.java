@@ -1,4 +1,4 @@
-package com.jww.common.quartz.task;
+package com.jww.quartz.job;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

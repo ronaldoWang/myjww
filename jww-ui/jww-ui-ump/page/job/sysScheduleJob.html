@@ -29,7 +29,14 @@
 <body class="childrenBody">
 <form class="layui-form" style="width:80%;" id="dataForm">
     <div class="layui-form-item">
-        <label class="layui-form-label">spring bean名称</label>
+        <label class="layui-form-label">任务名称</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" id="taskName" name="taskName" lay-verify="required"
+                   placeholder="请输入任务名称">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">Bean名称</label>
         <div class="layui-input-block">
             <input type="text" class="layui-input" id="beanName" name="beanName" lay-verify="required"
                    placeholder="请输入spring bean名称">
@@ -57,10 +64,13 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">任务状态  0：正常  1：暂停</label>
+        <label class="layui-form-label">任务状态</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" id="status" name="status" lay-verify="required"
-                   placeholder="请输入任务状态  0：正常  1：暂停">
+            <select id="status" name="status" lay-verify="required" lay-search="">
+                <option value="">请选择</option>
+                <option value="0">正常</option>
+                <option value="1">暂停</option>
+            </select>
         </div>
     </div>
     <div class="layui-form-item">

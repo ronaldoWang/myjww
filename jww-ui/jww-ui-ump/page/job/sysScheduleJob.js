@@ -25,6 +25,7 @@ layui.config({
                 debugger
                 if (data.code === 200) {
                     if (data.data !== null) {
+                        $("#taskName").val(data.data.taskName);
                         $("#beanName").val(data.data.beanName);
                         $("#methodName").val(data.data.methodName);
                         $("#params").val(data.data.params);

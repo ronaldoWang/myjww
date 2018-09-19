@@ -7,8 +7,8 @@ import com.jww.common.core.model.PageModel;
 import com.jww.common.web.BaseController;
 import com.jww.common.web.model.ResultModel;
 import com.jww.common.web.util.ResultUtil;
+import com.jww.quartz.rpc.api.SysScheduleJobService;
 import com.jww.ump.model.SysScheduleJobModel;
-import com.jww.ump.rpc.api.SysScheduleJobService;
 import com.jww.ump.server.annotation.SysLogOpt;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -131,6 +131,7 @@ public class SysScheduleJobController extends BaseController {
      */
     @RequestMapping("/run")
     @RequiresPermissions("ump:job:edit")
+    @SysLogOpt(module = "定时任务管理", value = "定时任务执行", operationType = Constants.LogOptEnum.MODIFY)
     public ResultModel run(@RequestBody Long[] jobIds) {
         service.run(jobIds);
         return ResultUtil.ok();
@@ -141,6 +142,7 @@ public class SysScheduleJobController extends BaseController {
      */
     @RequestMapping("/pause")
     @RequiresPermissions("ump:job:edit")
+    @SysLogOpt(module = "定时任务管理", value = "定时任务暂停", operationType = Constants.LogOptEnum.MODIFY)
     public ResultModel pause(@RequestBody Long[] jobIds) {
         service.pause(jobIds);
         return ResultUtil.ok();
@@ -150,7 +152,8 @@ public class SysScheduleJobController extends BaseController {
      * 恢复定时任务
      */
     @RequestMapping("/resume")
-    @RequiresPermissions("sys:schedule:resume")
+    @RequiresPermissions("ump:job:edit")
+    @SysLogOpt(module = "定时任务管理", value = "定时任务恢复", operationType = Constants.LogOptEnum.MODIFY)
     public ResultModel resume(@RequestBody Long[] jobIds) {
         service.resume(jobIds);
         return ResultUtil.ok();

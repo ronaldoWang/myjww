@@ -1,22 +1,22 @@
-package com.jww.common.quartz.configuration;
+package com.jww.quartz.config;
 
-import org.quartz.Scheduler;
-import org.quartz.ee.servlet.QuartzInitializerListener;
-import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Created by aihuihsou on 2018/9/18.
+ * 定时任务配置
+ *
+ * @author czx
+ * @email object_czx@163.com
+ * @date 2017-04-20 23:38
  */
 @Configuration
-public class SchedulerConfig {
+public class ScheduleConfig {
+
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();

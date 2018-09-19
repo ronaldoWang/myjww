@@ -6,20 +6,21 @@ layui.config({
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.jquery,
         table = layui.table;
-        //页面操作：0：查看，1：添加，2：修改
-        pageOperation = 0;
-        checkedId = "";
+    //页面操作：0：查看，1：添加，2：修改
+    pageOperation = 0;
+    checkedId = "";
 
     var tableIns = table.render({
         //设置表头
         cols: [[
             {type: 'checkbox', fixed: 'left'},
-            {field: 'beanName', title: 'spring bean名称'},
+            {field: 'taskName', title: '任务名称'},
+            {field: 'beanName', title: 'Bean名称'},
             {field: 'methodName', title: '方法名'},
             {field: 'params', title: '参数'},
             {field: 'cronExpression', title: 'cron表达式'},
-            {field: 'status', title: '任务状态  0：正常  1：暂停'},
-            {field: 'opt', title: '操作', fixed: 'right', width: 160, align: 'center', toolbar: '#toolBar'}
+            {field: 'status', title: '任务状态'},
+            {field: 'opt', title: '操作', fixed: 'right', width: 260, align: 'center', toolbar: '#toolBar'}
         ]],
         url: 'sysScheduleJob/queryListPage',
         method: 'post',
@@ -101,6 +102,54 @@ layui.config({
                 layui.layer.full(index);
             });
             layui.layer.full(index);
+        } else if (layEvent === 'stop') {
+            var dataIds = [data.id];
+            layer.confirm('您确定要暂停吗？', {icon: 3, title: '确认'}, function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'sysScheduleJob/pause',
+                    data: JSON.stringify(dataIds),
+                    success: function (data) {
+                        if (data.code == 200) {
+                            layer.msg("停止成功", {icon: 1, time: 2000});
+                        } else {
+                            layer.msg(data.message, {icon: 2});
+                        }
+                    }
+                });
+            });
+        } else if (layEvent === 'resume') {
+            var dataIds = [data.id];
+            layer.confirm('您确定要恢复吗？', {icon: 3, title: '确认'}, function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'sysScheduleJob/resume',
+                    data: JSON.stringify(dataIds),
+                    success: function (data) {
+                        if (data.code == 200) {
+                            layer.msg("恢复成功", {icon: 1, time: 2000});
+                        } else {
+                            layer.msg(data.message, {icon: 2});
+                        }
+                    }
+                });
+            });
+        } else if (layEvent === 'run') {
+            var dataIds = [data.id];
+            layer.confirm('您确定要开始执行吗？', {icon: 3, title: '确认'}, function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'sysScheduleJob/run',
+                    data: JSON.stringify(dataIds),
+                    success: function (data) {
+                        if (data.code == 200) {
+                            layer.msg("执行成功", {icon: 1, time: 2000});
+                        } else {
+                            layer.msg(data.message, {icon: 2});
+                        }
+                    }
+                });
+            });
         }
     });
 
@@ -110,7 +159,7 @@ layui.config({
 
     function queryParams(params) {
         var params = new Object();
-        $.each($('#searchForm').serializeArray(),function(i,item){
+        $.each($('#searchForm').serializeArray(), function (i, item) {
             params[item.name] = item.value;
         })
         return params;
@@ -123,7 +172,7 @@ layui.config({
                 // condition: {
                 //     searchKey: searchKey
                 // }
-                condition:queryParams()
+                condition: queryParams()
             },
             page: {
                 curr: 1 //重新从第 1 页开始

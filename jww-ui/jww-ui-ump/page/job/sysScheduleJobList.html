@@ -15,7 +15,7 @@
 </head>
 <body class="childrenBody">
 <blockquote class="layui-elem-quote news_search">
-    <form id="searchForm">
+    <form id="searchForm" class="layui-form">
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <div class="layui-inline">
@@ -23,15 +23,24 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">spring bean名称</label>
+                <label class="layui-form-label">任务名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="bean_name" name="bean_name" placeholder="spring bean名称" class="layui-input search_input">
+                    <input type="text" id="task_name" name="task_name" placeholder="任务名称"
+                           class="layui-input search_input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">Bean名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="bean_name" name="bean_name" placeholder="bean名称"
+                           class="layui-input search_input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">方法名</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="method_name" name="method_name" placeholder="方法名" class="layui-input search_input">
+                    <input type="text" id="method_name" name="method_name" placeholder="方法名"
+                           class="layui-input search_input">
                 </div>
             </div>
             <div class="layui-inline">
@@ -41,15 +50,13 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">cron表达式</label>
+                <label class="layui-form-label">任务状态</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="cron_expression" name="cron_expression" placeholder="cron表达式" class="layui-input search_input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">任务状态  0：正常  1：暂停</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="status" name="status" placeholder="任务状态  0：正常  1：暂停" class="layui-input search_input">
+                    <select id="status" name="status" lay-verify="required" lay-search="">
+                        <option value="">请选择</option>
+                        <option value="0">正常</option>
+                        <option value="1">暂停</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -76,6 +83,15 @@
     </permission>
     <permission value="ump:job:edit">
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </permission>
+    <permission value="ump:job:edit">
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="run">执行</a>
+    </permission>
+    <permission value="ump:job:edit">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="stop">暂停</a>
+    </permission>
+    <permission value="ump:job:edit">
+        <a class="layui-btn layui-btn-xs" lay-event="resume">恢复</a>
     </permission>
 </div>
 <script type="text/javascript" src="../../layui/layui.js"></script>
