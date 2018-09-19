@@ -17,14 +17,6 @@
     <!--<dubbo:monitor protocol="registry" />-->
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.jww.ump.rpc.api.SysUserService" ref="sysUserService" timeout="10000"/>
-    <dubbo:service interface="com.jww.ump.rpc.api.SysAuthorizeService" ref="sysAuthorizeService" timeout="10000"/>
-    <dubbo:service interface="com.jww.ump.rpc.api.SysMenuService" ref="sysMenuService" timeout="10000"/>
-    <dubbo:service interface="com.jww.ump.rpc.api.SysDeptService" ref="sysDeptService" timeout="10000"/>
-    <dubbo:service interface="com.jww.ump.rpc.api.SysRoleService" ref="sysRoleService" timeout="10000"/>
-    <dubbo:service interface="com.jww.ump.rpc.api.SysDicService" ref="sysDicService" timeout="10000"/>
-    <dubbo:service interface="com.jww.ump.rpc.api.SysParamService" ref="sysParamService" timeout="10000"/>
-    <dubbo:service interface="com.jww.ump.rpc.api.SysLogService" ref="sysLogService" timeout="10000"/>
+    <dubbo:service interface="com.jww.quartz.rpc.api.SysScheduleJobService" ref="sysScheduleJobService" timeout="10000"/>
 
-    <dubbo:service interface="com.jww.customer.developcustomer.rpc.api.DevelopCustomerService" ref="developCustomerService" timeout="10000"/>
 </beans>

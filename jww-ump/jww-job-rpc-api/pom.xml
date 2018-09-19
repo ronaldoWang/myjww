@@ -3,21 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>jww-common</artifactId>
+        <artifactId>jww-ump</artifactId>
         <groupId>com.jww</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jww-common-quartz</artifactId>
+    <artifactId>jww-job-rpc-api</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.jww</groupId>
-            <artifactId>jww-common-core</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -25,19 +19,9 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz-jobs</artifactId>
-            <version>${quartz.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz</artifactId>
-            <version>${quartz.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${spring.version}</version>
+            <groupId>com.jww</groupId>
+            <artifactId>jww-ump-common</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.jww.common.core.Constants;
 import com.jww.common.core.base.BaseServiceImpl;
-import com.jww.quartz.dao.SysScheduleJobMapper;
+import com.jww.quartz.dao.mapper.SysScheduleJobMapper;
 import com.jww.quartz.model.SysScheduleJobModel;
 import com.jww.quartz.rpc.api.SysScheduleJobService;
 import com.jww.quartz.utils.ScheduleUtils;
@@ -98,6 +98,7 @@ public class SysScheduleJobServiceImpl extends BaseServiceImpl<SysScheduleJobMap
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public SysScheduleJobModel modifyById(SysScheduleJobModel entity) {
         entity = super.modifyById(entity);
         ScheduleUtils.updateScheduleJob(scheduler, entity);
@@ -105,6 +106,7 @@ public class SysScheduleJobServiceImpl extends BaseServiceImpl<SysScheduleJobMap
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void run(Long[] jobIds) {
         for (Long jobId : jobIds) {
             ScheduleUtils.run(scheduler, selectById(jobId));
@@ -112,6 +114,7 @@ public class SysScheduleJobServiceImpl extends BaseServiceImpl<SysScheduleJobMap
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void resume(Long[] jobIds) {
         List<SysScheduleJobModel> list = new ArrayList<>();
         for (Long jobId : jobIds) {
@@ -125,6 +128,7 @@ public class SysScheduleJobServiceImpl extends BaseServiceImpl<SysScheduleJobMap
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void pause(Long[] jobIds) {
         List<SysScheduleJobModel> list = new ArrayList<>();
         for (Long jobId : jobIds) {

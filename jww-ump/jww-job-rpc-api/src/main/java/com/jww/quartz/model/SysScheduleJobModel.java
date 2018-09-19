@@ -6,9 +6,6 @@ import com.jww.common.core.base.BaseModel;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
-import java.io.Serializable;
-import java.util.Date;
-
 /**
  * 定时器
  *
@@ -26,6 +23,9 @@ public class SysScheduleJobModel extends BaseModel {
      */
     public static final String JOB_PARAM_KEY = "JOB_PARAM_KEY";
 
+    @NotBlank(message = "任务名称不能为空")
+    @TableField("task_name")
+    private String taskName;
     /**
      * spring bean名称
      */
@@ -62,7 +62,7 @@ public class SysScheduleJobModel extends BaseModel {
     /**
      * 备注
      */
-    @TableField("remark")
+    @TableField("remark_")
     private String remark;
 
 }

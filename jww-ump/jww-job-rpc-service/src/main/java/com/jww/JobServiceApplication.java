@@ -14,13 +14,13 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Slf4j
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.jww.**.rpc.service.impl", "com.jww.common.db", "com.jww.common.core", "com.jww.common.mdb", "com.jww.common.redis"})
+@ComponentScan(basePackages = {"com.jww.**.rpc.service.impl", "com.jww.quartz", "com.jww.common.db", "com.jww.common.core", "com.jww.common.mdb", "com.jww.common.redis"})
 @ImportResource(value = {"classpath:dubbo/providers.xml"})
 @MapperScan(basePackages = {"com.jww.**.dao.mapper"})
-public class ServiceApplication {
+public class JobServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication springApplication = new SpringApplication(ServiceApplication.class);
+        SpringApplication springApplication = new SpringApplication(JobServiceApplication.class);
         springApplication.run(args);
         log.info("========== ServiceApplication启动成功 ==========");
     }
