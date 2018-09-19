@@ -1,10 +1,7 @@
 package com.jww.quartz.rpc.api;
 
 import com.jww.common.core.base.BaseService;
-import com.jww.ump.model.SysScheduleJobModel;
-
-import java.util.List;
-import java.util.Map;
+import com.jww.quartz.model.SysScheduleJobModel;
 
 /**
  * 定时任务
