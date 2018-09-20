@@ -14,12 +14,16 @@ layui.config({
         //设置表头
         cols: [[
             {type: 'checkbox', fixed: 'left'},
-        #foreach($field in ${table.fields})
-            {field: '${field.propertyName}', title: '${field.comment}'},
-        #end
+            {field: 'customerName', title: '客户名称'},
+            {field: 'customerNo', title: '客户编号'},
+            {field: 'sex', title: '性别'},
+            {field: 'type', title: '客户类型'},
+            {field: 'mobilePhone', title: '手机'},
+            {field: 'summary', title: '概况'},
+            {field: 'email', title: '邮箱'},
             {field: 'opt', title: '操作', fixed: 'right', width: 160, align: 'center', toolbar: '#toolBar'}
         ]],
-        url: '${table.entityPath}/queryListPage',
+        url: 'developCustomer/queryListPage',
         method: 'post',
         request: {
             pageName: 'current', //页码的参数名称，默认：page
@@ -29,7 +33,7 @@ layui.config({
             statusCode: 200, //成功的状态码，默认：0
             msgName: 'message' //状态信息的字段名称，默认：msg
         },
-        elem: '#${table.entityPath}Table',
+        elem: '#developCustomerTable',
         page: {
             elem: 'pageDiv',
             limit: 10,
@@ -44,9 +48,9 @@ layui.config({
         if (layEvent === 'detail') { //查看
             pageOperation = 0;
             var index = layui.layer.open({
-                title: "查看${table.comment}",
+                title: "查看待开发客户表",
                 type: 2,
-                content: "${table.entityPath}.html",
+                content: "developCustomer.html",
                 success: function (layero, index) {
                     setTimeout(function () {
                         layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -65,7 +69,7 @@ layui.config({
             layer.confirm('您确定要删除吗？', {icon: 3, title: '确认'}, function () {
                 $.ajax({
                     type: 'DELETE',
-                    url: '${table.entityPath}/delBatchByIds',
+                    url: 'developCustomer/delBatchByIds',
                     data: JSON.stringify(dataIds),
                     success: function (data) {
                         if (data.code == 200) {
@@ -83,9 +87,9 @@ layui.config({
             pageOperation = 2;
             checkedId = data.id;
             var index = layui.layer.open({
-                title: "编辑${table.comment}",
+                title: "编辑待开发客户表",
                 type: 2,
-                content: "${table.entityPath}.html",
+                content: "developCustomer.html",
                 success: function (layero, index) {
                     setTimeout(function () {
                         layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -129,13 +133,13 @@ layui.config({
         });
     });
 
-    //添加${table.comment}
+    //添加待开发客户表
     $(".add_btn").click(function () {
         pageOperation = 1;
         var index = layui.layer.open({
-            title: "添加${table.comment}",
+            title: "添加待开发客户表",
             type: 2,
-            content: "${table.entityPath}.html",
+            content: "developCustomer.html",
             success: function (layero, index) {
                 setTimeout(function () {
                     layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -153,7 +157,7 @@ layui.config({
 
     //批量删除
     $(".batchDel").click(function () {
-        var checkStatus = table.checkStatus('${table.entityPath}Table');
+        var checkStatus = table.checkStatus('developCustomerTable');
         if (checkStatus.data.length === 0) {
             layer.msg("请选择要删除的数据", {icon: 0, time: 2000});
             return;
@@ -166,7 +170,7 @@ layui.config({
             }
             $.ajax({
                 type: 'DELETE',
-                url: '${table.entityPath}/delBatchByIds',
+                url: 'developCustomer/delBatchByIds',
                 data: JSON.stringify(userIds),
                 success: function (data) {
                     if (data.code == 200) {
@@ -186,4 +190,6 @@ layui.config({
             });
         });
     })
+
+
 });

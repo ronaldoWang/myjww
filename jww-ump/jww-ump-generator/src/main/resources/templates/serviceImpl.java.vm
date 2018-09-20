@@ -11,6 +11,7 @@ import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -56,7 +57,8 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
         }
 
         @Transactional(rollbackFor = Exception.class)
-        public boolean deleteBatchIds(List<? extends Serializable> idList) {
+        @Override
+        public boolean deleteBatchIds(Collection<? extends Serializable> idList) {
             List<${entity}Model> ${table.entityPath}ModelList = new ArrayList<${entity}Model>();
             idList.forEach(id -> {
                 ${entity}Model entity = new ${entity}Model();

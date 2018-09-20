@@ -6,20 +6,23 @@ layui.config({
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.jquery,
         table = layui.table;
-        //页面操作：0：查看，1：添加，2：修改
-        pageOperation = 0;
-        checkedId = "";
 
+    // 页面操作：0：查看，1：添加，2：修改
+    pageOperation = 0;
+    checkedRoleId = "";
+
+    // 渲染表格
     var tableIns = table.render({
         //设置表头
         cols: [[
             {type: 'checkbox', fixed: 'left'},
-        #foreach($field in ${table.fields})
-            {field: '${field.propertyName}', title: '${field.comment}'},
-        #end
+            {field: 'roleName', title: '角色名称', align: 'center'},
+            {field: 'deptName', title: '所属部门', align: 'center'},
+            {field: 'remark', title: '备注', align: 'center'},
+            {field: 'createTime', title: '创建时间', align: 'center'},
             {field: 'opt', title: '操作', fixed: 'right', width: 160, align: 'center', toolbar: '#toolBar'}
         ]],
-        url: '${table.entityPath}/queryListPage',
+        url: 'role/listPage',
         method: 'post',
         request: {
             pageName: 'current', //页码的参数名称，默认：page
@@ -29,7 +32,7 @@ layui.config({
             statusCode: 200, //成功的状态码，默认：0
             msgName: 'message' //状态信息的字段名称，默认：msg
         },
-        elem: '#${table.entityPath}Table',
+        elem: '#roleTable',
         page: {
             elem: 'pageDiv',
             limit: 10,
@@ -43,13 +46,14 @@ layui.config({
         var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
         if (layEvent === 'detail') { //查看
             pageOperation = 0;
+            checkedRoleId = data.id;
             var index = layui.layer.open({
-                title: "查看${table.comment}",
+                title: "查看角色",
                 type: 2,
-                content: "${table.entityPath}.html",
+                content: "role.html",
                 success: function (layero, index) {
                     setTimeout(function () {
-                        layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                        layui.layer.tips('点击此处返回角色列表', '.layui-layer-setwin .layui-layer-close', {
                             tips: 3
                         });
                     }, 500)
@@ -61,14 +65,14 @@ layui.config({
             });
             layui.layer.full(index);
         } else if (layEvent === 'del') { //删除
-            var dataIds = [data.id];
+            checkedRoleId = data.id;
             layer.confirm('您确定要删除吗？', {icon: 3, title: '确认'}, function () {
                 $.ajax({
-                    type: 'DELETE',
-                    url: '${table.entityPath}/delBatchByIds',
-                    data: JSON.stringify(dataIds),
+                    type: 'POST',
+                    url: 'role/delBatchByIds',
+                    data: JSON.stringify([data.id]),
                     success: function (data) {
-                        if (data.code == 200) {
+                        if (data.code === 200) {
                             if (data.data === true) {
                                 obj.del();
                                 layer.msg("删除成功", {icon: 1, time: 2000});
@@ -81,14 +85,14 @@ layui.config({
             });
         } else if (layEvent === 'edit') { //编辑
             pageOperation = 2;
-            checkedId = data.id;
+            checkedRoleId = data.id;
             var index = layui.layer.open({
-                title: "编辑${table.comment}",
+                title: "修改角色",
                 type: 2,
-                content: "${table.entityPath}.html",
+                content: "role.html",
                 success: function (layero, index) {
                     setTimeout(function () {
-                        layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                        layui.layer.tips('点击此处返回角色列表', '.layui-layer-setwin .layui-layer-close', {
                             tips: 3
                         });
                     }, 500)
@@ -102,43 +106,33 @@ layui.config({
         }
     });
 
-    //监听表格复选框选择
-    table.on('checkbox(tableFilter)', function (obj) {
-    });
-
-    function queryParams(params) {
-        var params = new Object();
-        $.each($('#searchForm').serializeArray(),function(i,item){
-            params[item.name] = item.value;
-        })
-        return params;
-    }
-
     //查询
     $(".search_btn").click(function () {
-        tableIns.reload({
-            where: { //设定异步数据接口的额外参数，任意设
-                // condition: {
-                //     searchKey: searchKey
-                // }
-                condition:queryParams()
-            },
-            page: {
-                curr: 1 //重新从第 1 页开始
-            }
-        });
+        if (base.fastClickCheck(".search_btn")) {
+            var searchKey = $(".search_input").val();
+            tableIns.reload({
+                where: { //设定异步数据接口的额外参数，任意设
+                    condition: {
+                        role_name: searchKey
+                    }
+                },
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        }
     });
 
-    //添加${table.comment}
-    $(".add_btn").click(function () {
+    // 添加角色
+    $(".addBtn").click(function () {
         pageOperation = 1;
         var index = layui.layer.open({
-            title: "添加${table.comment}",
+            title: "添加角色",
             type: 2,
-            content: "${table.entityPath}.html",
+            content: "role.html",
             success: function (layero, index) {
                 setTimeout(function () {
-                    layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                    layui.layer.tips('点击此处返回角色列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
                 }, 500)
@@ -153,25 +147,25 @@ layui.config({
 
     //批量删除
     $(".batchDel").click(function () {
-        var checkStatus = table.checkStatus('${table.entityPath}Table');
+        var checkStatus = table.checkStatus('roleTable');
         if (checkStatus.data.length === 0) {
-            layer.msg("请选择要删除的数据", {icon: 0, time: 2000});
+            layer.msg("请选择要删除的角色", {icon: 0, time: 2000});
             return;
         }
         layer.confirm('确定删除选中的信息？', {icon: 3, title: '确认'}, function (index) {
-            var indexMsg = layer.msg('删除中，请稍候', {icon: 16, time: false, shade: 0.8});
-            var userIds = [];
+            var loadingIndex = base.loading(layer);
+            var roleIds = [];
             for (var i = 0; i < checkStatus.data.length; i++) {
-                userIds[i] = checkStatus.data[i].id;
+                roleIds[i] = checkStatus.data[i].id;
             }
             $.ajax({
-                type: 'DELETE',
-                url: '${table.entityPath}/delBatchByIds',
-                data: JSON.stringify(userIds),
+                type: 'POST',
+                url: 'role/delBatchByIds',
+                data: JSON.stringify(roleIds),
                 success: function (data) {
-                    if (data.code == 200) {
+                    if (data.code === 200) {
                         if (data.data === true) {
-                            layer.close(indexMsg);
+                            layer.close(loadingIndex);
                             layer.msg("删除成功", {icon: 1, time: 2000});
                             tableIns.reload({
                                 page: {
@@ -186,4 +180,6 @@ layui.config({
             });
         });
     })
+
+
 });

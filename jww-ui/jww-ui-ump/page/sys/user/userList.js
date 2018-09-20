@@ -8,18 +8,25 @@ layui.config({
         table = layui.table;
         //页面操作：0：查看，1：添加，2：修改
         pageOperation = 0;
-        checkedId = "";
+        userId = "";
+        deptId = "";
 
     var tableIns = table.render({
         //设置表头
         cols: [[
             {type: 'checkbox', fixed: 'left'},
-        #foreach($field in ${table.fields})
-            {field: '${field.propertyName}', title: '${field.comment}'},
-        #end
+            {field: 'account', title: '账号'},
+            {field: 'userName', title: '姓名'},
+            {field: 'sex', title: '性别', templet: '#sexTpl'},
+            {field: 'phone', title: '手机号'},
+            {field: 'idCard', title: '身份证'},
+            {field: 'deptName', title: '部门'},
+            {field: 'position', title: '职位'},
+            {field: 'email', title: '邮箱'},
+            {field: 'enable', title: '状态', templet: '<div>{{d.enable === 1 ? "启用" : "禁用"}}</div>'},
             {field: 'opt', title: '操作', fixed: 'right', width: 160, align: 'center', toolbar: '#toolBar'}
         ]],
-        url: '${table.entityPath}/queryListPage',
+        url: 'user/listPage',
         method: 'post',
         request: {
             pageName: 'current', //页码的参数名称，默认：page
@@ -29,7 +36,7 @@ layui.config({
             statusCode: 200, //成功的状态码，默认：0
             msgName: 'message' //状态信息的字段名称，默认：msg
         },
-        elem: '#${table.entityPath}Table',
+        elem: '#userTable',
         page: {
             elem: 'pageDiv',
             limit: 10,
@@ -40,16 +47,18 @@ layui.config({
     //监听工具条
     table.on('tool(tableFilter)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
         var data = obj.data;
+        userId = data.id;
+        deptId = data.deptId;
         var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
         if (layEvent === 'detail') { //查看
             pageOperation = 0;
             var index = layui.layer.open({
-                title: "查看${table.comment}",
+                title: "查看用户",
                 type: 2,
-                content: "${table.entityPath}.html",
+                content: "user.html",
                 success: function (layero, index) {
                     setTimeout(function () {
-                        layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                        layui.layer.tips('点击此处返回会员列表', '.layui-layer-setwin .layui-layer-close', {
                             tips: 3
                         });
                     }, 500)
@@ -61,12 +70,12 @@ layui.config({
             });
             layui.layer.full(index);
         } else if (layEvent === 'del') { //删除
-            var dataIds = [data.id];
+            var userIds = [data.id];
             layer.confirm('您确定要删除吗？', {icon: 3, title: '确认'}, function () {
                 $.ajax({
-                    type: 'DELETE',
-                    url: '${table.entityPath}/delBatchByIds',
-                    data: JSON.stringify(dataIds),
+                    type: 'POST',
+                    url: 'user/delBatchByIds',
+                    data: JSON.stringify(userIds),
                     success: function (data) {
                         if (data.code == 200) {
                             if (data.data === true) {
@@ -81,14 +90,13 @@ layui.config({
             });
         } else if (layEvent === 'edit') { //编辑
             pageOperation = 2;
-            checkedId = data.id;
             var index = layui.layer.open({
-                title: "编辑${table.comment}",
+                title: "编辑用户",
                 type: 2,
-                content: "${table.entityPath}.html",
+                content: "user.html",
                 success: function (layero, index) {
                     setTimeout(function () {
-                        layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                        layui.layer.tips('点击此处返回会员列表', '.layui-layer-setwin .layui-layer-close', {
                             tips: 3
                         });
                     }, 500)
@@ -106,22 +114,14 @@ layui.config({
     table.on('checkbox(tableFilter)', function (obj) {
     });
 
-    function queryParams(params) {
-        var params = new Object();
-        $.each($('#searchForm').serializeArray(),function(i,item){
-            params[item.name] = item.value;
-        })
-        return params;
-    }
-
     //查询
     $(".search_btn").click(function () {
+        var searchKey = $(".search_input").val();
         tableIns.reload({
             where: { //设定异步数据接口的额外参数，任意设
-                // condition: {
-                //     searchKey: searchKey
-                // }
-                condition:queryParams()
+                condition: {
+                    searchKey: searchKey
+                }
             },
             page: {
                 curr: 1 //重新从第 1 页开始
@@ -129,16 +129,16 @@ layui.config({
         });
     });
 
-    //添加${table.comment}
-    $(".add_btn").click(function () {
+    //添加会员
+    $(".usersAdd_btn").click(function () {
         pageOperation = 1;
         var index = layui.layer.open({
-            title: "添加${table.comment}",
+            title: "添加用户",
             type: 2,
-            content: "${table.entityPath}.html",
+            content: "user.html",
             success: function (layero, index) {
                 setTimeout(function () {
-                    layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+                    layui.layer.tips('点击此处返回会员列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
                 }, 500)
@@ -153,9 +153,9 @@ layui.config({
 
     //批量删除
     $(".batchDel").click(function () {
-        var checkStatus = table.checkStatus('${table.entityPath}Table');
+        var checkStatus = table.checkStatus('userTable');
         if (checkStatus.data.length === 0) {
-            layer.msg("请选择要删除的数据", {icon: 0, time: 2000});
+            layer.msg("请选择要删除的用户", {icon: 0, time: 2000});
             return;
         }
         layer.confirm('确定删除选中的信息？', {icon: 3, title: '确认'}, function (index) {
@@ -165,8 +165,8 @@ layui.config({
                 userIds[i] = checkStatus.data[i].id;
             }
             $.ajax({
-                type: 'DELETE',
-                url: '${table.entityPath}/delBatchByIds',
+                type: 'POST',
+                url: 'user/delBatchByIds',
                 data: JSON.stringify(userIds),
                 success: function (data) {
                     if (data.code == 200) {
@@ -186,4 +186,6 @@ layui.config({
             });
         });
     })
+
+
 });

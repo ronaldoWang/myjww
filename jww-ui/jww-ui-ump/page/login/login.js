@@ -1,5 +1,5 @@
 layui.config({
-    base: "../../js/"
+    base: "../../../js/"
 }).use(['base', 'form', 'layer'], function () {
     var base = layui.base,
         form = layui.form,

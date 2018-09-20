@@ -9,9 +9,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../../../layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_495397_jzxo653foj6skyb9.css" media="all"/>
-    <link rel="stylesheet" href="../../css/common.css" media="all"/>
+    <link rel="stylesheet" href="../../../css/common.css" media="all"/>
 </head>
 <body class="childrenBody">
 <blockquote class="layui-elem-quote news_search">
@@ -58,7 +58,7 @@
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </permission>
 </div>
-<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="../../../layui/layui.js"></script>
 <script type="text/javascript" src="${table.entityPath}List.js"></script>
 </body>
 </html>

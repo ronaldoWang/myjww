@@ -135,14 +135,14 @@ public class UmpGeneratorUtil {
         FileOutConfig htmlList = new FileOutConfig("/templates/list.html.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.pagedirectory") + tableInfo.getEntityPath() + "List.html";
+                return props.getStr("fileout.pagedirectory") + props.getStr("project.service") + tableInfo.getEntityPath() + "List.html";
             }
         };
         // 调整 htmlList 生成目录
         FileOutConfig jsList = new FileOutConfig("/templates/list.js.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.pagedirectory") + tableInfo.getEntityPath() + "List.js";
+                return props.getStr("fileout.pagedirectory") + props.getStr("project.service") + tableInfo.getEntityPath() + "List.js";
             }
         };
 
@@ -165,7 +165,7 @@ public class UmpGeneratorUtil {
         FileOutConfig entityList = new FileOutConfig("/templates/entity.java.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.javadirectory") + "\\" + props.getStr("package.modulename") + "\\model\\" + tableInfo.getEntityName() + "Model.java";
+                return props.getStr("fileout.javadirectory") + props.getStr("project.service") + "\\" + props.getStr("package.modulename") + "\\model\\" + tableInfo.getEntityName() + "Model.java";
             }
         };
 
@@ -173,7 +173,7 @@ public class UmpGeneratorUtil {
         FileOutConfig mapperList = new FileOutConfig("/templates/mapper.java.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.javadirectory") + "\\" + props.getStr("package.modulename") + "\\dao\\mapper\\" + tableInfo.getEntityName() + "Mapper.java";
+                return props.getStr("fileout.javadirectory") + props.getStr("project.service") + "\\" + props.getStr("package.modulename") + "\\dao\\mapper\\" + tableInfo.getEntityName() + "Mapper.java";
             }
         };
 

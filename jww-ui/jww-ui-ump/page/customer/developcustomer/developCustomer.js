@@ -5,12 +5,12 @@ layui.config({
         form = layui.form,
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.jquery,
-        submitUrl = "${table.entityPath}/add";
+        submitUrl = "developCustomer/add";
 
     // 获取父页面的pageOperation，判断是查看、添加、修改
     if (parent.pageOperation === 1) { // 添加
     } else if (parent.pageOperation === 2) { // 修改
-        submitUrl = "${table.entityPath}/modify";
+        submitUrl = "developCustomer/modify";
     } else { // 查看
         $(".layui-form input").prop("disabled", true);
         $('.layui-form button').hide();
@@ -20,15 +20,18 @@ layui.config({
         $("#id").val(parent.checkedId);
         $.ajax({
             type: 'GET',
-            url: '${table.entityPath}/query/'+parent.checkedId,
+            url: 'developCustomer/query/'+parent.checkedId,
             success: function (data) {
                 if (data.code === 200) {
                     if (data.data !== null) {
-                        #foreach($field in ${table.fields})
-                            #if(!${field.keyFlag})##生成普通字段
-                        $("#${field.propertyName}").val(data.data.${field.propertyName});
-                            #end
-                        #end
+                        $("#customerName").val(data.data.customerName);
+                        $("#customerNo").val(data.data.customerNo);
+                        $("#sex").val(data.data.sex);
+                        $("#type").val(data.data.type);
+                        $("#mobilePhone").val(data.data.mobilePhone);
+                        $("#summary").val(data.data.summary);
+                        $("#email").val(data.data.email);
+                        $("#editable").val(data.data.editable);
                         form.render('select');
                     }
                 } else {
