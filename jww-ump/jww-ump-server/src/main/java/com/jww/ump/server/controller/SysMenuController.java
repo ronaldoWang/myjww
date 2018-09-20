@@ -48,8 +48,8 @@ public class SysMenuController extends BaseController {
     @ApiOperation(value = "查询菜单列表", notes = "查询全部菜单列表")
     @PostMapping("/queryList")
     @RequiresAuthentication
-    public ResultModel queryList() {
-        return ResultUtil.ok(sysMenuService.queryList());
+    public ResultModel queryList(SysMenuModel sysMenuModel) {
+        return ResultUtil.ok(sysMenuService.queryList(sysMenuModel));
     }
 
     /**

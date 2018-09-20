@@ -1,11 +1,13 @@
 layui.config({
     base: "../../../js/"
-}).use(['base', 'form', 'layer', 'jquery', 'table'], function () {
+}).extend({
+    treeGrid: 'treeGrid'
+}).use(['base', 'form', 'layer', 'jquery', 'treeGrid'], function () {
     var base = layui.base,
         form = layui.form,
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.jquery,
-        table = layui.table;
+        table = layui.treeGrid;//很重要
 
     // 页面操作：0：查看，1：添加，2：修改
     pageOperation = 0;
@@ -14,10 +16,22 @@ layui.config({
 
     //列表加载
     var tableIns = table.render({
+        id: 'menuTable'
+        , elem: '#menuTable'
+        , idField: 'id'
+        , url: '/menu/queryList'
+        , cellMinWidth: 100
+        , treeId: 'id'//树形id字段名称
+        , treeUpId: 'parentId'//树形父id字段名称
+        , treeShowName: 'menuName'//以树形式显示的字段
+        , heightRemove: [".dHead", 10]//不计算的高度,表格设定的是固定高度，此项不生效
+        , height: '100%'
+        , isFilter: false
+        , iconOpen: true//是否显示图标【默认显示】
+        , isOpenDefault: true//节点默认是展开还是折叠【默认展开】
+        , loading: true,
         //设置表头
         cols: [[
-            {type: 'checkbox', fixed: 'left'},
-            {field: 'id', title: '菜单ID', sort: true},
             {field: 'menuName', title: '菜单名称', edit: 'text'},
             {field: 'parentName', title: '上级菜单', sort: true},
             {
@@ -31,22 +45,17 @@ layui.config({
             {field: 'request', title: '请求地址', sort: false, edit: 'text'},
             {field: 'permission', title: '权限标识', sort: false, edit: 'text'},
             {field: 'opt', title: '操作', fixed: 'right', width: 160, align: 'center', toolbar: '#toolBar'}
-        ]],
-        url: 'menu/queryListPage',
-        method: 'post',
-        response: {
+        ]]
+        , url: 'menu/queryList'
+        , method: 'post'
+        , response: {
             statusCode: 200 //成功的状态码，默认：0
-        },
-        request: {
-            pageName: 'current', //页码的参数名称，默认：page
-            limitName: 'size' //每页数据量的参数名，默认：limit
-        },
-        page: {
-            elem: 'pageDiv',
-            limit: 10,
-            limits: [10, 20, 30, 40, 50]
-        },
-        elem: '#menuTable'
+        }
+        , isPage: false
+        , onClickRow: function (index, o) {
+        }
+        , onDblClickRow: function (index, o) {
+        }
     });
 
     //查询

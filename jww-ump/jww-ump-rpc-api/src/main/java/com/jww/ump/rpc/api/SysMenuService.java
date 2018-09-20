@@ -68,9 +68,9 @@ public interface SysMenuService extends BaseService<SysMenuModel> {
     /**
      * 查询菜单树，供页面选择父菜单使用，过滤自己及子菜单
      *
-     * @param  id
-     * @param  menuType
-     * @return  List<SysTreeModel>
+     * @param id
+     * @param menuType
+     * @return List<SysTreeModel>
      * @author shadj
      * @date 2017/12/22 22:59
      */
@@ -95,4 +95,12 @@ public interface SysMenuService extends BaseService<SysMenuModel> {
      * @date 2017/12/24 14:06
      */
     Integer deleteBatch(Long[] ids);
+
+    /**
+     * 根据参数查询所有
+     *
+     * @param sysMenuModel
+     * @return
+     */
+    List<SysMenuModel> queryList(SysMenuModel sysMenuModel);
 }

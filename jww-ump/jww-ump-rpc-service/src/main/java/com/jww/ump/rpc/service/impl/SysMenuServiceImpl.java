@@ -55,6 +55,14 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenuMo
     private SysRoleMenuMapper sysRoleMenuMapper;
 
     @Override
+    public List<SysMenuModel> queryList(SysMenuModel sysMenuModel) {
+        EntityWrapper<SysMenuModel> entityWrapper = new EntityWrapper<>(sysMenuModel);
+        entityWrapper.eq("a.is_del", 0).eq("a.enable_", 1);
+        entityWrapper.orderBy(" a.parent_id, a.sort_no ", true);
+        return sysMenuMapper.selectAll(entityWrapper);
+    }
+
+    @Override
     @Cacheable
     public List<SysMenuModel> queryList() {
         SysMenuModel sysMenuModel = new SysMenuModel();
@@ -140,7 +148,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenuMo
 
     @Override
     @DistributedLock
-    @CacheEvict(value = UmpConstants.UmpCacheName.MENU,allEntries = true)
+    @CacheEvict(value = UmpConstants.UmpCacheName.MENU, allEntries = true)
     public Boolean delete(Long id) {
         //查询是否有子菜单，如果有则返回false，否则允许删除
         EntityWrapper<SysMenuModel> entityWrapper = new EntityWrapper<SysMenuModel>();
@@ -201,7 +209,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenuMo
     @Override
     @CacheEvict(value = UmpConstants.UmpCacheName.MENU, allEntries = true)
     public SysMenuModel modifyById(SysMenuModel sysMenuModel) {
-        if(StrUtil.isNotBlank(sysMenuModel.getMenuName())){
+        if (StrUtil.isNotBlank(sysMenuModel.getMenuName())) {
             //名称重复验证，同一目录下，菜单名称不能相同（需要排除自己）
             SysMenuModel menuModel = new SysMenuModel();
             menuModel.setParentId(sysMenuModel.getParentId());
