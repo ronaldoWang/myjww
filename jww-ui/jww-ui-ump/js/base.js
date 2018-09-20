@@ -16,6 +16,17 @@ layui.define(['jquery'], function (exports) {
         }
     });
 
+    var dics = window.sessionStorage.getItem("JWW_UMP_DIC");
+    var dicDoms = $("dic");
+    dicDoms.each(function () {
+        if($(this).attr("method")==='getDrop'){
+
+        }
+        // if (permissions.indexOf($(this).attr("value")) < 0) {
+        //     $(this).hide();
+        // }
+    });
+
     // 设置jquery的ajax请求
     $.ajaxSetup({
         dataType: 'json',

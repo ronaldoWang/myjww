@@ -35,6 +35,18 @@ layui.config({
         contentType: "application/json"
     });
 
+    $.ajax({
+        type: "GET",
+        url: "index/dic",
+        success: function (data) {
+            if (data.code === 200) {
+                // 设置字典项到浏览器本地sessionStorage中
+                window.sessionStorage.setItem("JWW_UMP_DIC", data.data);
+            }
+        },
+        contentType: "application/json"
+    });
+
     //更换皮肤
     function skins() {
         var skin = window.sessionStorage.getItem("skin");
