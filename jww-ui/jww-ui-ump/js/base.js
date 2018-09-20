@@ -16,15 +16,25 @@ layui.define(['jquery'], function (exports) {
         }
     });
 
-    var dics = window.sessionStorage.getItem("JWW_UMP_DIC");
+    var dics = JSON.parse(window.sessionStorage.getItem("JWW_UMP_DIC"));
     var dicDoms = $("dic");
     dicDoms.each(function () {
-        if($(this).attr("method")==='getDrop'){
-
+        var method = $(this).attr("method");
+        if (method === 'drop') {
+            var selectId = $(this).attr("selectId")
+            var arr = dics[$(this).attr("type").toLowerCase()];
+            for (x in arr) {
+                $("#" + selectId).append("<option value='" + arr[x].code + "'>" + arr[x].codeText + "</option>");
+            }
+        } else if (method === 'label') {
+            var code = $(this).attr("code");
+            var arr = dics[$(this).attr("type").toLowerCase()];
+            for (x in arr) {
+                if (arr[x].code == code) {
+                    $(this).append(arr[x].codeText);
+                }
+            }
         }
-        // if (permissions.indexOf($(this).attr("value")) < 0) {
-        //     $(this).hide();
-        // }
     });
 
     // 设置jquery的ajax请求
@@ -80,6 +90,15 @@ layui.define(['jquery'], function (exports) {
             } else {
                 layui.layer.tips("您点击太快，稍等两秒再点击吧！", elem, {tips: [3, '#009688'], time: 1000});
                 return false;
+            }
+        },
+        getCodeText: function (code, codeType) {
+            debugger
+            var arr = dics[codeType.toLowerCase()];
+            for (x in arr) {
+                if (arr[x].code == code) {
+                    return arr[x].codeText
+                }
             }
         }
     };

@@ -24,6 +24,7 @@ layui.config({
         ]],
         url: 'sysScheduleJob/queryListPage',
         method: 'post',
+        contentType : 'application/json',
         request: {
             pageName: 'current', //页码的参数名称，默认：page
             limitName: 'size' //每页数据量的参数名，默认：limit

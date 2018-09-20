@@ -6,9 +6,8 @@ layui.config({
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.jquery,
         table = layui.table;
-        //页面操作：0：查看，1：添加，2：修改
-        pageOperation = 0;
-        checkedId = "";
+    pageOperation = 0;//页面操作：0：查看，1：添加，2：修改
+    checkedId = "";
 
     var tableIns = table.render({
         //设置表头
@@ -16,7 +15,12 @@ layui.config({
             {type: 'checkbox', fixed: 'left'},
             {field: 'customerName', title: '客户名称'},
             {field: 'customerNo', title: '客户编号'},
-            {field: 'sex', title: '性别'},
+            {
+                field: 'sex', title: '性别', templet: function (d) {
+                    debugger
+                return base.getCodeText(d.sex, "sex");
+            }
+            },
             {field: 'type', title: '客户类型'},
             {field: 'mobilePhone', title: '手机'},
             {field: 'summary', title: '概况'},
@@ -25,6 +29,7 @@ layui.config({
         ]],
         url: 'developCustomer/queryListPage',
         method: 'post',
+        contentType : 'application/json',
         request: {
             pageName: 'current', //页码的参数名称，默认：page
             limitName: 'size' //每页数据量的参数名，默认：limit
@@ -112,7 +117,7 @@ layui.config({
 
     function queryParams(params) {
         var params = new Object();
-        $.each($('#searchForm').serializeArray(),function(i,item){
+        $.each($('#searchForm').serializeArray(), function (i, item) {
             params[item.name] = item.value;
         })
         return params;
@@ -125,7 +130,7 @@ layui.config({
                 // condition: {
                 //     searchKey: searchKey
                 // }
-                condition:queryParams()
+                condition: queryParams()
             },
             page: {
                 curr: 1 //重新从第 1 页开始

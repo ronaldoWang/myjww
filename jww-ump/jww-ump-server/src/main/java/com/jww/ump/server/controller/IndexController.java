@@ -1,5 +1,7 @@
 package com.jww.ump.server.controller;
 
+import cn.hutool.core.map.MapUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.jww.common.web.BaseController;
 import com.jww.common.web.model.ResultModel;
@@ -14,7 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 首页前端控制器
@@ -48,10 +53,24 @@ public class IndexController extends BaseController {
 
     @GetMapping("/dic")
     @RequiresAuthentication
-    public ResultModel<List<SysDicModel>> queryDic() {
+    public ResultModel<String> queryDic() {
         EntityWrapper<SysDicModel> entityWrapper = new EntityWrapper<>();
         entityWrapper.eq("is_del", 0).eq("enable_", 1);
-        return ResultUtil.ok(sysDicService.selectList(entityWrapper));
+        List<SysDicModel> list = sysDicService.selectList(entityWrapper);
+        Map<String, List<SysDicModel>> map = new HashMap<>();
+        for (SysDicModel dicModel : list) {
+            String dicType = dicModel.getType().toLowerCase();//小字母
+            if (null == map.get(dicType)) {
+                List<SysDicModel> dicList = new ArrayList<>();
+                dicList.add(dicModel);
+                map.put(dicType, dicList);
+            } else {
+                List<SysDicModel> dicList = map.get(dicType);
+                dicList.add(dicModel);
+                map.put(dicType, dicList);
+            }
+        }
+        return ResultUtil.ok(JSONObject.toJSONString(map));
     }
 
 }

@@ -15,7 +15,7 @@
 </head>
 <body class="childrenBody">
 <blockquote class="layui-elem-quote news_search">
-    <form id="searchForm">
+    <form id="searchForm" class="layui-form">
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <div class="layui-inline">

@@ -15,7 +15,7 @@
 </head>
 <body class="childrenBody">
 <blockquote class="layui-elem-quote news_search">
-    <form id="searchForm">
+    <form id="searchForm" class="layui-form">
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <div class="layui-inline">
@@ -37,7 +37,11 @@
             <div class="layui-inline">
                 <label class="layui-form-label">性别</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="sex" name="sex" placeholder="性别" class="layui-input search_input">
+                    <dic method="drop" type="sex" selectId="sex">
+                        <select id="sex" name="sex" lay-verify='required' lay-search=''>
+                            <option value=''>请选择</option>
+                        </select>
+                    </dic>
                 </div>
             </div>
             <div class="layui-inline">
