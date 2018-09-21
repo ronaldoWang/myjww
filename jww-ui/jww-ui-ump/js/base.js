@@ -92,8 +92,7 @@ layui.define(['jquery'], function (exports) {
                 return false;
             }
         },
-        getCodeText: function (code, codeType) {
-            debugger
+        getDicCodeText: function (code, codeType) {
             var arr = dics[codeType.toLowerCase()];
             for (x in arr) {
                 if (arr[x].code == code) {

@@ -17,8 +17,7 @@ layui.config({
             {field: 'customerNo', title: '客户编号'},
             {
                 field: 'sex', title: '性别', templet: function (d) {
-                    debugger
-                return base.getCodeText(d.sex, "sex");
+                return base.getDicCodeText(d.sex, "sex");
             }
             },
             {field: 'type', title: '客户类型'},

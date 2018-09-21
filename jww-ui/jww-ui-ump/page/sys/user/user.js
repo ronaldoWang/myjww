@@ -68,7 +68,7 @@ layui.config({
                 shadeClose: true,
                 shade: 0.5,
                 area: ['320px', '70%'],
-                content: '/page/dept/deptTree.html' //iframe的url
+                content: '/page/sys/dept/deptTree.html' //iframe的url
             });
         });
 
