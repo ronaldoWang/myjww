@@ -66,11 +66,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">任务状态</label>
         <div class="layui-input-block">
-            <select id="status" name="status" lay-verify="required" lay-search="">
-                <option value="">请选择</option>
-                <option value="0">正常</option>
-                <option value="1">暂停</option>
-            </select>
+            <dic method="radio" type="TASK_STATUS" selectId="status"/>
         </div>
     </div>
     <div class="layui-form-item">

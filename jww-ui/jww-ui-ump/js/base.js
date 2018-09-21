@@ -20,19 +20,25 @@ layui.define(['jquery'], function (exports) {
     var dicDoms = $("dic");
     dicDoms.each(function () {
         var method = $(this).attr("method");
+        var arr = dics[$(this).attr("type").toLowerCase()];
         if (method === 'drop') {
-            var selectId = $(this).attr("selectId")
-            var arr = dics[$(this).attr("type").toLowerCase()];
+            var selectId = $(this).attr("selectId");
             for (x in arr) {
                 $("#" + selectId).append("<option value='" + arr[x].code + "'>" + arr[x].codeText + "</option>");
             }
         } else if (method === 'label') {
             var code = $(this).attr("code");
-            var arr = dics[$(this).attr("type").toLowerCase()];
             for (x in arr) {
                 if (arr[x].code == code) {
                     $(this).append(arr[x].codeText);
                 }
+            }
+        } else if (method === 'checkbox') {
+            //待实现
+        } else if (method === 'radio') {
+            var selectId = $(this).attr("selectId");
+            for (x in arr) {
+                $(this).append("<input type='radio' id='" + selectId + "' name='" + selectId + "' value='" + arr[x].code + "' title='" + arr[x].codeText + "'/>");
             }
         }
     });

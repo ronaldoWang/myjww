@@ -19,12 +19,16 @@ layui.config({
             {field: 'methodName', title: '方法名'},
             {field: 'params', title: '参数'},
             {field: 'cronExpression', title: 'cron表达式'},
-            {field: 'status', title: '任务状态'},
+            {
+                field: 'status', title: '任务状态', templet: function (d) {
+                return base.getDicCodeText(d.status, "TASK_STATUS");
+            }
+            },
             {field: 'opt', title: '操作', fixed: 'right', width: 260, align: 'center', toolbar: '#toolBar'}
         ]],
         url: 'sysScheduleJob/queryListPage',
         method: 'post',
-        contentType : 'application/json',
+        contentType: 'application/json',
         request: {
             pageName: 'current', //页码的参数名称，默认：page
             limitName: 'size' //每页数据量的参数名，默认：limit
@@ -113,6 +117,7 @@ layui.config({
                     success: function (data) {
                         if (data.code == 200) {
                             layer.msg("停止成功", {icon: 1, time: 2000});
+                            tableIns.reload();
                         } else {
                             layer.msg(data.message, {icon: 2});
                         }
@@ -129,6 +134,7 @@ layui.config({
                     success: function (data) {
                         if (data.code == 200) {
                             layer.msg("恢复成功", {icon: 1, time: 2000});
+                            tableIns.reload();
                         } else {
                             layer.msg(data.message, {icon: 2});
                         }

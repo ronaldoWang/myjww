@@ -8,21 +8,21 @@ import org.quartz.*;
 
 /**
  * 定时任务工具类
- * 
+ *
  * @author czx
  * @email object_czx@163.com
  * @date 2016年11月30日 下午12:44:59
  */
 public class ScheduleUtils {
     private final static String JOB_NAME = "TASK_";
-    
+
     /**
      * 获取触发器key
      */
     private static TriggerKey getTriggerKey(Long jobId) {
         return TriggerKey.triggerKey(JOB_NAME + jobId);
     }
-    
+
     /**
      * 获取jobKey
      */
@@ -46,12 +46,12 @@ public class ScheduleUtils {
      */
     public static void createScheduleJob(Scheduler scheduler, SysScheduleJobModel scheduleJob) {
         try {
-        	//构建job
+            //构建job
             JobDetail jobDetail = JobBuilder.newJob(ScheduleJob.class).withIdentity(getJobKey(scheduleJob.getId())).build();
 
             //构建cron
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression())
-            		.withMisfireHandlingInstructionDoNothing();
+                    .withMisfireHandlingInstructionDoNothing();
 
             //根据cron，构建一个CronTrigger
             CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(getTriggerKey(scheduleJob.getId())).
@@ -61,16 +61,16 @@ public class ScheduleUtils {
             jobDetail.getJobDataMap().put(SysScheduleJobModel.JOB_PARAM_KEY, JSONObject.toJSONString(scheduleJob));
 
             scheduler.scheduleJob(jobDetail, trigger);
-            
+
             //暂停任务
-            if(scheduleJob.getStatus() == Constants.ScheduleStatus.PAUSE.getValue()){
-            	pauseJob(scheduler, scheduleJob.getId());
+            if (scheduleJob.getStatus() == Constants.ScheduleStatus.PAUSE.getValue()) {
+                pauseJob(scheduler, scheduleJob.getId());
             }
         } catch (SchedulerException e) {
             throw new BusinessException("创建定时任务失败", e);
         }
     }
-    
+
     /**
      * 更新定时任务
      */
@@ -80,23 +80,26 @@ public class ScheduleUtils {
 
             //表达式调度构建器
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression())
-            		.withMisfireHandlingInstructionDoNothing();
+                    .withMisfireHandlingInstructionDoNothing();
 
             CronTrigger trigger = getCronTrigger(scheduler, scheduleJob.getId());
-            
+
             //按新的cronExpression表达式重新构建trigger
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
-            
+
             //参数
             trigger.getJobDataMap().put(SysScheduleJobModel.JOB_PARAM_KEY, JSONObject.toJSONString(scheduleJob));
-            
+
             scheduler.rescheduleJob(triggerKey, trigger);
-            
+
             //暂停任务
-            if(scheduleJob.getStatus() == Constants.ScheduleStatus.PAUSE.getValue()){
-            	pauseJob(scheduler, scheduleJob.getId());
+            if (scheduleJob.getStatus() == Constants.ScheduleStatus.PAUSE.getValue()) {
+                pauseJob(scheduler, scheduleJob.getId());
+            } else {
+                //恢复任务
+                resumeJob(scheduler, scheduleJob.getId());
             }
-            
+
         } catch (SchedulerException e) {
             throw new BusinessException("更新定时任务失败", e);
         }
@@ -107,10 +110,10 @@ public class ScheduleUtils {
      */
     public static void run(Scheduler scheduler, SysScheduleJobModel scheduleJob) {
         try {
-        	//参数
-        	JobDataMap dataMap = new JobDataMap();
-        	dataMap.put(SysScheduleJobModel.JOB_PARAM_KEY,JSONObject.toJSONString(scheduleJob));
-        	
+            //参数
+            JobDataMap dataMap = new JobDataMap();
+            dataMap.put(SysScheduleJobModel.JOB_PARAM_KEY, JSONObject.toJSONString(scheduleJob));
+
             scheduler.triggerJob(getJobKey(scheduleJob.getId()), dataMap);
         } catch (SchedulerException e) {
             throw new BusinessException("立即执行定时任务失败", e);

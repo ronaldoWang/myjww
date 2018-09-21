@@ -20,7 +20,7 @@ layui.config({
         $("#id").val(parent.checkedId);
         $.ajax({
             type: 'GET',
-            url: 'sysScheduleJob/query/'+parent.checkedId,
+            url: 'sysScheduleJob/query/' + parent.checkedId,
             success: function (data) {
                 if (data.code === 200) {
                     if (data.data !== null) {
@@ -30,7 +30,9 @@ layui.config({
                         $("#params").val(data.data.params);
                         $("#cronExpression").val(data.data.cronExpression);
                         $("#status").val(data.data.status);
-                        form.render('select');
+                        $("input[name=status][value='0']").attr("checked", data.data.status == 0 ? true : false);
+                        $("input[name=status][value='1']").attr("checked", data.data.status == 1 ? true : false);
+                        form.render();
                     }
                 } else {
                     layer.msg(data.message, {icon: 2});

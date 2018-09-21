@@ -29,7 +29,7 @@ layui.config({
                         $("#${field.propertyName}").val(data.data.${field.propertyName});
                             #end
                         #end
-                        form.render('select');
+                        form.render();
                     }
                 } else {
                     layer.msg(data.message, {icon: 2});
