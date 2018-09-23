@@ -54,7 +54,6 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenuMo
     @Autowired
     private SysRoleMenuMapper sysRoleMenuMapper;
 
-    @Override
     public List<SysMenuModel> queryList(SysMenuModel sysMenuModel) {
         EntityWrapper<SysMenuModel> entityWrapper = new EntityWrapper<>(sysMenuModel);
         entityWrapper.eq("a.is_del", 0).eq("a.enable_", 1);

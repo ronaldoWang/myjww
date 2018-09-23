@@ -91,4 +91,7 @@ dubbo:
 
 logging:
   level:
-     root: info
+     root: INFO
+     org:
+        springframework :
+            web: INFO
