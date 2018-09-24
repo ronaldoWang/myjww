@@ -73,6 +73,8 @@
         <dubbo.zipkin.version>1.0.2</dubbo.zipkin.version>
         <!--定时任务quartz-->
         <quartz.version>2.2.3</quartz.version>
+        <!--sharding jdbc -->
+        <sharding.jdbc.version>3.0.0.M2</sharding.jdbc.version>
     </properties>
 
 

@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>jww-ump</artifactId>
+        <artifactId>jww-customer-rpc</artifactId>
         <groupId>com.jww</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jww-ump-rpc-service</artifactId>
+    <artifactId>jww-customer-rpc-service</artifactId>
 
     <dependencyManagement>
         <dependencies>
@@ -41,7 +41,7 @@
         </dependency>
         <dependency>
             <groupId>com.jww</groupId>
-            <artifactId>jww-ump-rpc-api</artifactId>
+            <artifactId>jww-customer-rpc-api</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
@@ -49,12 +49,6 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <optional>true</optional>
-        </dependency>
-        <!-- Sharding jdbc-->
-        <dependency>
-            <groupId>io.shardingjdbc</groupId>
-            <artifactId>sharding-jdbc-core</artifactId>
-            <version>2.0.3</version>
         </dependency>
     </dependencies>
 
@@ -91,5 +85,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
