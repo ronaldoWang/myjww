@@ -74,7 +74,7 @@
         <!--定时任务quartz-->
         <quartz.version>2.2.3</quartz.version>
         <!--sharding jdbc -->
-        <sharding.jdbc.version>3.0.0.M2</sharding.jdbc.version>
+        <sharding.jdbc.version>3.0.0.M1</sharding.jdbc.version>
     </properties>
 
 

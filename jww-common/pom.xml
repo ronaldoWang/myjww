@@ -24,6 +24,7 @@
         <module>jww-common-dsession</module>
         <module>jww-common-db</module>
         <module>jww-common-oss</module>
+        <module>jww-common-shardingjdbc</module>
     </modules>
     <packaging>pom</packaging>
 
