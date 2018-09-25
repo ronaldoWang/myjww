@@ -37,13 +37,13 @@ public class DevelopCustomerController extends BaseController {
     private DevelopCustomerService service;
 
     /**
-    * 根据待开发客户表ID查询
-    *
-    * @param id 待开发客户表ID
-    * @return ResultModel
-    * @author kevinWang
-    * @date 2018-09-16
-    */
+     * 根据待开发客户表ID查询
+     *
+     * @param id 待开发客户表ID
+     * @return ResultModel
+     * @author kevinWang
+     * @date 2018-09-16
+     */
     @ApiOperation(value = "查询待开发客户表", notes = "根据主键ID查询待开发客户表")
     @ApiImplicitParam(name = "id", value = "待开发客户表ID", required = true, dataType = "Long")
     @GetMapping("/query/{id}")
@@ -55,13 +55,13 @@ public class DevelopCustomerController extends BaseController {
     }
 
     /**
-    * 查询待开发客户表分页方法
-    *
-    * @param pageModel 分页实体
-    * @return com.jww.common.web.model.ResultModel
-    * @author kevinWang
-    * @date 2018-09-16
-    */
+     * 查询待开发客户表分页方法
+     *
+     * @param pageModel 分页实体
+     * @return com.jww.common.web.model.ResultModel
+     * @author kevinWang
+     * @date 2018-09-16
+     */
     @ApiOperation(value = "分页查询待开发客户表", notes = "根据主键ID查询待开发客户表")
     @PostMapping("/queryListPage")
     @RequiresPermissions("customer:developcustomer:read")
@@ -84,8 +84,8 @@ public class DevelopCustomerController extends BaseController {
     @SysLogOpt(module = "待开发客户表管理", value = "待开发客户表新增", operationType = Constants.LogOptEnum.ADD)
     public ResultModel add(@Valid @RequestBody DevelopCustomerModel entity) {
         if (entity != null) {
-        entity.setCreateBy(this.getCurrentUserId());
-        entity.setUpdateBy(this.getCurrentUserId());
+            entity.setCreateBy(this.getCurrentUserId());
+            entity.setUpdateBy(this.getCurrentUserId());
         }
         return ResultUtil.ok(service.add(entity));
     }

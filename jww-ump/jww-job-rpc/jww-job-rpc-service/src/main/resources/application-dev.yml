@@ -88,6 +88,9 @@ dubbo:
   protocol:
     name: dubbo
     port: -1
+  service:
+    shutdown:
+      wait: 15000
 
 logging:
   level:

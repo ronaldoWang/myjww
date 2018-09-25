@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.jww.common.core.base.BaseModel;
 
+import javax.validation.constraints.Max;
+
 /**
  * <p>
  * 待开发客户表
@@ -30,10 +32,12 @@ public class DevelopCustomerModel extends BaseModel {
     /**
      * 性别
      */
+    @Max(value = 1, message = "性别输入有误")
     private String sex;
     /**
      * 客户类型
      */
+    @Max(value = 1, message = "客户类型输入有误")
     private String type;
     /**
      * 手机
@@ -119,14 +123,14 @@ public class DevelopCustomerModel extends BaseModel {
     @Override
     public String toString() {
         return "DevelopCustomer{" +
-        ", customerName=" + customerName +
-        ", customerNo=" + customerNo +
-        ", sex=" + sex +
-        ", type=" + type +
-        ", mobilePhone=" + mobilePhone +
-        ", summary=" + summary +
-        ", email=" + email +
-        ", editable=" + editable +
-        "}";
+                ", customerName=" + customerName +
+                ", customerNo=" + customerNo +
+                ", sex=" + sex +
+                ", type=" + type +
+                ", mobilePhone=" + mobilePhone +
+                ", summary=" + summary +
+                ", email=" + email +
+                ", editable=" + editable +
+                "}";
     }
 }

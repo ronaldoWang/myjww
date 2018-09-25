@@ -31,6 +31,7 @@ sharding:
                 sharding-column: id_
                 algorithm-expression: t_develop_customer_$->{id_ % 2}
             key-generator-column-name: id_
+        default-data-source-name: ds0
     datasource:
       names: ds0
       ds0:
@@ -38,9 +39,9 @@ sharding:
         url: jdbc:mysql://47.99.90.68:3306/jww?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
         username: jww
         password: jww_1234
-        initial-size: 10
+        initial-size: 5
         max-active: 1000
-        min-idle: 2
+        min-idle: 5
         max-wait: 60000
         validation-query: SELECT 'x'
         test-while-idle: true
@@ -99,6 +100,9 @@ dubbo:
   protocol:
     name: dubbo
     port: -1
+  service:
+    shutdown:
+      wait: 15000
 
 logging:
   level:
