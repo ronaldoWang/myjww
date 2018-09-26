@@ -52,10 +52,9 @@ public interface SysRoleService extends BaseService<SysRoleModel> {
     /**
      * 查询部门下所有角色
      *
-     * @param deptId
      * @return List<SysRoleModel>
      * @author shadj
      * @date 2017/12/29 17:31
      */
-    List<SysRoleModel> queryRoles(Long deptId);
+    List<SysRoleModel> queryRoles();
 }

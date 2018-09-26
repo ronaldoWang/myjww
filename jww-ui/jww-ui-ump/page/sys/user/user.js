@@ -9,6 +9,9 @@ layui.config({
         laydate = layui.laydate,
         submitUrl = parent.pageOperation === 1 ? "user/add" : "user/modify";
 
+    //加载角色
+    loadDeptRoles();
+
     if (parent.pageOperation === 1 || parent.pageOperation === 2) {
         //日期
         laydate.render({
@@ -71,7 +74,6 @@ layui.config({
                 content: '/page/sys/dept/deptTree.html' //iframe的url
             });
         });
-
     }
 
     if (parent.pageOperation === 0 || parent.pageOperation === 2) {
@@ -113,26 +115,24 @@ layui.config({
             },
             contentType: "application/json"
         });
-        //加载部门角色
-        if (parent.deptId !== "") {
-            loadDeptRoles(parent.deptId);
-            $.ajax({
-                type: "GET",
-                url: "user/queryUserRoles/" + parent.userId,
-                success: function (data) {
-                    if (data.code === 200) {
-                        // alert(JSON.stringify(data.data));
-                        $.each(data.data, function (idx, obj) {
-                            $("input[name='role'][value='" + obj.roleId + "']").attr("checked", true);
-                            form.render('checkbox');
-                        });
-                    } else {
-                        top.layer.msg(data.message, {icon: 2});
-                    }
-                },
-                contentType: "application/json"
-            });
-        }
+
+        $.ajax({
+            type: "GET",
+            url: "user/queryUserRoles/" + parent.userId,
+            success: function (data) {
+                if (data.code === 200) {
+                    // alert(JSON.stringify(data.data));
+                    $.each(data.data, function (idx, obj) {
+                        $("input[name='role'][value='" + obj.roleId + "']").attr("checked", true);
+                        form.render('checkbox');
+                    });
+                } else {
+                    top.layer.msg(data.message, {icon: 2});
+                }
+            },
+            contentType: "application/json"
+        });
+
     }
 
     if (parent.pageOperation === 0) {
@@ -147,14 +147,13 @@ layui.config({
     deptTreeCallBack = function (deptId, deptName) {
         $("#deptId").val(deptId);
         $("#deptName").val(deptName);
-        loadDeptRoles(deptId);
     };
 
-    function loadDeptRoles(deptId) {
+    function loadDeptRoles() {
         // 查询角色
         $.ajax({
             type: 'GET',
-            url: 'role/queryRoles/' + deptId,
+            url: 'role/queryRoles',
             async: false,
             success: function (data) {
                 if (data.code === 200) {

@@ -23,5 +23,5 @@
     <dubbo:reference id="sysScheduleJobService" interface="com.jww.quartz.rpc.api.SysScheduleJobService" check="false"/>
 
     <dubbo:reference id="developCustomerService"
-                     interface="com.jww.customer.developcustomer.rpc.api.DevelopCustomerService"/>
+                     interface="com.jww.customer.developcustomer.rpc.api.DevelopCustomerService" check="false"/>
 </beans>

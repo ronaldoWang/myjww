@@ -19,10 +19,8 @@
 
     <select id="selectRoleList" resultMap="BaseResultMap">
         SELECT
-            r.id_,
+            id_,
             role_name,
-            dept_id,
-            d.dept_name AS deptName,
             role_type,
             enable_,
             is_del,
@@ -32,21 +30,7 @@
             update_time,
             update_by
         FROM
-            (SELECT
-              *
-            FROM
-              sys_role
-            WHERE
-              is_del = 0) AS r
-        LEFT JOIN (
-            SELECT
-                id_,
-                dept_name
-            FROM
-                sys_dept
-            WHERE
-                is_del = 0
-        ) AS d ON r.dept_id = d.id_
+            sys_role
         <where>
             ${ew.sqlSegment}
         </where>

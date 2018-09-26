@@ -27,16 +27,6 @@ public class SysRoleModel extends BaseModel {
     @TableField("role_name")
     private String roleName;
     /**
-     * 所属部门编号
-     */
-    @TableField("dept_id")
-    private Long deptId;
-    /**
-     * 所属部门名称
-     */
-    @TableField(exist = false)
-    private String deptName;
-    /**
      * 角色类型(1:业务角色;2:管理角色 ;3:系统内置角色)
      */
     @TableField("role_type")

@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,14 +54,9 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRoleMo
         if (ObjectUtil.isNotNull(page.getCondition())) {
             StringBuilder conditionSql = new StringBuilder();
             Map<String, Object> paramMap = page.getCondition();
-            String deptId = "dept_id";
             paramMap.forEach((k, v) -> {
                 if (StrUtil.isNotBlank(v + "")) {
-                    if (deptId.equals(k)) {
-                        conditionSql.append(k + " = " + v + " AND ");
-                    } else {
-                        conditionSql.append(k + " like '%" + v + "%' AND ");
-                    }
+                    conditionSql.append(k + " like '%" + v + "%' AND ");
                 }
             });
             entityWrapper.and(StrUtil.removeSuffix(conditionSql.toString(), "AND "));
@@ -78,7 +74,6 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRoleMo
         SysRoleModel checkModel = new SysRoleModel();
         checkModel.setIsDel(0);
         checkModel.setRoleName(sysRoleModel.getRoleName());
-        checkModel.setDeptId(sysRoleModel.getDeptId());
         EntityWrapper<SysRoleModel> entityWrapper = new EntityWrapper<>(checkModel);
         if (ObjectUtil.isNotNull(super.selectOne(entityWrapper))) {
             throw new BusinessException("已存在相同名称的角色");
@@ -132,12 +127,10 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRoleMo
     }
 
     @Override
-    //@Cacheable
-    @CachePut
-    public List<SysRoleModel> queryRoles(Long deptId) {
-        Assert.notNull(deptId);
+    @Cacheable
+    public List<SysRoleModel> queryRoles() {
         EntityWrapper<SysRoleModel> entityWrapper = new EntityWrapper<>();
-        entityWrapper.eq("dept_id", deptId);
+        entityWrapper.eq("is_del", 0).eq("enable_", 1);
         return sysRoleMapper.selectList(entityWrapper);
     }
 

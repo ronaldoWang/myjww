@@ -38,8 +38,8 @@ public class SysRoleController extends BaseController {
     @Autowired
     private SysRoleService sysRoleService;
 
-    @Autowired
-    private SysDeptService sysDeptService;
+    //@Autowired
+    //private SysDeptService sysDeptService;
 
     /**
      * 根据角色ID查询角色
@@ -56,8 +56,8 @@ public class SysRoleController extends BaseController {
     public ResultModel query(@RequestBody Long roleId) {
         Assert.notNull(roleId);
         SysRoleModel sysRoleModel = sysRoleService.queryById(roleId);
-        SysDeptModel sysDeptModel = sysDeptService.queryById(sysRoleModel.getDeptId());
-        sysRoleModel.setDeptName(sysDeptModel.getDeptName());
+        //SysDeptModel sysDeptModel = sysDeptService.queryById(sysRoleModel.getDeptId());
+        //sysRoleModel.setDeptName(sysDeptModel.getDeptName());
         return ResultUtil.ok(sysRoleModel);
     }
 
@@ -134,17 +134,15 @@ public class SysRoleController extends BaseController {
     /**
      * 根据部门ID查询所属角色
      *
-     * @param deptId 部门ID
      * @return ResultModel
      * @author wanyong
      * @date 2018-01-04 11:28
      */
-    @ApiOperation(value = "查询角色", notes = "根据部门ID查询所属角色列表")
-    @GetMapping("/queryRoles/{deptId}")
+    @ApiOperation(value = "查询角色", notes = "查询所属角色列表")
+    @GetMapping("/queryRoles")
     @RequiresPermissions("sys:role:read")
-    public ResultModel queryRoles(@PathVariable(value = "deptId") Long deptId) {
-        Assert.notNull(deptId);
-        List<SysRoleModel> list = sysRoleService.queryRoles(deptId);
+    public ResultModel queryRoles() {
+        List<SysRoleModel> list = sysRoleService.queryRoles();
         return ResultUtil.ok(list);
     }
 }

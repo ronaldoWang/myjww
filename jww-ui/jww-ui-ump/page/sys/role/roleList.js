@@ -17,7 +17,6 @@ layui.config({
         cols: [[
             {type: 'checkbox', fixed: 'left'},
             {field: 'roleName', title: '角色名称', align: 'center'},
-            {field: 'deptName', title: '所属部门', align: 'center'},
             {field: 'remark', title: '备注', align: 'center'},
             {field: 'createTime', title: '创建时间', align: 'center'},
             {field: 'opt', title: '操作', fixed: 'right', width: 160, align: 'center', toolbar: '#toolBar'}

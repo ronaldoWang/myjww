@@ -52,8 +52,8 @@ layui.config({
                 if (data.code === 200) {
                     if (data.data !== null) {
                         $("#roleName").val(data.data.roleName);
-                        $("#deptId").val(data.data.deptId);
-                        $("#deptName").val(data.data.deptName);
+                        //$("#deptId").val(data.data.deptId);
+                        //$("#deptName").val(data.data.deptName);
                         $("#remark").val(data.data.remark);
                     }
                 } else {
@@ -96,22 +96,22 @@ layui.config({
     });
 
     // 监听部门文本框单击事件
-    $("#deptName").click(function () {
-        // 不直接使用layer.open而使用layui.layer.open，是因为layer.open实际是调用父窗口的layer对象
-        layui.layer.open({
-            type: 2,
-            title: '选择部门',
-            shadeClose: true,
-            shade: 0.5,
-            area: ['320px', '70%'],
-            content: '/page/sys/dept/deptTree.html' //iframe的url
-        });
-    });
+    // $("#deptName").click(function () {
+    //     // 不直接使用layer.open而使用layui.layer.open，是因为layer.open实际是调用父窗口的layer对象
+    //     layui.layer.open({
+    //         type: 2,
+    //         title: '选择部门',
+    //         shadeClose: true,
+    //         shade: 0.5,
+    //         area: ['320px', '70%'],
+    //         content: '/page/sys/dept/deptTree.html' //iframe的url
+    //     });
+    // });
 
     // 选择部门树页面选中后回调函数
-    deptTreeCallBack = function (deptId, deptName) {
-        $("#deptId").val(deptId);
-        $("#deptName").val(deptName);
-    }
+    // deptTreeCallBack = function (deptId, deptName) {
+    //     $("#deptId").val(deptId);
+    //     $("#deptName").val(deptName);
+    // }
 });
 
