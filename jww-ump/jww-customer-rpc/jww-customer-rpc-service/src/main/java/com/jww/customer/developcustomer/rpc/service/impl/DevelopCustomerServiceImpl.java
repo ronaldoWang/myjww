@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.jww.common.core.base.BaseServiceImpl;
+import com.jww.common.rabbitmq.utils.RabbitMqUtils;
 import com.jww.customer.developcustomer.dao.mapper.DevelopCustomerMapper;
 import com.jww.customer.developcustomer.model.DevelopCustomerModel;
 import com.jww.customer.developcustomer.rpc.api.DevelopCustomerService;
@@ -42,6 +43,7 @@ public class DevelopCustomerServiceImpl extends BaseServiceImpl<DevelopCustomerM
             entityWrapper.and(StrUtil.removeSuffix(conditionSql.toString(), "AND "));
         }
         page.setCondition(null);
+        RabbitMqUtils.send("testQueen", "my name is ronaldo");
         return super.selectPage(page, entityWrapper);
     }
 
