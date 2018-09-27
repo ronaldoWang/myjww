@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Slf4j
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.jww.**.rpc.service.impl", "com.jww.common.db", "com.jww.common.sharding", "com.jww.common.core", "com.jww.common.redis"})
+@ComponentScan(basePackages = {"com.jww.**.rpc", "com.jww.common.db", "com.jww.common.sharding", "com.jww.common.rabbitmq", "com.jww.common.core", "com.jww.common.redis"})
 @ImportResource(value = {"classpath:dubbo/providers.xml"})
 public class CustomerServiceApplication {
 
