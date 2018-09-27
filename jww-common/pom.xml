@@ -25,7 +25,6 @@
         <module>jww-common-db</module>
         <module>jww-common-oss</module>
         <module>jww-common-shardingjdbc</module>
-        <module>jww-common-rabbitmq</module>
     </modules>
     <packaging>pom</packaging>
 
