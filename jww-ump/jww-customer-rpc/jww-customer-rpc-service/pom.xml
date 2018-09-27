@@ -36,7 +36,7 @@
         </dependency>
         <dependency>
             <groupId>com.jww</groupId>
-            <artifactId>jww-common-rabbitmq</artifactId>
+            <artifactId>jww-common-mq</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>

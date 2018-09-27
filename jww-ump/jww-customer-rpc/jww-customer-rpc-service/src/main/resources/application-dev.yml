@@ -16,7 +16,7 @@ spring:
   application:
     name: jww-customer-dubbo-provider
   rabbitmq:
-    host: 192.168.91.139
+    host: 47.99.90.68
     port: 5672
     username: admin
     password: admin
@@ -26,6 +26,7 @@ spring:
     publisher-returns: true
     listener:
       simple:
+        prefetch: 1
 #      采用手动应答
         acknowledge-mode: manual
 #        当前监听容器数
