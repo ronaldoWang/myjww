@@ -22,4 +22,8 @@
         <module>jww-customer-rpc</module>
     </modules>
 
+    <build>
+        <defaultGoal>install</defaultGoal>
+    </build>
+
 </project>
