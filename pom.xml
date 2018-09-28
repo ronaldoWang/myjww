@@ -76,8 +76,4 @@
         <!--sharding jdbc -->
         <sharding.jdbc.version>3.0.0.M3</sharding.jdbc.version>
     </properties>
-
-    <build>
-        <defaultGoal>install</defaultGoal>
-    </build>
 </project>

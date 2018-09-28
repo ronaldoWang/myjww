@@ -6,7 +6,7 @@
         <artifactId>jww</artifactId>
         <groupId>com.jww</groupId>
         <version>1.0.0</version>
-        <relativePath></relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,9 +22,5 @@
         <module>jww-job-rpc</module>
         <module>jww-customer-rpc</module>
     </modules>
-
-    <build>
-        <defaultGoal>install</defaultGoal>
-    </build>
 
 </project>
