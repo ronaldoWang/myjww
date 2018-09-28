@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "spring.rabbitmq")
 public class RabbitMqProperties {
-    private String exchangeName;
-    private String queueName;
-    private String routingKey;
+    private String exchangeName = "DIRECT_EXCHANGE";
+    private String queueName = "DIRECT_QUEUE";
+    private String routingKey = "DIRECT_ROUTING_KEY";
 }

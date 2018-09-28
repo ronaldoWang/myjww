@@ -78,7 +78,7 @@ public class RabbitConfig {
      */
     @Bean("directExchange")
     public Exchange directExchange() {
-        String exchangeName = "".equals(rabbitMqProperties.getExchangeName()) ? "DIRECT_EXCHANGE" : rabbitMqProperties.getExchangeName();
+        String exchangeName = rabbitMqProperties.getExchangeName();
         return ExchangeBuilder.directExchange(exchangeName).durable(true).build();
     }
 
@@ -89,7 +89,7 @@ public class RabbitConfig {
      */
     @Bean("directQueue")
     public Queue directQueue() {
-        String queueName = "".equals(rabbitMqProperties.getQueueName()) ? "DIRECT_QUEUE" : rabbitMqProperties.getQueueName();
+        String queueName = rabbitMqProperties.getQueueName();
         return QueueBuilder.durable(queueName).build();
     }
 
@@ -102,7 +102,7 @@ public class RabbitConfig {
      */
     @Bean
     public Binding directBinding(@Qualifier("directQueue") Queue queue, @Qualifier("directExchange") Exchange exchange) {
-        String routingKey = "".equals(rabbitMqProperties.getRoutingKey()) ? "DIRECT_ROUTING_KEY" : rabbitMqProperties.getRoutingKey();
+        String routingKey = rabbitMqProperties.getRoutingKey();
         return BindingBuilder.bind(queue).to(exchange).with(routingKey).noargs();
     }
 
