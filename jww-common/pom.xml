@@ -28,4 +28,8 @@
     </modules>
     <packaging>pom</packaging>
 
+    <build>
+        <defaultGoal>install</defaultGoal>
+    </build>
+
 </project>
