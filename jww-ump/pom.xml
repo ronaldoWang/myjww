@@ -6,6 +6,7 @@
         <artifactId>jww</artifactId>
         <groupId>com.jww</groupId>
         <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,8 +23,8 @@
         <module>jww-customer-rpc</module>
     </modules>
 
-    <build>
+    <!--<build>
         <defaultGoal>install</defaultGoal>
-    </build>
+    </build>-->
 
 </project>
