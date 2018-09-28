@@ -19,8 +19,4 @@
         <module>jww-ump-rpc-service</module>
     </modules>
 
-    <build>
-        <defaultGoal>install</defaultGoal>
-    </build>
-
 </project>
