@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>定时任务日志</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../../layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_495397_jzxo653foj6skyb9.css" media="all"/>
+    <link rel="stylesheet" href="../../../css/common.css" media="all"/>
+</head>
+<body class="childrenBody">
+<blockquote class="layui-elem-quote news_search">
+    <form id="searchForm" class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">任务状态</label>
+                <div class="layui-input-inline">
+                    <dic method="drop" type="TASK_RESULT" selectId="status">
+                        <select id="status" name="status" lay-verify='required' lay-search=''>
+                            <option value=''>请选择</option>
+                        </select>
+                    </dic>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">失败信息</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="error" name="error" placeholder="失败信息" class="layui-input search_input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md4 layui-col-md-offset5">
+                <a class="layui-btn search_btn">查询</a>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</blockquote>
+
+<table class="layui-table" id="sysScheduleJobLogTable" lay-filter="tableFilter"></table>
+
+<!-- 分页控件div -->
+<div id="pageDiv"></div>
+<!-- 工具栏模板 -->
+<div style="display: none;" id="toolBar">
+    <permission value="ump:jobLog:read">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    </permission>
+    <permission value="ump:jobLog:edit">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    </permission>
+    <permission value="ump:jobLog:edit">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </permission>
+</div>
+<script type="text/javascript" src="../../../layui/layui.js"></script>
+<script type="text/javascript" src="sysScheduleJobLogList.js"></script>
+</body>
+</html>

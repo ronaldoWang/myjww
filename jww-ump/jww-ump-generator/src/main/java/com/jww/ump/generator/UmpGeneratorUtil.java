@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -96,12 +97,21 @@ public class UmpGeneratorUtil {
         strategy.setSuperControllerClass(props.getStr("strategy.superCcontrollerclass"));
         // 设置使用 restController
         strategy.setRestControllerStyle(true);
+        strategy.setEntityLombokModel(true);
         mpg.setStrategy(strategy);
+
+
+        String projectService = props.getStr("project.service");//服务名
+        String packageModuleName = props.getStr("package.modulename");//模块名
+        String pagedirectory = props.getStr("fileout.pagedirectory");//页面目录
+        String mapperxmldirectory = props.getStr("fileout.mapperxmldirectory");//mapper目录
+        String javadirectory = props.getStr("fileout.javadirectory");//java目录
+        String dubbodirectory = props.getStr("fileout.dubbodirectory");//dubbo目录
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent(props.getStr("package.parent") + "." + props.getStr("project.service"));
-        pc.setModuleName(props.getStr("package.modulename"));
+        pc.setParent(props.getStr("package.parent") + "." + projectService);
+        pc.setModuleName(packageModuleName);
         pc.setController("controller");
         pc.setMapper("dao.mapper");
         pc.setEntity("model");
@@ -115,8 +125,8 @@ public class UmpGeneratorUtil {
             public void initMap() {
                 Map<String, Object> map = new HashMap<>(1);
                 map.put("abc", this.getConfig().getGlobalConfig().getAuthor() + "-mp");
-                map.put("projectService", props.getStr("project.service"));
-                map.put("packageModuleName", props.getStr("package.modulename"));
+                map.put("projectService", projectService);
+                map.put("packageModuleName", packageModuleName);
                 this.setMap(map);
             }
         };
@@ -128,21 +138,45 @@ public class UmpGeneratorUtil {
         FileOutConfig mapperXmlConfig = new FileOutConfig("/templates/mapper.xml.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.mapperxmldirectory") + props.getStr("package.modulename") + "\\" + tableInfo.getEntityName() + "Mapper.xml";
+                StringBuffer path = new StringBuffer(mapperxmldirectory);
+                if (StringUtils.isNotBlank(projectService)) {
+                    path.append(projectService).append("\\");
+                }
+                if (StringUtils.isNotBlank(packageModuleName)) {
+                    path.append(packageModuleName).append("\\");
+                }
+                path.append(tableInfo.getEntityName()).append("Mapper.xml");
+                return path.toString();
             }
         };
         // 调整 htmlList 生成目录
         FileOutConfig htmlList = new FileOutConfig("/templates/list.html.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.pagedirectory") + props.getStr("project.service") + tableInfo.getEntityPath() + "List.html";
+                StringBuffer path = new StringBuffer(pagedirectory);
+                if (StringUtils.isNotBlank(projectService)) {
+                    path.append(projectService).append("\\");
+                }
+                if (StringUtils.isNotBlank(packageModuleName)) {
+                    path.append(packageModuleName).append("\\");
+                }
+                path.append(tableInfo.getEntityPath()).append("List.html");
+                return path.toString();
             }
         };
-        // 调整 htmlList 生成目录
+        // 调整 jsList 生成目录
         FileOutConfig jsList = new FileOutConfig("/templates/list.js.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.pagedirectory") + props.getStr("project.service") + tableInfo.getEntityPath() + "List.js";
+                StringBuffer path = new StringBuffer(pagedirectory);
+                if (StringUtils.isNotBlank(projectService)) {
+                    path.append(projectService).append("\\");
+                }
+                if (StringUtils.isNotBlank(packageModuleName)) {
+                    path.append(packageModuleName).append("\\");
+                }
+                path.append(tableInfo.getEntityPath()).append("List.js");
+                return path.toString();
             }
         };
 
@@ -150,14 +184,30 @@ public class UmpGeneratorUtil {
         FileOutConfig htmlForm = new FileOutConfig("/templates/form.html.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.pagedirectory") + tableInfo.getEntityPath() + ".html";
+                StringBuffer path = new StringBuffer(pagedirectory);
+                if (StringUtils.isNotBlank(projectService)) {
+                    path.append(projectService).append("\\");
+                }
+                if (StringUtils.isNotBlank(packageModuleName)) {
+                    path.append(packageModuleName).append("\\");
+                }
+                path.append(tableInfo.getEntityPath()).append(".html");
+                return path.toString();
             }
         };
         // 调整 jsForm 生成目录
         FileOutConfig jsForm = new FileOutConfig("/templates/form.js.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.pagedirectory") + tableInfo.getEntityPath() + ".js";
+                StringBuffer path = new StringBuffer(pagedirectory);
+                if (StringUtils.isNotBlank(projectService)) {
+                    path.append(projectService).append("\\");
+                }
+                if (StringUtils.isNotBlank(packageModuleName)) {
+                    path.append(packageModuleName).append("\\");
+                }
+                path.append(tableInfo.getEntityPath()).append(".js");
+                return path.toString();
             }
         };
 
@@ -165,7 +215,7 @@ public class UmpGeneratorUtil {
         FileOutConfig entityList = new FileOutConfig("/templates/entity.java.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.javadirectory") + props.getStr("project.service") + "\\" + props.getStr("package.modulename") + "\\model\\" + tableInfo.getEntityName() + "Model.java";
+                return javadirectory + projectService + "\\" + packageModuleName + "\\model\\" + tableInfo.getEntityName() + "Model.java";
             }
         };
 
@@ -173,7 +223,7 @@ public class UmpGeneratorUtil {
         FileOutConfig mapperList = new FileOutConfig("/templates/mapper.java.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.javadirectory") + props.getStr("project.service") + "\\" + props.getStr("package.modulename") + "\\dao\\mapper\\" + tableInfo.getEntityName() + "Mapper.java";
+                return javadirectory + projectService + "\\" + packageModuleName + "\\dao\\mapper\\" + tableInfo.getEntityName() + "Mapper.java";
             }
         };
 
@@ -181,7 +231,15 @@ public class UmpGeneratorUtil {
         FileOutConfig dubboConsumerXml = new FileOutConfig("/templates/consumers.xml.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.dubbodirectory") + tableInfo.getEntityPath() + "-customer.xml";
+                StringBuffer path = new StringBuffer(dubbodirectory);
+                if (StringUtils.isNotBlank(projectService)) {
+                    path.append(projectService).append("\\");
+                }
+                if (StringUtils.isNotBlank(packageModuleName)) {
+                    path.append(packageModuleName).append("\\");
+                }
+                path.append(tableInfo.getEntityPath()).append("-customer.xml");
+                return path.toString();
             }
         };
 
@@ -189,7 +247,15 @@ public class UmpGeneratorUtil {
         FileOutConfig dubboProvidersXml = new FileOutConfig("/templates/providers.xml.vm") {
             @Override
             public String outputFile(com.baomidou.mybatisplus.generator.config.po.TableInfo tableInfo) {
-                return props.getStr("fileout.dubbodirectory") + tableInfo.getEntityPath() + "-providers.xml";
+                StringBuffer path = new StringBuffer(dubbodirectory);
+                if (StringUtils.isNotBlank(projectService)) {
+                    path.append(projectService).append("\\");
+                }
+                if (StringUtils.isNotBlank(packageModuleName)) {
+                    path.append(packageModuleName).append("\\");
+                }
+                path.append(tableInfo.getEntityPath()).append("-providers.xml");
+                return path.toString();
             }
         };
 

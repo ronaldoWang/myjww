@@ -6,29 +6,27 @@ layui.config({
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.jquery,
         table = layui.table;
-    //页面操作：0：查看，1：添加，2：修改
-    pageOperation = 0;
-    checkedId = "";
+        //页面操作：0：查看，1：添加，2：修改
+        pageOperation = 0;
+        checkedId = "";
+        jobId = parent.checkedId;
 
     var tableIns = table.render({
         //设置表头
         cols: [[
             {type: 'checkbox', fixed: 'left'},
-            {field: 'taskName', title: '任务名称'},
-            {field: 'beanName', title: 'Bean名称'},
+            {field: 'jobId', title: '任务id'},
+            {field: 'beanName', title: 'spring bean名称'},
             {field: 'methodName', title: '方法名'},
             {field: 'params', title: '参数'},
-            {field: 'cronExpression', title: 'cron表达式'},
-            {
-                field: 'status', title: '任务状态', templet: function (d) {
-                return base.getDicCodeText(d.status, "TASK_STATUS");
-            }
-            },
-            {field: 'opt', title: '操作', fixed: 'right', width: 300, align: 'center', toolbar: '#toolBar'}
+            {field: 'status', title: '任务状态    0：成功    1：失败'},
+            {field: 'error', title: '失败信息'},
+            {field: 'times', title: '耗时(单位：毫秒)'},
+            {field: 'opt', title: '操作', fixed: 'right', width: 160, align: 'center', toolbar: '#toolBar'}
         ]],
-        url: 'sysScheduleJob/queryListPage',
+        url: 'sysScheduleJobLog/queryListPage?jobId='+jobId,
         method: 'post',
-        contentType: 'application/json',
+        contentType : 'application/json',
         request: {
             pageName: 'current', //页码的参数名称，默认：page
             limitName: 'size' //每页数据量的参数名，默认：limit
@@ -37,7 +35,7 @@ layui.config({
             statusCode: 200, //成功的状态码，默认：0
             msgName: 'message' //状态信息的字段名称，默认：msg
         },
-        elem: '#sysScheduleJobTable',
+        elem: '#sysScheduleJobLogTable',
         page: {
             elem: 'pageDiv',
             limit: 10,
@@ -52,9 +50,9 @@ layui.config({
         if (layEvent === 'detail') { //查看
             pageOperation = 0;
             var index = layui.layer.open({
-                title: "查看定时任务",
+                title: "查看定时任务日志",
                 type: 2,
-                content: "sysScheduleJob.html",
+                content: "sysScheduleJobLog.html",
                 success: function (layero, index) {
                     setTimeout(function () {
                         layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -73,7 +71,7 @@ layui.config({
             layer.confirm('您确定要删除吗？', {icon: 3, title: '确认'}, function () {
                 $.ajax({
                     type: 'DELETE',
-                    url: 'sysScheduleJob/delBatchByIds',
+                    url: 'sysScheduleJobLog/delBatchByIds',
                     data: JSON.stringify(dataIds),
                     success: function (data) {
                         if (data.code == 200) {
@@ -91,78 +89,9 @@ layui.config({
             pageOperation = 2;
             checkedId = data.id;
             var index = layui.layer.open({
-                title: "编辑定时任务",
+                title: "编辑定时任务日志",
                 type: 2,
-                content: "sysScheduleJob.html",
-                success: function (layero, index) {
-                    setTimeout(function () {
-                        layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
-                            tips: 3
-                        });
-                    }, 500)
-                }
-            });
-            //改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
-            $(window).resize(function () {
-                layui.layer.full(index);
-            });
-            layui.layer.full(index);
-        } else if (layEvent === 'stop') {
-            var dataIds = [data.id];
-            layer.confirm('您确定要暂停吗？', {icon: 3, title: '确认'}, function () {
-                $.ajax({
-                    type: 'POST',
-                    url: 'sysScheduleJob/pause',
-                    data: JSON.stringify(dataIds),
-                    success: function (data) {
-                        if (data.code == 200) {
-                            layer.msg("停止成功", {icon: 1, time: 2000});
-                            tableIns.reload();
-                        } else {
-                            layer.msg(data.message, {icon: 2});
-                        }
-                    }
-                });
-            });
-        } else if (layEvent === 'resume') {
-            var dataIds = [data.id];
-            layer.confirm('您确定要恢复吗？', {icon: 3, title: '确认'}, function () {
-                $.ajax({
-                    type: 'POST',
-                    url: 'sysScheduleJob/resume',
-                    data: JSON.stringify(dataIds),
-                    success: function (data) {
-                        if (data.code == 200) {
-                            layer.msg("恢复成功", {icon: 1, time: 2000});
-                            tableIns.reload();
-                        } else {
-                            layer.msg(data.message, {icon: 2});
-                        }
-                    }
-                });
-            });
-        } else if (layEvent === 'run') {
-            var dataIds = [data.id];
-            layer.confirm('您确定要开始执行吗？', {icon: 3, title: '确认'}, function () {
-                $.ajax({
-                    type: 'POST',
-                    url: 'sysScheduleJob/run',
-                    data: JSON.stringify(dataIds),
-                    success: function (data) {
-                        if (data.code == 200) {
-                            layer.msg("执行成功", {icon: 1, time: 2000});
-                        } else {
-                            layer.msg(data.message, {icon: 2});
-                        }
-                    }
-                });
-            });
-        } else if (layEvent === 'log') {
-            checkedId = data.id;
-            var index = layui.layer.open({
-                title: "执行日志",
-                type: 2,
-                content: "sysScheduleJobLogList.html",
+                content: "sysScheduleJobLog.html",
                 success: function (layero, index) {
                     setTimeout(function () {
                         layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -185,7 +114,7 @@ layui.config({
 
     function queryParams(params) {
         var params = new Object();
-        $.each($('#searchForm').serializeArray(), function (i, item) {
+        $.each($('#searchForm').serializeArray(),function(i,item){
             params[item.name] = item.value;
         })
         return params;
@@ -198,7 +127,7 @@ layui.config({
                 // condition: {
                 //     searchKey: searchKey
                 // }
-                condition: queryParams()
+                condition:queryParams()
             },
             page: {
                 curr: 1 //重新从第 1 页开始
@@ -206,13 +135,13 @@ layui.config({
         });
     });
 
-    //添加定时任务
+    //添加定时任务日志
     $(".add_btn").click(function () {
         pageOperation = 1;
         var index = layui.layer.open({
-            title: "添加定时任务",
+            title: "添加定时任务日志",
             type: 2,
-            content: "sysScheduleJob.html",
+            content: "sysScheduleJobLog.html",
             success: function (layero, index) {
                 setTimeout(function () {
                     layui.layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
@@ -230,7 +159,7 @@ layui.config({
 
     //批量删除
     $(".batchDel").click(function () {
-        var checkStatus = table.checkStatus('sysScheduleJobTable');
+        var checkStatus = table.checkStatus('sysScheduleJobLogTable');
         if (checkStatus.data.length === 0) {
             layer.msg("请选择要删除的数据", {icon: 0, time: 2000});
             return;
@@ -243,7 +172,7 @@ layui.config({
             }
             $.ajax({
                 type: 'DELETE',
-                url: 'sysScheduleJob/delBatchByIds',
+                url: 'sysScheduleJobLog/delBatchByIds',
                 data: JSON.stringify(userIds),
                 success: function (data) {
                     if (data.code == 200) {
