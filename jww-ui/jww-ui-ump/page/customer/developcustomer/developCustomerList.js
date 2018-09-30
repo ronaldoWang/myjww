@@ -14,7 +14,7 @@ layui.config({
         cols: [[
             {type: 'checkbox', fixed: 'left'},
             {field: 'customerName', title: '客户名称'},
-            {field: 'customerNo', title: '客户编号'},
+            {field: 'customerNo', title: '客户编号', sort: true},
             {
                 field: 'sex', title: '性别', templet: function (d) {
                 return base.getDicCodeText(d.sex, "sex");
@@ -28,7 +28,7 @@ layui.config({
         ]],
         url: 'developCustomer/queryListPage',
         method: 'post',
-        contentType : 'application/json',
+        contentType: 'application/json',
         request: {
             pageName: 'current', //页码的参数名称，默认：page
             limitName: 'size' //每页数据量的参数名，默认：limit
@@ -51,6 +51,7 @@ layui.config({
         var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
         if (layEvent === 'detail') { //查看
             pageOperation = 0;
+            checkedId = data.id;
             var index = layui.layer.open({
                 title: "查看待开发客户表",
                 type: 2,

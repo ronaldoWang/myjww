@@ -17,19 +17,27 @@ layui.config({
     }
 
     if (parent.pageOperation === 2 || parent.pageOperation === 0) {
+        var loadingLayer = layer.load(1, {
+            shade: [0.5, '#000000']
+        });
         $("#id").val(parent.checkedId);
         $.ajax({
             type: 'GET',
             url: 'sysScheduleJob/query/' + parent.checkedId,
             success: function (data) {
+                layer.close(loadingLayer);
                 if (data.code === 200) {
                     if (data.data !== null) {
-                        $("#taskName").val(data.data.taskName);
-                        $("#beanName").val(data.data.beanName);
-                        $("#methodName").val(data.data.methodName);
-                        $("#params").val(data.data.params);
-                        $("#cronExpression").val(data.data.cronExpression);
-                        $("#status").val(data.data.status);
+                        var rest = data.data;
+                        for (var i in rest) {
+                            if ($("#" + i).attr("type") == "text" || $("#" + i).attr("type") == "hidden" || $("#" + i).is("select")) {
+                                $("#" + i).val(rest[i]);
+                            } else if ($("#" + i).attr("type") == "checkbox") {
+                                if (rest[i] == 0) {
+                                    $("#" + i).removeAttr("checked");
+                                }
+                            }
+                        }
                         $("input[name=status][value='0']").attr("checked", data.data.status == 0 ? true : false);
                         $("input[name=status][value='1']").attr("checked", data.data.status == 1 ? true : false);
                         form.render();

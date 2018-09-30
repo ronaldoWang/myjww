@@ -40,6 +40,9 @@ layui.config({
         });
     }
     if(parent.pageOperation===2) {
+        var loadingLayer = layer.load(1, {
+            shade: [0.5,'#000000']
+        });
         deptParentId = parent.deptId;
         $.ajax({
             type: "GET",
@@ -67,6 +70,7 @@ layui.config({
                 }else{
                     top.layer.msg("查询异常！", {icon: 2});
                 }
+                layer.close(loadingLayer);
             },
             contentType: "application/json"
         });

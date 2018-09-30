@@ -44,6 +44,7 @@ layui.config({
         var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
         if (layEvent === 'detail') { //查看
             pageOperation = 0;
+            checkedId = data.id;
             var index = layui.layer.open({
                 title: "查看${table.comment}",
                 type: 2,
