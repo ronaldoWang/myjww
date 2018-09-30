@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">spring bean名称</label>
+        <label class="layui-form-label">Bean名称</label>
         <div class="layui-input-block">
             <input type="text" class="layui-input" id="beanName" name="beanName" lay-verify="required"
                    placeholder="请输入spring bean名称">
@@ -50,34 +50,38 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">参数</label>
-        <div class="layui-input-block">
-            <input type="text" class="layui-input" id="params" name="params" lay-verify="required"
-                   placeholder="请输入参数">
+        <div class="layui-inline">
+            <label class="layui-form-label">参数</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" id="params" name="params" lay-verify="required"
+                       placeholder="请输入参数">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">任务状态</label>
+            <div class="layui-input-block">
+                <dic dicName="TASK_RESULT" type="drop" targetId="status">
+                    <select id="status" name="status" lay-verify='required' lay-search=''>
+                        <option value=''>请选择</option>
+                    </select>
+                </dic>
+            </div>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">任务状态    0：成功    1：失败</label>
-        <div class="layui-input-block">
-            <dic dicName="TASK_RESULT" type="drop" targetId="status">
-                <select id="status" name="status" lay-verify='required' lay-search=''>
-                    <option value=''>请选择</option>
-                </select>
-            </dic>
+        <div class="layui-inline">
+            <label class="layui-form-label">失败信息</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" id="error" name="error" lay-verify="required"
+                       placeholder="请输入失败信息">
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">失败信息</label>
-        <div class="layui-input-block">
-            <input type="text" class="layui-input" id="error" name="error" lay-verify="required"
-                   placeholder="请输入失败信息">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">耗时(单位：毫秒)</label>
-        <div class="layui-input-block">
-            <input type="text" class="layui-input" id="times" name="times" lay-verify="required"
-                   placeholder="请输入耗时(单位：毫秒)">
+        <div class="layui-inline">
+            <label class="layui-form-label">耗时</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" id="times" name="times" lay-verify="required"
+                       placeholder="请输入耗时">(单位：毫秒)
+            </div>
         </div>
     </div>
     <div class="layui-form-item">

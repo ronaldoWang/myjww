@@ -17,11 +17,6 @@
 <blockquote class="layui-elem-quote news_search">
     <form id="searchForm" class="layui-form">
         <div class="layui-form-item">
-            <div class="layui-input-block">
-                <div class="layui-inline">
-                    <a class="layui-btn layui-btn-normal add_btn">新增</a><a class="layui-btn layui-btn-danger batchDel">批量删除</a>
-                </div>
-            </div>
             <div class="layui-inline">
                 <label class="layui-form-label">客户名称</label>
                 <div class="layui-input-inline">
@@ -73,9 +68,17 @@
             </div>
         </div>
         <div class="layui-row">
-            <div class="layui-col-md4 layui-col-md-offset5">
-                <a class="layui-btn search_btn">查询</a>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <div class="layui-col-md4">
+                <div class="layui-col-md-offset1">
+                    <a class="layui-btn layui-btn-normal add_btn">新增</a><a
+                        class="layui-btn layui-btn-danger batchDel">批量删除</a>
+                </div>
+            </div>
+            <div class="layui-col-md4">
+                <div class="layui-col-md-offset4">
+                    <a class="layui-btn search_btn">查询</a>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
             </div>
         </div>
     </form>

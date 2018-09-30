@@ -28,7 +28,28 @@ public class RabbitMqUtils {
      * @author wang haoxi
      * @date 2017/11/21 15:45
      */
-    public static void send(String queueName, final Object object) {
-        mqUtils.rabbitMqService.send(queueName, object);
+    public static void send(final Object object) {
+        mqUtils.rabbitMqService.send(object);
+    }
+
+    /**
+     * 发送队列
+     *
+     * @param routingKey
+     * @param object
+     */
+    public static void send(final String routingKey, final Object object) {
+        mqUtils.rabbitMqService.send(routingKey, object);
+    }
+
+    /**
+     * 发送队列
+     *
+     * @param exchange
+     * @param routingKey
+     * @param object
+     */
+    public static void send(final String exchange, final String routingKey, final Object object) {
+        mqUtils.rabbitMqService.send(exchange, routingKey, object);
     }
 }

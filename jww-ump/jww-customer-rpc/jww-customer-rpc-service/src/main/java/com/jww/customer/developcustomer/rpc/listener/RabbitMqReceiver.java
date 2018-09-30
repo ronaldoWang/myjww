@@ -13,8 +13,8 @@ import java.io.IOException;
  * Created by ThinkPad on 2018/9/26.
  */
 @Component
-public class Receiver {
-    private static final Logger log = LoggerFactory.getLogger(Receiver.class);
+public class RabbitMqReceiver {
+    private static final Logger log = LoggerFactory.getLogger(RabbitMqReceiver.class);
 
     /**
      * FANOUT广播队列监听一.

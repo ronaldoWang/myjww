@@ -43,7 +43,6 @@ public class DevelopCustomerServiceImpl extends BaseServiceImpl<DevelopCustomerM
             entityWrapper.and(StrUtil.removeSuffix(conditionSql.toString(), "AND "));
         }
         page.setCondition(null);
-        RabbitMqUtils.send("testQueen", "my name is ronaldo");
         return super.selectPage(page, entityWrapper);
     }
 
