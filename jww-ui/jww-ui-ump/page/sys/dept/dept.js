@@ -1,34 +1,34 @@
 layui.config({
-    base : "../../../js/"
-}).use(['base','form','layer','jquery','laydate','tree'],function(){
-	var base = layui.base,
-		form = layui.form,
-		layer = parent.layer === undefined ? layui.layer : parent.layer,
+    base: "../../../js/"
+}).use(['base', 'form', 'layer', 'jquery', 'laydate', 'tree'], function () {
+    var base = layui.base,
+        form = layui.form,
+        layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.jquery;
-        //新增则提交到新增url，编辑则提交到修改url
-        submitUrl = parent.pageOperation === 1?"dept/add":"dept/modify";
-        submitType = parent.pageOperation === 1?"POST":"PUT";
-	    deptParentId = "";
+    //新增则提交到新增url，编辑则提交到修改url
+    submitUrl = parent.pageOperation === 1 ? "dept/add" : "dept/modify";
+    submitType = parent.pageOperation === 1 ? "POST" : "PUT";
+    deptParentId = "";
     //新增、编辑跳转则加载部门树
-    if(parent.pageOperation===1||parent.pageOperation===2) {
-        form.on("submit(adddept)",function(data){
-            var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
+    if (parent.pageOperation === 1 || parent.pageOperation === 2) {
+        form.on("submit(adddept)", function (data) {
+            var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
             // alert(JSON.stringify(data.field));
             $.ajax({
                 type: submitType,
                 url: submitUrl,
                 data: JSON.stringify(data.field),
-                success: function(data){
-                    if(data.code==200){
+                success: function (data) {
+                    if (data.code == 200) {
                         //弹出loading
-                        setTimeout(function(){
+                        setTimeout(function () {
                             top.layer.close(index);
                             top.layer.msg("操作成功！", {icon: 1});
                             layer.closeAll("iframe");
                             //刷新父页面
                             parent.location.reload();
-                        },500);
-                    }else{
+                        }, 500);
+                    } else {
                         top.layer.close(index);
                         layer.msg(data.message, {icon: 2});
                     }
@@ -39,38 +39,38 @@ layui.config({
             return false;
         });
     }
-    if(parent.pageOperation===2) {
+    if (parent.pageOperation === 2) {
         var loadingLayer = layer.load(1, {
-            shade: [0.5,'#000000']
+            shade: [0.5, '#000000']
         });
         deptParentId = parent.deptId;
         $.ajax({
             type: "GET",
-            url: "dept/query/"+parent.deptId,
-            success: function(data){
-                if(data.code==200){
+            url: "dept/query/" + parent.deptId,
+            success: function (data) {
+                layer.close(loadingLayer);
+                if (data.code == 200) {
                     var rest = data.data;
                     //循环实体
                     for (var i in rest) {
                         // console.log(i + '='+ rest[i]+ ' '+$("." + i).attr("type"));
                         //文本框赋值
-                        if($("." + i).attr("type")=="text"||$("." + i).attr("type")=="hidden"){
+                        if ($("." + i).attr("type") == "text" || $("." + i).attr("type") == "hidden") {
                             $("." + i).val(rest[i]);
                             // if(parent.pageOperation===0){
                             //     $("." + i).prop("placeholder","");
                             // }
-                        //复选框改变状态
-                        }else if($("." + i).attr("type")=="checkbox"){
-                            if(rest[i]==0){
+                            //复选框改变状态
+                        } else if ($("." + i).attr("type") == "checkbox") {
+                            if (rest[i] == 0) {
                                 $("." + i).removeAttr("checked");
                                 form.render('checkbox');
                             }
                         }
                     }
-                }else{
+                } else {
                     top.layer.msg("查询异常！", {icon: 2});
                 }
-                layer.close(loadingLayer);
             },
             contentType: "application/json"
         });
@@ -80,7 +80,7 @@ layui.config({
         //     $('.layui-form button').hide();
         // }
     }
-    $(".parentName").click(function(){
+    $(".parentName").click(function () {
         layui.layer.open({
             type: 2,
             title: '选择部门',

@@ -19,11 +19,15 @@ layui.config({
     }
     //查看、编辑，初始化页面属性
     if (pageOpt === 0 || pageOpt === 2) {
+        var loadingLayer = layer.load(1, {
+            shade: [0.5, '#000000']
+        });
         $("#id").val(menuId);
         $.ajax({
             type: "GET",
             url: "menu/query/" + menuId,
             success: function (data) {
+                layer.close(loadingLayer);
                 if (data.code == 200) {
                     //$(".layui-form input:radio[name='menuType']").eq(data.data.menuType).attr("checked",'checked');
                     $(':radio[name="menuType"]').eq(data.data.menuType).attr("checked", "checked");

@@ -77,11 +77,15 @@ layui.config({
     }
 
     if (parent.pageOperation === 0 || parent.pageOperation === 2) {
+        var loadingLayer = layer.load(1, {
+            shade: [0.5, '#000000']
+        });
         // 页面赋值
         $.ajax({
             type: "GET",
             url: "user/query/" + parent.userId,
             success: function (data) {
+                layer.close(loadingLayer);
                 if (data.code === 200) {
                     var rest = data.data;
                     //循环实体

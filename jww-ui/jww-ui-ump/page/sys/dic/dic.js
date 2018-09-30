@@ -17,6 +17,9 @@ layui.config({
     }
 
     if (parent.pageOperation === 2 || parent.pageOperation === 0) {
+        var loadingLayer = layer.load(1, {
+            shade: [0.5, '#000000']
+        });
         $("#id").val(parent.checkedDicId);
         // 查询字典
         $.ajax({
@@ -24,6 +27,7 @@ layui.config({
             url: 'dic/query',
             data: JSON.stringify(parent.checkedDicId),
             success: function (data) {
+                layer.close(loadingLayer);
                 if (data.code === 200) {
                     if (data.data !== null) {
                         $("#type").val(data.data.type);

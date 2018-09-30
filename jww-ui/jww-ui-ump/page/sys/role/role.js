@@ -42,6 +42,9 @@ layui.config({
     });
 
     if (parent.pageOperation === 2 || parent.pageOperation === 0) {
+        var loadingLayer = layer.load(1, {
+            shade: [0.5, '#000000']
+        });
         $("#id").val(parent.checkedRoleId);
         // 查询角色
         $.ajax({
@@ -49,6 +52,7 @@ layui.config({
             url: 'role/query',
             data: JSON.stringify(parent.checkedRoleId),
             success: function (data) {
+                layer.close(loadingLayer);
                 if (data.code === 200) {
                     if (data.data !== null) {
                         $("#roleName").val(data.data.roleName);

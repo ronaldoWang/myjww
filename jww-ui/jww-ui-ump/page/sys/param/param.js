@@ -17,6 +17,9 @@ layui.config({
     }
 
     if (parent.pageOperation === 2 || parent.pageOperation === 0) {
+        var loadingLayer = layer.load(1, {
+            shade: [0.5, '#000000']
+        });
         $("#id").val(parent.checkedparamId);
         // 查询参数数据，初始化页面属性值
         $.ajax({
@@ -24,6 +27,7 @@ layui.config({
             url: 'param/query',
             data: JSON.stringify(parent.checkedparamId),
             success: function (data) {
+                layer.close(loadingLayer);
                 if (data.code === 200) {
                     if (data.data !== null) {
                         $("#paramKey").val(data.data.paramKey);
