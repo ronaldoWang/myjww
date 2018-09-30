@@ -38,10 +38,9 @@ open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperNam
 @Service("${table.entityPath}Service")  ##${table.serviceName}
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}Model> implements ${table.serviceName} {
         @Override
-        public Page<${entity}Model> selectPage(Page<${entity}Model> page) {
+        public Page<${entity}Model> selectPage(Page<${entity}Model> page,Wrapper<${entity}Model> entityWrapper) {
             ${entity}Model ${table.entityPath}Model = new ${entity}Model();
             ${table.entityPath}Model.setIsDel(0);
-            EntityWrapper<${entity}Model> entityWrapper = new EntityWrapper<>(${table.entityPath}Model);
             if (ObjectUtil.isNotNull(page.getCondition())) {
                 StringBuilder conditionSql = new StringBuilder();
                 Map<String, Object> paramMap = page.getCondition();

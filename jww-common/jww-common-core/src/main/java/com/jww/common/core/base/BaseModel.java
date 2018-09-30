@@ -27,31 +27,31 @@ public abstract class BaseModel implements Serializable {
     /**
      * 创建时间
      */
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss" )
-    @TableField("create_time" )
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @TableField("create_time")
     private Date createTime;
     /**
      * 创建人
      */
-    @TableField("create_by" )
+    @TableField("create_by")
     private Long createBy;
     /**
      * 更新时间
      */
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss" )
-    @TableField("update_time" )
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @TableField("update_time")
     private Date updateTime;
     /**
      * 更新人
      */
-    @TableField("update_by" )
+    @TableField("update_by")
     private Long updateBy;
 
     /**
      * 是否删除
      */
-    @TableField("is_del" )
-    private Integer isDel;
+    @TableField("is_del")
+    private Integer isDel = new Integer(0);
 
 
 }

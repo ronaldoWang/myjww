@@ -2,6 +2,7 @@ package com.jww.ump.server.controller;
 
 
 import cn.hutool.core.lang.Assert;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.jww.common.core.Constants;
 import com.jww.common.core.model.PageModel;
 import com.jww.common.web.BaseController;
@@ -66,7 +67,8 @@ public class SysScheduleJobLogController extends BaseController {
     @PostMapping("/queryListPage")
     @RequiresPermissions("ump:jobLog:read")
     public ResultModel queryListPage(@RequestBody PageModel<SysScheduleJobLogModel> pageModel, SysScheduleJobLogModel sysScheduleJobLogModel) {
-        pageModel = (PageModel<SysScheduleJobLogModel>) service.selectPage(pageModel);
+        EntityWrapper<SysScheduleJobLogModel> wrapper = new EntityWrapper<>(sysScheduleJobLogModel);
+        pageModel = (PageModel<SysScheduleJobLogModel>) service.selectPage(pageModel, wrapper);
         return ResultUtil.ok(pageModel);
     }
 

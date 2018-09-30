@@ -3,6 +3,7 @@ package com.jww.quartz.rpc.service.impl;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.jww.common.core.base.BaseServiceImpl;
 import com.jww.quartz.dao.mapper.SysScheduleJobLogMapper;
@@ -27,11 +28,11 @@ import java.util.*;
 @Slf4j
 @Service("sysScheduleJobLogService")
 public class SysScheduleJobLogServiceImpl extends BaseServiceImpl<SysScheduleJobLogMapper, SysScheduleJobLogModel> implements SysScheduleJobLogService {
-    public Page<SysScheduleJobLogModel> selectPage(Page<SysScheduleJobLogModel> page, SysScheduleJobLogModel vo) {
+
+    @Override
+    public Page<SysScheduleJobLogModel> selectPage(Page<SysScheduleJobLogModel> page, Wrapper<SysScheduleJobLogModel> entityWrapper) {
         SysScheduleJobLogModel sysScheduleJobLogModel = new SysScheduleJobLogModel();
         sysScheduleJobLogModel.setIsDel(0);
-        sysScheduleJobLogModel.setJobId(vo.getJobId());
-        EntityWrapper<SysScheduleJobLogModel> entityWrapper = new EntityWrapper<>(sysScheduleJobLogModel);
         if (ObjectUtil.isNotNull(page.getCondition())) {
             StringBuilder conditionSql = new StringBuilder();
             Map<String, Object> paramMap = page.getCondition();

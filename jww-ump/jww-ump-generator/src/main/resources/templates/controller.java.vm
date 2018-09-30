@@ -90,7 +90,8 @@ public class ${table.controllerName} {
     @ApiOperation(value = "分页查询$!{table.comment}", notes = "根据主键ID查询$!{table.comment}")
     @PostMapping("/queryListPage")
     @RequiresPermissions("${cfg.projectService}:${cfg.packageModuleName}:read")
-    public ResultModel queryListPage(@RequestBody PageModel<${entity}Model> pageModel) {
+    public ResultModel queryListPage(@RequestBody PageModel<${entity}Model> pageModel,${entity}Model entity) {
+        EntityWrapper<${entity}Model> wrapper = new EntityWrapper<>(entity,wrapper);
         pageModel = (PageModel<${entity}Model>) service.selectPage(pageModel);
         return ResultUtil.ok(pageModel);
     }

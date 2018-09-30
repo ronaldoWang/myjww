@@ -59,8 +59,11 @@
     <div class="layui-form-item">
         <label class="layui-form-label">任务状态    0：成功    1：失败</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" id="status" name="status" lay-verify="required"
-                   placeholder="请输入任务状态    0：成功    1：失败">
+            <dic dicName="TASK_RESULT" type="drop" targetId="status">
+                <select id="status" name="status" lay-verify='required' lay-search=''>
+                    <option value=''>请选择</option>
+                </select>
+            </dic>
         </div>
     </div>
     <div class="layui-form-item">

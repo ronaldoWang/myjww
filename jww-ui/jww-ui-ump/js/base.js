@@ -19,26 +19,26 @@ layui.define(['jquery'], function (exports) {
     var dics = JSON.parse(window.sessionStorage.getItem("JWW_UMP_DIC"));
     var dicDoms = $("dic");
     dicDoms.each(function () {
-        var method = $(this).attr("method");
-        var arr = dics[$(this).attr("type").toLowerCase()];
-        if (method === 'drop') {
-            var selectId = $(this).attr("selectId");
+        var type = $(this).attr("type");
+        var arr = dics[$(this).attr("dicName").toLowerCase()];
+        if (type === 'drop') {
+            var targetId = $(this).attr("targetId");
             for (x in arr) {
-                $("#" + selectId).append("<option value='" + arr[x].code + "'>" + arr[x].codeText + "</option>");
+                $("#" + targetId).append("<option value='" + arr[x].code + "'>" + arr[x].codeText + "</option>");
             }
-        } else if (method === 'label') {
+        } else if (type === 'label') {
             var code = $(this).attr("code");
             for (x in arr) {
                 if (arr[x].code == code) {
                     $(this).append(arr[x].codeText);
                 }
             }
-        } else if (method === 'checkbox') {
+        } else if (type === 'checkbox') {
             //待实现
-        } else if (method === 'radio') {
-            var selectId = $(this).attr("selectId");
+        } else if (type === 'radio') {
+            var targetId = $(this).attr("targetId");
             for (x in arr) {
-                $(this).append("<input type='radio' id='" + selectId + "' name='" + selectId + "' value='" + arr[x].code + "' title='" + arr[x].codeText + "'/>");
+                $(this).append("<input type='radio' id='" + targetId + "' name='" + targetId + "' value='" + arr[x].code + "' title='" + arr[x].codeText + "'/>");
             }
         }
     });

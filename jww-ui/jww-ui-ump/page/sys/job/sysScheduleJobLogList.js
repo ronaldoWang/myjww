@@ -6,10 +6,10 @@ layui.config({
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.jquery,
         table = layui.table;
-        //页面操作：0：查看，1：添加，2：修改
-        pageOperation = 0;
-        checkedId = "";
-        jobId = parent.checkedId;
+    //页面操作：0：查看，1：添加，2：修改
+    pageOperation = 0;
+    checkedId = "";
+    jobId = parent.checkedId;
 
     var tableIns = table.render({
         //设置表头
@@ -19,14 +19,18 @@ layui.config({
             {field: 'beanName', title: 'spring bean名称'},
             {field: 'methodName', title: '方法名'},
             {field: 'params', title: '参数'},
-            {field: 'status', title: '任务状态    0：成功    1：失败'},
+            {
+                field: 'status', title: '任务状态', templet: function (d) {
+                return base.getDicCodeText(d.status, "TASK_RESULT");
+            }
+            },
             {field: 'error', title: '失败信息'},
             {field: 'times', title: '耗时(单位：毫秒)'},
             {field: 'opt', title: '操作', fixed: 'right', width: 160, align: 'center', toolbar: '#toolBar'}
         ]],
-        url: 'sysScheduleJobLog/queryListPage?jobId='+jobId,
+        url: 'sysScheduleJobLog/queryListPage?jobId=' + jobId,
         method: 'post',
-        contentType : 'application/json',
+        contentType: 'application/json',
         request: {
             pageName: 'current', //页码的参数名称，默认：page
             limitName: 'size' //每页数据量的参数名，默认：limit
@@ -114,7 +118,7 @@ layui.config({
 
     function queryParams(params) {
         var params = new Object();
-        $.each($('#searchForm').serializeArray(),function(i,item){
+        $.each($('#searchForm').serializeArray(), function (i, item) {
             params[item.name] = item.value;
         })
         return params;
@@ -127,7 +131,7 @@ layui.config({
                 // condition: {
                 //     searchKey: searchKey
                 // }
-                condition:queryParams()
+                condition: queryParams()
             },
             page: {
                 curr: 1 //重新从第 1 页开始
