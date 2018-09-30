@@ -1,5 +1,7 @@
 package com.jww.ump.rpc.service.impl;
 
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.jww.common.core.base.BaseServiceImpl;
@@ -7,8 +9,6 @@ import com.jww.ump.common.UmpConstants;
 import com.jww.ump.dao.mapper.SysParamMapper;
 import com.jww.ump.model.SysParamModel;
 import com.jww.ump.rpc.api.SysParamService;
-import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
@@ -67,5 +67,12 @@ public class SysParamServiceImpl extends BaseServiceImpl<SysParamMapper, SysPara
             sysParamModelList.add(entity);
         });
         return super.updateBatchById(sysParamModelList);
+    }
+
+
+    @Override
+    @CacheEvict(value = UmpConstants.UmpCacheName.PARAM, allEntries = true)
+    public SysParamModel modifyById(SysParamModel paramModel) {
+        return super.modifyById(paramModel);
     }
 }

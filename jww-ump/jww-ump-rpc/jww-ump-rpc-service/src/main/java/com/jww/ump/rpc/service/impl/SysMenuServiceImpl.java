@@ -206,7 +206,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenuMo
     }
 
     @Override
-    @CacheEvict(value = UmpConstants.UmpCacheName.MENU, allEntries = true)
+    @CacheEvict(value = {UmpConstants.UmpCacheName.MENU, UmpConstants.UmpCacheName.ROLE, UmpConstants.UmpCacheName.USER}, allEntries = true)
     public SysMenuModel modifyById(SysMenuModel sysMenuModel) {
         if (StrUtil.isNotBlank(sysMenuModel.getMenuName())) {
             //名称重复验证，同一目录下，菜单名称不能相同（需要排除自己）

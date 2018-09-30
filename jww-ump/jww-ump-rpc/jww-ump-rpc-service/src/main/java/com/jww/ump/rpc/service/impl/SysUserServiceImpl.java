@@ -106,16 +106,14 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUserMo
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @CacheEvict(value = UmpConstants.UmpCacheName.USER, allEntries = true)
+    @CacheEvict(value = {UmpConstants.UmpCacheName.USER, UmpConstants.UmpCacheName.MENU}, allEntries = true)
     public boolean modifyUser(SysUserModel sysUserModel) {
         boolean result = false;
         EntityWrapper<SysUserRoleModel> wrapper = new EntityWrapper<>();
         wrapper.eq("user_id", sysUserModel.getId());
         sysUserRoleMapper.delete(wrapper);
         insertUserRole(sysUserModel);
-        result = super.updateById(sysUserModel);
-
-        return result;
+        return super.updateById(sysUserModel);
     }
 
     @Override

@@ -88,7 +88,7 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRoleMo
 
 
     @Override
-    @CacheEvict(value = UmpConstants.UmpCacheName.ROLE, allEntries = true)
+    @CacheEvict(value = {UmpConstants.UmpCacheName.ROLE, UmpConstants.UmpCacheName.MENU}, allEntries = true)
     @Transactional(rollbackFor = Exception.class)
     public SysRoleModel modifyById(SysRoleModel sysRoleModel) {
         SysRoleModel result = super.modifyById(sysRoleModel);
