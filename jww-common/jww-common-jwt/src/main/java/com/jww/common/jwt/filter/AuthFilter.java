@@ -35,6 +35,8 @@ public class AuthFilter implements Filter {
     @Autowired
     private JwtProperties jwtProperties;
 
+    public static final String USER_KEY = "userId";
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         log.debug("=============AuthFilter.init()============");
@@ -70,7 +72,7 @@ public class AuthFilter implements Filter {
                 if (flag) {
                     throw new BusinessException(Constants.ResultCodeEnum.UNLOGIN);
                 }
-
+                request.setAttribute(USER_KEY, jwtTokenHelper.getClaimFromToken(authToken).getSubject());
             } catch (BusinessException e) {
                 throw e;
             } catch (Throwable e) {

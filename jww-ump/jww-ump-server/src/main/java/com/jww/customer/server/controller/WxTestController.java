@@ -24,9 +24,10 @@ public class WxTestController extends BaseController {
     private JwtTokenHelper jwtTokenHelper;
 
     @PostMapping("/wx/login")
-    public ResultModel login() {
+    public ResultModel login(String userName, String pwd) {
         final String randomKey = jwtTokenHelper.getRandomKey();
-        final String token = jwtTokenHelper.generateToken(String.valueOf("test"), randomKey);
+        final String token = jwtTokenHelper.generateToken(userName, randomKey);
+        System.out.println("===========" + token);
         return null;
     }
 
