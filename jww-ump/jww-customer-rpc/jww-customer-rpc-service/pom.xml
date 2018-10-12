@@ -14,6 +14,7 @@
 
     <properties>
         <docker.image.prefix>jww-customer-rpc</docker.image.prefix>
+        <docker.registry.url>localhost:5000</docker.registry.url>
     </properties>
 
     <dependencyManagement>
@@ -98,10 +99,9 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.0.0</version>
                 <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <imageName>{docker.registry.url}/${docker.image.prefix}/${project.artifactId}</imageName>
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
-                        <imageTag>latest</imageTag>
                     </imageTags>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>
