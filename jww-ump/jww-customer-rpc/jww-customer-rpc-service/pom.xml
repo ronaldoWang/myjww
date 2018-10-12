@@ -100,9 +100,9 @@
                 <version>1.0.0</version>
                 <configuration>
                     <imageName>${docker.registry.url}/${docker.image.prefix}/${project.artifactId}</imageName>
-                    <imageTags>
+                    <!--<imageTags>
                         <imageTag>${project.version}</imageTag>
-                    </imageTags>
+                    </imageTags>-->
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
