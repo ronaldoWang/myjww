@@ -99,7 +99,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.0.0</version>
                 <configuration>
-                    <imageName>{docker.registry.url}/${docker.image.prefix}/${project.artifactId}</imageName>
+                    <imageName>${docker.registry.url}/${docker.image.prefix}/${project.artifactId}</imageName>
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
                     </imageTags>
