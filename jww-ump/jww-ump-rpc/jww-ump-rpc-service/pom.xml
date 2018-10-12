@@ -12,6 +12,10 @@
 
     <artifactId>jww-ump-rpc-service</artifactId>
 
+    <properties>
+        <docker.image.prefix>jww-ump-rpc</docker.image.prefix>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -83,6 +87,25 @@
                         <version>${springloaded.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <!--<imageTags>
+                        <imageTag>${project.version}</imageTag>
+                    </imageTags>-->
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>

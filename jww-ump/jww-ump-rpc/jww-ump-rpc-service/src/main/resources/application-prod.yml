@@ -1,14 +1,52 @@
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/ibase4j?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
-    username: root
-    password: 123456
-    driverClassName: com.mysql.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    database: 0
+    host: 47.99.90.68
+    port: 6379
+    password:
+    timeout: 0
+    pool:
+      max-active: 200
+      max-wait: 10000
+      max-idle: 150
+      min-idle: 50
+    lock:
+      waitTimeOut: 5
+      lockTimeOut: 30
+  application:
+    name: jww-ump-dubbo-provider
 
-#mybatis
+datasource:
+  type: com.alibaba.druid.pool.DruidDataSource
+  master:
+    url: jdbc:mysql://47.99.90.68:3306/jww?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    username: jww
+    password: jww_1234
+    driverClassName: com.mysql.jdbc.Driver
+    initialSize: 5
+    maxActive: 20
+    minIdle: 5
+    maxWait: 60000
+    defaultReadOnly: false
+    filters: stat
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=2000
+    useGlobalDataSourceStat: true
+  slaver:
+      url: jdbc:mysql://47.99.90.68:3306/jww?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username: jww
+      password: jww_1234
+      driverClassName: com.mysql.jdbc.Driver
+      initialSize: 5
+      maxActive: 20
+      minIdle: 5
+      maxWait: 60000
+      defaultReadOnly: false
+      filters: stat
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=2000
+      useGlobalDataSourceStat: true
+
 mybatis-plus:
-  mapper-locations: classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
   #typeAliasesPackage: com.baomidou.springboot.entity
   #typeEnumsPackage: com.baomidou.springboot.entity.enums
@@ -28,6 +66,7 @@ mybatis-plus:
     #逻辑删除配置
     #logic-delete-value: 0
     #logic-not-delete-value: 1
+    #sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
     #自定义填充策略接口实现
     #meta-object-handler: com.baomidou.springboot.xxx
     #自定义SQL注入器
@@ -35,3 +74,24 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
+
+server:
+  port: 8088
+
+dubbo:
+  application:
+    name: jww-ump-dubbo-provider
+    owner: jww-ump-dubbo-provider
+  registry:
+    protocol: zookeeper
+    address: 192.168.0.74:2181,192.168.0.74:2182,192.168.0.74:2183
+  protocol:
+    name: dubbo
+    port: -1
+
+logging:
+  level:
+     root: INFO
+     org:
+        springframework :
+            web: INFO
