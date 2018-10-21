@@ -203,6 +203,9 @@ public class RabbitConfig {
 
     /**
      * 死信路由通过 DL_KEY 绑定键绑定到死信队列上.
+     * <p>
+     * DL_QUEUE 其实是普通队列，通过对该队列设置DEAD_LETTER_QUEUE_KEY和DEAD_LETTER_ROUTING_KEY，
+     * 如果队列中出现死信队列，则转发到KEY_R对应的队列中进行消费
      *
      * @return the binding
      */
