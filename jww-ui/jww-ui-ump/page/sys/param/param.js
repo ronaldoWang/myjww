@@ -78,28 +78,29 @@ layui.config({
     //普通图片上传
     var uploadInst = upload.render({
         elem: '#test1'
-        ,url: submitUrl
-        ,auto: false
-        ,bindAction: '#uploadBtn'
-        ,accept: 'file'
-        ,before: function(obj){
+        , url: 'param/upload'
+        , accept: 'file'
+        , before: function (obj) {
             //预读本地文件示例，不支持ie8
-            obj.preview(function(index, file, result){
+            obj.preview(function (index, file, result) {
                 $('#demo1').attr('src', result); //图片链接（base64）
             });
         }
-        ,done: function(res){
+        , done: function (res) {
             //如果上传失败
-            if(res.code > 0){
+            if (res.code != 200) {
                 return layer.msg('上传失败');
+            } else {
+                //上传成功
+                $("#paramValueExtend").val(res.data);
             }
-            //上传成功
+
         }
-        ,error: function(){
+        , error: function () {
             //演示失败状态，并实现重传
             var demoText = $('#demoText');
             demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-            demoText.find('.demo-reload').on('click', function(){
+            demoText.find('.demo-reload').on('click', function () {
                 uploadInst.upload();
             });
         }

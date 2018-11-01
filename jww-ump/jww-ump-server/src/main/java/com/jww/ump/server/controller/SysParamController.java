@@ -1,6 +1,7 @@
 package com.jww.ump.server.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.lang.Assert;
 import com.jww.common.core.Constants;
 import com.jww.common.core.exception.BusinessException;
 import com.jww.common.core.model.PageModel;
@@ -10,15 +11,21 @@ import com.jww.common.web.util.ResultUtil;
 import com.jww.ump.model.SysParamModel;
 import com.jww.ump.rpc.api.SysParamService;
 import com.jww.ump.server.annotation.SysLogOpt;
-import cn.hutool.core.lang.Assert;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -124,6 +131,29 @@ public class SysParamController extends BaseController {
             throw new BusinessException("参数ID集合不能为空");
         }
         return ResultUtil.ok(sysParamService.deleteBatchIds(ids));
+    }
+
+    @PostMapping("/upload")
+    public ResultModel upload(@RequestParam("file") MultipartFile[] files) {
+        String fileName = null;
+        if (files != null && files.length > 0) {
+            for (int i = 0; i < files.length; i++) {
+                try {
+                    fileName = files[i].getOriginalFilename();
+                    byte[] bytes = new byte[0];
+                    bytes = files[i].getBytes();
+                    BufferedOutputStream buffStream =
+                            new BufferedOutputStream(new FileOutputStream(new File("/tmp/" + fileName)));
+                    buffStream.write(bytes);
+                    buffStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return ResultUtil.ok(fileName);
+        } else {
+            return ResultUtil.ok(fileName);
+        }
     }
 }
 
