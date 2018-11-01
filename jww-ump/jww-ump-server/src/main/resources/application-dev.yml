@@ -13,6 +13,10 @@ spring:
     lock:
       waitTimeOut: 5
       lockTimeOut: 10
+  http:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
   session:
     timeout: 60
   activemq:
@@ -35,6 +39,10 @@ spring:
       percentage: 1
 server:
   port: 8089
+oss:
+  type: 3
+  accessKeyId: 0Bu_XFx_J5hNzHU5o5qnQABzdyctB0jhYQqNVeJo
+  accessKeySecret: pQ8e_pLxxpU4jmfWZDJsSsODODKqM3nM1bDM1HhT
 
 dubbo:
   application:

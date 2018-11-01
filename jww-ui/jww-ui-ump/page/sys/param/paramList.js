@@ -15,8 +15,10 @@ layui.config({
         //设置表头
         cols: [[
             {type: 'checkbox', fixed: 'left'},
+            {field: 'paramType', title: '参数类型', align: 'center', edit: 'text', event: 'editColumn'},
             {field: 'paramKey', title: '参数名', align: 'center', edit: 'text', event: 'editColumn'},
             {field: 'paramValue', title: '参数值', align: 'center', edit: 'text', event: 'editColumn'},
+            {field: 'paramValueExtend', title: '参数扩展值', align: 'center', edit: 'text', event: 'editColumn'},
             {field: 'remark', title: '备注', align: 'center', edit: 'text', event: 'editColumn'},
             {
                 field: 'enable',

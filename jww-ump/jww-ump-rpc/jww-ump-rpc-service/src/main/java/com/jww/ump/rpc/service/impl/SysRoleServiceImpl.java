@@ -23,10 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -135,7 +132,7 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRoleMo
     }
 
     @CacheEvict(value = UmpConstants.UmpCacheName.ROLE, allEntries = true)
-    public boolean deleteBatchIds(List<? extends Serializable> idList) {
+    public boolean deleteBatchIds(Collection<? extends Serializable> idList) {
         List<SysRoleModel> roleModelList = new ArrayList<SysRoleModel>();
         idList.forEach(id -> {
             SysRoleModel entity = new SysRoleModel();

@@ -1,10 +1,11 @@
 layui.config({
     base: "../../../js/"
-}).use(['base', 'form', 'layer', 'jquery', "treecheck"], function () {
+}).use(['base', 'form', 'layer', 'upload', 'jquery', "treecheck"], function () {
     var base = layui.base,
         form = layui.form,
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.jquery,
+        upload = layui.upload,
         submitUrl = "param/add";
 
     // 获取父页面的pageOperation，判断是查看、添加、修改
@@ -30,8 +31,10 @@ layui.config({
                 layer.close(loadingLayer);
                 if (data.code === 200) {
                     if (data.data !== null) {
+                        $("#paramType").val(data.data.paramType);
                         $("#paramKey").val(data.data.paramKey);
                         $("#paramValue").val(data.data.paramValue);
+                        $("#paramValueExtend").val(data.data.paramValueExtend);
                         $(':radio[name="enable"][value="' + data.data.enable + '"]').attr("checked", "checked");
                         form.render('radio');
                         $("#remark").val(data.data.remark);
@@ -46,10 +49,10 @@ layui.config({
     if (parent.pageOperation === 1 || parent.pageOperation === 2) {
         form.on('submit(addFilter)', function (data) {
             var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
-            $.ajax({
+            $.post({
                 type: 'POST',
                 url: submitUrl,
-                data: JSON.stringify(data.field),
+                data: data.field,
                 success: function (data) {
                     if (data.code === 200) {
                         //弹出loading
@@ -71,5 +74,35 @@ layui.config({
             return false;
         });
     }
+
+    //普通图片上传
+    var uploadInst = upload.render({
+        elem: '#test1'
+        ,url: submitUrl
+        ,auto: false
+        ,bindAction: '#uploadBtn'
+        ,accept: 'file'
+        ,before: function(obj){
+            //预读本地文件示例，不支持ie8
+            obj.preview(function(index, file, result){
+                $('#demo1').attr('src', result); //图片链接（base64）
+            });
+        }
+        ,done: function(res){
+            //如果上传失败
+            if(res.code > 0){
+                return layer.msg('上传失败');
+            }
+            //上传成功
+        }
+        ,error: function(){
+            //演示失败状态，并实现重传
+            var demoText = $('#demoText');
+            demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            demoText.find('.demo-reload').on('click', function(){
+                uploadInst.upload();
+            });
+        }
+    });
 });
 

@@ -14,10 +14,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -51,11 +48,11 @@ public class SysDicServiceImpl extends BaseServiceImpl<SysDicMapper, SysDicModel
     }
 
     @CacheEvict(value = UmpConstants.UmpCacheName.DIC, allEntries = true)
-    public boolean deleteBatchIds(List<? extends Serializable> idList){
+    public boolean deleteBatchIds(Collection<? extends Serializable> idList) {
         List<SysDicModel> sysDicModelList = new ArrayList<SysDicModel>();
         idList.forEach(id -> {
             SysDicModel entity = new SysDicModel();
-            entity.setId((Long)id);
+            entity.setId((Long) id);
             entity.setIsDel(1);
             entity.setUpdateTime(new Date());
             sysDicModelList.add(entity);

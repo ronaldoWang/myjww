@@ -27,7 +27,16 @@
     </style>
 </head>
 <body class="childrenBody">
-<form class="layui-form" style="width:80%;" id="paramForm">
+<form class="layui-form" style="width:80%;" id="paramForm" enctype="multipart/form-data">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">参数类型</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="paramType" id="paramType" placeholder="请输入参数类型"
+                       lay-verify="required">
+            </div>
+        </div>
+    </div>
     <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">参&nbsp;&nbsp;数&nbsp;&nbsp;名</label>
@@ -43,6 +52,14 @@
             <div class="layui-input-block">
                 <input type="text" class="layui-input" name="paramValue" id="paramValue" placeholder="请输入关键字"
                        lay-verify="required">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">参数扩展值</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="paramValueExtend" id="paramValueExtend" placeholder="请输入关键字"><button type="button" class="layui-btn" id="test1">上传图片</button><img class="layui-upload-img" id="demo1">
             </div>
         </div>
     </div>
@@ -67,7 +84,7 @@
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="addFilter">立即提交</button>
+            <button id="uploadBtn" class="layui-btn" lay-submit lay-filter="addFilter">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
