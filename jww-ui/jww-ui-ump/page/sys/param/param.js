@@ -86,7 +86,6 @@ layui.config({
         , auto: false
         , bindAction:
             '#uploadBtn'
-    })
-    ;
+    });
 });
 
