@@ -95,7 +95,7 @@ public class LogAspect {
 
         sysLogModel.setIp(ip);
         sysLogModel.setMethod(classMethod);
-        sysLogModel.setParams(args);
+        //sysLogModel.setParams(args);//参数由于存在base64，无法存放，暂时去掉 2018.11.02
         sysLogModel.setCreateTime(new Date());
         sysLogModel.setCreateBy(0L);
         sysLogModel.setUpdateBy(0L);

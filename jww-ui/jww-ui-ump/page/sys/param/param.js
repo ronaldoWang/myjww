@@ -35,6 +35,7 @@ layui.config({
                         $("#paramKey").val(data.data.paramKey);
                         $("#paramValue").val(data.data.paramValue);
                         $("#paramValueExtend").val(data.data.paramValueExtend);
+                        $("#paramUrl").val(data.data.paramUrl);
                         $(':radio[name="enable"][value="' + data.data.enable + '"]').attr("checked", "checked");
                         form.render('radio');
                         $("#remark").val(data.data.remark);
@@ -49,10 +50,13 @@ layui.config({
     if (parent.pageOperation === 1 || parent.pageOperation === 2) {
         form.on('submit(addFilter)', function (data) {
             var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
+            var form = new FormData(document.getElementById("paramForm"));
             $.post({
                 type: 'POST',
                 url: submitUrl,
-                data: data.field,
+                data: form,
+                processData: false,
+                contentType: false,
                 success: function (data) {
                     if (data.code === 200) {
                         //弹出loading
@@ -75,35 +79,15 @@ layui.config({
         });
     }
 
-    //普通图片上传
-    var uploadInst = upload.render({
-        elem: '#test1'
-        , url: 'param/upload'
+    //普通文件上传
+    upload.render({
+        elem: '#uploadFile'
         , accept: 'file'
-        , before: function (obj) {
-            //预读本地文件示例，不支持ie8
-            obj.preview(function (index, file, result) {
-                $('#demo1').attr('src', result); //图片链接（base64）
-            });
-        }
-        , done: function (res) {
-            //如果上传失败
-            if (res.code != 200) {
-                return layer.msg('上传失败');
-            } else {
-                //上传成功
-                $("#paramValueExtend").val(res.data);
-            }
-
-        }
-        , error: function () {
-            //演示失败状态，并实现重传
-            var demoText = $('#demoText');
-            demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-            demoText.find('.demo-reload').on('click', function () {
-                uploadInst.upload();
-            });
-        }
-    });
+        , auto: false
+        , exts: 'zip|rar|7z|jpg|png|mp4|apk'
+        , bindAction:
+            '#uploadBtn'
+    })
+    ;
 });
 
