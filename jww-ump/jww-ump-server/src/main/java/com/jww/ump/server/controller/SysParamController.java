@@ -5,6 +5,7 @@ import cn.hutool.core.lang.Assert;
 import com.jww.common.core.Constants;
 import com.jww.common.core.exception.BusinessException;
 import com.jww.common.core.model.PageModel;
+import com.jww.common.oss.service.CloudStorageService;
 import com.jww.common.web.BaseController;
 import com.jww.common.web.model.ResultModel;
 import com.jww.common.web.util.ResultUtil;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * <p>
@@ -37,6 +40,9 @@ public class SysParamController extends BaseController {
 
     @Autowired
     private SysParamService sysParamService;
+
+    @Autowired
+    private CloudStorageService cloudStorageService;
 
     /**
      * 根据参数ID查询参数
@@ -84,7 +90,11 @@ public class SysParamController extends BaseController {
     @PostMapping("/add")
     @RequiresPermissions("sys:param:add")
     @SysLogOpt(module = "参数管理", value = "参数新增", operationType = Constants.LogOptEnum.ADD)
-    public ResultModel add(@Valid SysParamModel sysParamModel, @RequestParam("file") MultipartFile[] files) {
+    public ResultModel add(@Valid SysParamModel sysParamModel, @RequestParam("file") MultipartFile file) throws IOException {
+        if (!file.isEmpty()) {
+            String filePath = cloudStorageService.upload(file.getBytes(), file.getOriginalFilename());
+            sysParamModel.setParamUrl(filePath);//文件路径
+        }
         sysParamModel.setCreateBy(super.getCurrentUserId());
         sysParamModel.setUpdateBy(super.getCurrentUserId());
         return ResultUtil.ok(sysParamService.add(sysParamModel));
@@ -102,7 +112,11 @@ public class SysParamController extends BaseController {
     @PostMapping("/modify")
     @RequiresPermissions("sys:param:update")
     @SysLogOpt(module = "参数管理", value = "参数修改", operationType = Constants.LogOptEnum.MODIFY)
-    public ResultModel modify(@RequestBody SysParamModel sysParamModel) {
+    public ResultModel modify(@Valid SysParamModel sysParamModel, @RequestParam("file") MultipartFile file) throws IOException {
+        if (!file.isEmpty()) {
+            String filePath = cloudStorageService.upload(file.getBytes(), file.getOriginalFilename());
+            sysParamModel.setParamUrl(filePath);//文件路径
+        }
         sysParamModel.setUpdateBy(super.getCurrentUserId());
         sysParamService.modifyById(sysParamModel);
         return ResultUtil.ok();

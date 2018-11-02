@@ -27,6 +27,11 @@ public class ResultUtil {
                 Constants.ResultCodeEnum.SUCCESS.getMessage(), object);
     }
 
+    public static ResultModel ok(Object object, String message) {
+        return new ResultModel(Constants.ResultCodeEnum.SUCCESS.value(),
+                message, object);
+    }
+
     public static ResultModel fail(Constants.ResultCodeEnum resultCodeEnum) {
         return new ResultModel(resultCodeEnum.value(), resultCodeEnum.getMessage(), null);
     }

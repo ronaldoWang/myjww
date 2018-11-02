@@ -13,12 +13,6 @@ spring:
     lock:
       waitTimeOut: 5
       lockTimeOut: 10
-  http:
-    multipart:
-      enabled: true
-      file-size-threshold: 0
-      max-file-size: 50Mb
-      max-request-size: 100Mb
   session:
     timeout: 60
   activemq:
@@ -33,26 +27,19 @@ spring:
       #        <!-- <version>5.7.0</version> -->
       #    </dependency>
   application:
-    name: jww-ump-dubbo-consumer
+    name: jww-api-dubbo-consumer
   zipkin:
     baseUrl:  http://localhost:9411
   sleuth:
     sampler:
       percentage: 1
 server:
-  port: 8089
-oss:
-  type: 2
-  accessKeyId: AKIDlQNOI539ORL3axmII6i8MO9tUt9GluWw
-  accessKeySecret: NZgbKrCoIaihV7XlnttiLm2B7wayEIBt
-  bucketName: aihuishou-1251883742
-  domain: https://aihuishou-1251883742.cos.ap-shanghai.myqcloud.com
-  endPoint: ap-shanghai
+  port: 8087
 
 dubbo:
   application:
-    name: jww-ump-dubbo-consumer
-    owner: jww-ump-dubbo-consumer
+    name: jww-api-dubbo-consumer
+    owner: jww-api-dubbo-consumer
   registry:
     protocol: zookeeper
     address: 47.99.90.68:2181
@@ -61,7 +48,7 @@ dubbo:
 
 logging:
   level:
-    root: info
+     root: info
 jwt:
   isOpen: 1             # 是否开户jwt校验，1：开启；0：关闭
   header: Authorization   #http请求头所需要的字段

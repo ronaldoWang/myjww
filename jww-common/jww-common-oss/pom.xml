@@ -42,6 +42,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- 七牛云sdk -->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>${qiniuyun-sdk-oss.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

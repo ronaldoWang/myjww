@@ -49,7 +49,6 @@ public class SysExceptionHandler {
         }
         if (e instanceof RuntimeException && e.getMessage().contains(BusinessException.class.getName())) {
             String message = e.getMessage().substring(BusinessException.class.getName().length() + 1, e.getMessage().indexOf("\r\n")).trim();
-            ;
             return ResultUtil.fail(Constants.ResultCodeEnum.INTERNAL_SERVER_ERROR, message);
         }
         return ResultUtil.fail(Constants.ResultCodeEnum.INTERNAL_SERVER_ERROR);

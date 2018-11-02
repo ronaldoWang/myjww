@@ -76,10 +76,8 @@ public final class Constants {
      * 返回码枚举
      */
     public enum ResultCodeEnum {
-        /**
-         * 成功
-         */
         SUCCESS(200, "成功"),
+        NOCONTENT(204,""),
         INTERNAL_SERVER_ERROR(500, "服务器出错"),
         BAD_REQUEST(400, "请求参数出错"),
         NO_SUPPORTED_MEDIATYPE(415, "不支持的媒体类型,请使用application/json;charset=UTF-8"),

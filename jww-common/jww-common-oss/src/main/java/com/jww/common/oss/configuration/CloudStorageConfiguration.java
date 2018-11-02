@@ -4,6 +4,7 @@ package com.jww.common.oss.configuration;
 import com.jww.common.oss.OssProperties;
 import com.jww.common.oss.service.CloudStorageService;
 import com.jww.common.oss.service.impl.AliCloudStorageServiceImpl;
+import com.jww.common.oss.service.impl.QiNuiCloudStorageServiceImpl;
 import com.jww.common.oss.service.impl.QqCloudStorageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -32,6 +33,8 @@ public class CloudStorageConfiguration {
             return new AliCloudStorageServiceImpl(ossProperties);
         } else if (ossProperties.getType().equals(2)) {
             return new QqCloudStorageServiceImpl(ossProperties);
+        } else if (ossProperties.getType().equals(3)) {
+            return new QiNuiCloudStorageServiceImpl(ossProperties);
         }
         return null;
     }

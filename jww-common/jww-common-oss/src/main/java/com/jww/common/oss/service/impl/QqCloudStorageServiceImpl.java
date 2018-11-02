@@ -46,11 +46,11 @@ public class QqCloudStorageServiceImpl implements CloudStorageService {
         try {
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentLength(inputStream.available());
-            // 腾讯云必需要以"/"开头
-            String startWith = "/";
-            if (!path.startsWith(startWith)) {
-                path = "/" + path;
-            }
+            //// 腾讯云必需要以"/"开头
+            //String startWith = "/";
+            //if (!path.startsWith(startWith)) {
+            //    path = "/" + path;
+            //}
             PutObjectRequest putObjectRequest = new PutObjectRequest(ossProperties.getBucketName(), path, inputStream,
                     objectMetadata);
             client.putObject(putObjectRequest);
@@ -62,11 +62,11 @@ public class QqCloudStorageServiceImpl implements CloudStorageService {
     }
 
     public String uploadSuffix(byte[] data, String suffix) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     public String uploadSuffix(InputStream inputStream, String suffix) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     public InputStream download(String path) {

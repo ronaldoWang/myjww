@@ -67,6 +67,8 @@
         <aliyun-sdk-oss.version>3.0.0</aliyun-sdk-oss.version>
         <!-- 腾讯云COS -->
         <cos_api.version>5.2.4</cos_api.version>
+        <!-- 七牛云 -->
+        <qiniuyun-sdk-oss.version>7.2.0</qiniuyun-sdk-oss.version>
         <!-- jwt实现 -->
         <jsonwebtoken.version>0.9.0</jsonwebtoken.version>
         <!--dubbo-zipkin-->

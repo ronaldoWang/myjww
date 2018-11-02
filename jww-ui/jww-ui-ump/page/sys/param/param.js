@@ -84,7 +84,6 @@ layui.config({
         elem: '#uploadFile'
         , accept: 'file'
         , auto: false
-        , exts: 'zip|rar|7z|jpg|png|mp4|apk'
         , bindAction:
             '#uploadBtn'
     })

@@ -21,6 +21,7 @@
         <module>jww-ump-generator</module>
         <module>jww-job-rpc</module>
         <module>jww-customer-rpc</module>
+        <module>jww-api-server</module>
     </modules>
 
 </project>
