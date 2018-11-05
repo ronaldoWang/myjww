@@ -19,8 +19,7 @@
 		<!-- <filter class="ch.qos.logback.classic.filter.ThresholdFilter"> <level>ERROR</level> 
 			</filter> -->
 		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36}
-				- %msg%n</pattern>
+			<pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
 		</encoder>
 	</appender>
 
@@ -39,7 +38,7 @@
 
 	<root level="info">
 		<appender-ref ref="stash" />
-		<appender-ref ref="console" />
+		<!--<appender-ref ref="console" />-->
 		<!-- <appender-ref ref="file" /> -->
 	</root>
 

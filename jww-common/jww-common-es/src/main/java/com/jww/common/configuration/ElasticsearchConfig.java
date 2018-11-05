@@ -1,6 +1,7 @@
 package com.jww.common.configuration;
 
 import com.jww.common.properties.ElasticsearchProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
@@ -16,18 +17,17 @@ import java.net.InetAddress;
 /**
  * Created by ThinkPad on 2018/10/28.
  */
+@Slf4j
 @Configuration
 public class ElasticsearchConfig {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ElasticsearchConfig.class);
 
     @Autowired
     ElasticsearchProperties elasticsearchProperties;
 
     @Bean
     public TransportClient init() {
-        LOGGER.info("初始化开始。。。。。");
+        log.info("初始化开始。。。。。");
         TransportClient transportClient = null;
-
         try {
             // 配置信息
             Settings esSetting = Settings.builder()
@@ -38,12 +38,9 @@ public class ElasticsearchConfig {
             transportClient = new PreBuiltTransportClient(Settings.EMPTY);
             TransportAddress transportAddress = new TransportAddress(InetAddress.getByName(elasticsearchProperties.getHostName()), Integer.valueOf(elasticsearchProperties.getPort()));
             transportClient.addTransportAddresses(transportAddress);
-
-
         } catch (Exception e) {
-            LOGGER.error("elasticsearch TransportClient create error!!!", e);
+            log.error("elasticsearch TransportClient create error!!!", e);
         }
-
         return transportClient;
     }
 }

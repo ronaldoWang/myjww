@@ -90,6 +90,8 @@ public class LoginController extends BaseController {
         if (!redisCaptchaValue.equalsIgnoreCase(loginModel.getCaptchaValue())) {
             throw new LoginException(Constants.ResultCodeEnum.LOGIN_FAIL_CAPTCHA_ERROR.getMessage());
         }
+
+
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(loginModel.getAccount(), SecurityUtil.encryptPassword(loginModel.getPassword()));
         Subject subject = SecurityUtils.getSubject();
         try {

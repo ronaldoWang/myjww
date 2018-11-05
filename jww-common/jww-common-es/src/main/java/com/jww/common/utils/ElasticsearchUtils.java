@@ -2,6 +2,7 @@ package com.jww.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.toolkit.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequest;
@@ -20,11 +21,9 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.elasticsearch.search.sort.SortOrder;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -36,9 +35,9 @@ import java.util.UUID;
  * Created by ThinkPad on 2018/10/28.
  */
 
+@Slf4j
 @Component
 public class ElasticsearchUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ElasticsearchUtils.class);
 
     @Autowired
     private TransportClient transportClient;
@@ -58,10 +57,10 @@ public class ElasticsearchUtils {
      */
     public static boolean createIndex(String index) {
         if (!isIndexExist(index)) {
-            LOGGER.info("Index is not exits!");
+            log.info("Index is not exits!");
         }
         CreateIndexResponse indexresponse = client.admin().indices().prepareCreate(index).execute().actionGet();
-        LOGGER.info("执行建立成功？" + indexresponse.isAcknowledged());
+        log.info("执行建立成功？" + indexresponse.isAcknowledged());
 
         return indexresponse.isAcknowledged();
     }
@@ -74,13 +73,13 @@ public class ElasticsearchUtils {
      */
     public static boolean deleteIndex(String index) {
         if (!isIndexExist(index)) {
-            LOGGER.info("Index is not exits!");
+            log.info("Index is not exits!");
         }
         DeleteIndexResponse dResponse = client.admin().indices().prepareDelete(index).execute().actionGet();
         if (dResponse.isAcknowledged()) {
-            LOGGER.info("delete index " + index + "  successfully!");
+            log.info("delete index " + index + "  successfully!");
         } else {
-            LOGGER.info("Fail to delete index " + index);
+            log.info("Fail to delete index " + index);
         }
         return dResponse.isAcknowledged();
     }
@@ -94,9 +93,9 @@ public class ElasticsearchUtils {
     public static boolean isIndexExist(String index) {
         IndicesExistsResponse inExistsResponse = client.admin().indices().exists(new IndicesExistsRequest(index)).actionGet();
         if (inExistsResponse.isExists()) {
-            LOGGER.info("Index [" + index + "] is exist!");
+            log.info("Index [" + index + "] is exist!");
         } else {
-            LOGGER.info("Index [" + index + "] is not exist!");
+            log.info("Index [" + index + "] is not exist!");
         }
         return inExistsResponse.isExists();
     }
@@ -114,7 +113,7 @@ public class ElasticsearchUtils {
 
         IndexResponse response = client.prepareIndex(index, type, id).setSource(jsonObject).get();
 
-        LOGGER.info("addData response status:{},id:{}", response.status().getStatus(), response.getId());
+        log.info("addData response status:{},id:{}", response.status().getStatus(), response.getId());
 
         return response.getId();
     }
@@ -142,7 +141,7 @@ public class ElasticsearchUtils {
 
         DeleteResponse response = client.prepareDelete(index, type, id).execute().actionGet();
 
-        LOGGER.info("deleteDataById response status:{},id:{}", response.status().getStatus(), response.getId());
+        log.info("deleteDataById response status:{},id:{}", response.status().getStatus(), response.getId());
     }
 
     /**
@@ -310,14 +309,14 @@ public class ElasticsearchUtils {
         }
 
         //打印的内容 可以在 Elasticsearch head 和 Kibana  上执行查询
-        LOGGER.info("\n{}", searchRequestBuilder);
+        log.info("\n{}", searchRequestBuilder);
 
         SearchResponse searchResponse = searchRequestBuilder.execute().actionGet();
 
         long totalHits = searchResponse.getHits().totalHits;
         long length = searchResponse.getHits().getHits().length;
 
-        LOGGER.info("共查询到[{}]条数据,处理数据条数[{}]", totalHits, length);
+        log.info("共查询到[{}]条数据,处理数据条数[{}]", totalHits, length);
 
         if (searchResponse.status().getStatus() == 200) {
             // 解析对象
@@ -406,7 +405,7 @@ public class ElasticsearchUtils {
         searchRequestBuilder.setExplain(true);
 
         //打印的内容 可以在 Elasticsearch head 和 Kibana  上执行查询
-        LOGGER.info("\n{}", searchRequestBuilder);
+        log.info("\n{}", searchRequestBuilder);
 
         // 执行搜索,返回搜索响应信息
         SearchResponse searchResponse = searchRequestBuilder.execute().actionGet();
@@ -414,7 +413,7 @@ public class ElasticsearchUtils {
         long totalHits = searchResponse.getHits().totalHits;
         long length = searchResponse.getHits().getHits().length;
 
-        LOGGER.debug("共查询到[{}]条数据,处理数据条数[{}]", totalHits, length);
+        log.debug("共查询到[{}]条数据,处理数据条数[{}]", totalHits, length);
 
         if (searchResponse.status().getStatus() == 200) {
             // 解析对象
