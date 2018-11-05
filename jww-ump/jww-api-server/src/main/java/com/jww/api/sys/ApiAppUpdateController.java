@@ -2,6 +2,7 @@ package com.jww.api.sys;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.jww.common.core.Constants;
+import com.jww.common.web.model.ResultModel;
 import com.jww.common.web.util.ResultUtil;
 import com.jww.ump.model.SysParamModel;
 import com.jww.ump.rpc.api.SysParamService;
@@ -26,7 +27,7 @@ public class ApiAppUpdateController {
     @ApiOperation(value = "检查自助机app最新版本", notes = "根据app版本号查询是否有更新版本")
     @ApiImplicitParam(name = "versionCode", value = "自助机app版本号", required = true, dataType = "Integer")
     @GetMapping("/updateSelf/{versionCode}")
-    public Object query(@PathVariable("versionCode") Integer versionCode) {
+    public ResultModel query(@PathVariable("versionCode") Integer versionCode) {
         SysParamModel sysParamModel = new SysParamModel();
         sysParamModel.setIsDel(0);
         sysParamModel.setParamType("app_update");
@@ -41,6 +42,7 @@ public class ApiAppUpdateController {
         if (versionCode >= paramValue) {
             return ResultUtil.fail(Constants.ResultCodeEnum.NOCONTENT, "已经是最新版");
         } else {
+            log.info("自助机app触发最新:{}", sysParamModel.getParamUrl());
             return ResultUtil.ok(sysParamModel.getParamUrl(), sysParamModel.getRemark());
         }
     }
