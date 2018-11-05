@@ -8,10 +8,16 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
 
     <artifactId>jww-common-log</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash.logback.versoin}</version>
+        </dependency>
         <dependency>
             <groupId>com.jww</groupId>
             <artifactId>jww-common-core</artifactId>

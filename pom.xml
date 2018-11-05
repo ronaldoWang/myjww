@@ -77,5 +77,7 @@
         <quartz.version>2.2.3</quartz.version>
         <!--sharding jdbc -->
         <sharding.jdbc.version>3.0.0.M3</sharding.jdbc.version>
+        <!--logstash logback -->
+        <logstash.logback.versoin>4.9</logstash.logback.versoin>
     </properties>
 </project>
