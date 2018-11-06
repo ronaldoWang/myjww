@@ -13,27 +13,25 @@ spring:
     lock:
       waitTimeOut: 5
       lockTimeOut: 30
-  application:
-    name: jww-customer-dubbo-provider
   rabbitmq:
     host: 47.99.90.68
     port: 5672
     username: admin
     password: admin
-#    支持发布确认
+    #    支持发布确认
     publisher-confirms: true
-#    支持发布返回
+    #    支持发布返回
     publisher-returns: true
     listener:
       simple:
         prefetch: 1
-#      采用手动应答
+        #      采用手动应答
         acknowledge-mode: manual
-#        当前监听容器数
+        #        当前监听容器数
         concurrency: 1
-#        最大数
+        #        最大数
         max-concurrency: 1
-#        是否支持重试
+        #        是否支持重试
         retry:
           enabled: true
 
@@ -113,9 +111,6 @@ server:
   port: 8086
 
 dubbo:
-  application:
-    name: jww-customer-dubbo-provider
-    owner: jww-customer-dubbo-provider
   registry:
     protocol: zookeeper
     address: 47.99.90.68:2181
@@ -123,12 +118,13 @@ dubbo:
     name: dubbo
     port: -1
   service:
+    group: dev
     shutdown:
       wait: 15000
 
 logging:
   level:
-     root: INFO
-     org:
-        springframework :
-            web: INFO
+    root: INFO
+    org:
+      springframework:
+        web: INFO

@@ -85,7 +85,7 @@ dubbo:
     name: dubbo
     port: -1
   service:
-    group: dev
+    group: test
     shutdown:
       wait: 15000
 

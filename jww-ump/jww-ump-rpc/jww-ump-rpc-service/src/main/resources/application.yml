@@ -1,3 +1,9 @@
 spring:
   profiles:
     active: dev
+  application:
+    name: jww-ump-dubbo-provider
+dubbo:
+  application:
+    name: jww-ump-dubbo-provider
+    owner: jww-ump-dubbo-provider

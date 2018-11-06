@@ -32,8 +32,6 @@ spring:
       #            <artifactId>activemq-pool</artifactId>
       #        <!-- <version>5.7.0</version> -->
       #    </dependency>
-  application:
-    name: jww-ump-dubbo-consumer
   zipkin:
     baseUrl:  http://localhost:9411
   sleuth:
@@ -50,14 +48,13 @@ oss:
   endPoint: ap-shanghai
 
 dubbo:
-  application:
-    name: jww-ump-dubbo-consumer
-    owner: jww-ump-dubbo-consumer
   registry:
     protocol: zookeeper
     address: 47.99.90.68:2181
   trace:
     enabled: true
+  reference:
+    group: dev
 
 logging:
   level:

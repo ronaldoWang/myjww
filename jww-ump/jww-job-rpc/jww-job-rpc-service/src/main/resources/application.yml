@@ -1,3 +1,9 @@
 spring:
   profiles:
     active: dev
+  application:
+    name: jww-job-dubbo-provider
+dubbo:
+  application:
+    name: jww-job-dubbo-provider
+    owner: jww-job-dubbo-provider

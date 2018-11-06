@@ -14,7 +14,6 @@ spring:
       waitTimeOut: 5
       lockTimeOut: 30
 
-
 datasource:
   type: com.alibaba.druid.pool.DruidDataSource
   master:
@@ -75,7 +74,7 @@ mybatis-plus:
     cache-enabled: false
 
 server:
-  port: 8088
+  port: 8090
 
 dubbo:
   registry:
@@ -85,13 +84,10 @@ dubbo:
     name: dubbo
     port: -1
   service:
-    group: dev
+    group: test
     shutdown:
       wait: 15000
 
 logging:
   level:
-    root: INFO
-    org:
-      springframework:
-        web: INFO
+    root: info

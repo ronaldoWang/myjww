@@ -13,6 +13,12 @@ spring:
     lock:
       waitTimeOut: 5
       lockTimeOut: 10
+  http:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      max-file-size: 50Mb
+      max-request-size: 100Mb
   session:
     timeout: 60
   activemq:
@@ -32,17 +38,23 @@ spring:
     sampler:
       percentage: 1
 server:
-  port: 8081
+  port: 8089
+oss:
+  type: 2
+  accessKeyId: AKIDlQNOI539ORL3axmII6i8MO9tUt9GluWw
+  accessKeySecret: NZgbKrCoIaihV7XlnttiLm2B7wayEIBt
+  bucketName: aihuishou-1251883742
+  domain: https://aihuishou-1251883742.cos.ap-shanghai.myqcloud.com
+  endPoint: ap-shanghai
 
 dubbo:
-  application:
-    name: jww-api-dubbo-consumer
-    owner: jww-api-dubbo-consumer
   registry:
     protocol: zookeeper
-    address: 192.168.0.74:2181,192.168.0.74:2182,192.168.0.74:2183
+    address: 47.99.90.68:2181
   trace:
     enabled: true
+  reference:
+    group: test
 
 logging:
   level:

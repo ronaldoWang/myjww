@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: dev
+  application:
+    name: jww-api-dubbo-consumer
 
 auto:
   swagger2:
@@ -8,3 +10,7 @@ auto:
       version: 1.0.0
       title: 运营管理API平台
       description: 运营管理平台接口文档
+dubbo:
+  application:
+    name: jww-api-dubbo-consumer
+    owner: jww-api-dubbo-consumer

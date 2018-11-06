@@ -45,10 +45,12 @@ dubbo:
     address: 192.168.0.74:2181,192.168.0.74:2182,192.168.0.74:2183
   trace:
     enabled: true
+  reference:
+    group: prod
 
 logging:
   level:
-     root: info
+    root: info
 jwt:
   isOpen: 1             # 是否开户jwt校验，1：开启；0：关闭
   header: Authorization   #http请求头所需要的字段
