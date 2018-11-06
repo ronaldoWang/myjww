@@ -73,4 +73,18 @@ public class SysParamServiceImpl extends BaseServiceImpl<SysParamMapper, SysPara
     public SysParamModel modifyById(SysParamModel paramModel) {
         return super.modifyById(paramModel);
     }
+
+    @Override
+    public SysParamModel getUnique(String paramType, String paramKey) {
+        if (StrUtil.isBlank(paramType) || StrUtil.isBlank(paramKey)) {
+            return null;
+        }
+        SysParamModel sysParamModel = new SysParamModel();
+        sysParamModel.setIsDel(0);
+        sysParamModel.setParamType(paramType);
+        sysParamModel.setParamKey(paramKey);
+        EntityWrapper<SysParamModel> entityWrapper = new EntityWrapper<>(sysParamModel);
+        sysParamModel = selectOne(entityWrapper);
+        return sysParamModel;
+    }
 }

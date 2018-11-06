@@ -24,4 +24,13 @@ public interface SysParamService extends BaseService<SysParamModel> {
      */
     Page<SysParamModel> queryListPage(Page<SysParamModel> page);
 
+
+    /**
+     * 查询单个参数
+     *
+     * @param paramType 参数类型
+     * @param paramKey  参数key
+     * @return
+     */
+    SysParamModel getUnique(String paramType, String paramKey);
 }

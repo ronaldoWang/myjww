@@ -18,22 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/appUpdate")
 @Api(value = "app更新", description = "APP更新api")
 public class ApiAppUpdateController {
     @Autowired
     private SysParamService sysParamService;
 
-    @ApiOperation(value = "检查自助机app最新版本", notes = "根据app版本号查询是否有更新版本")
+    @ApiOperation(value = "检查自助机app最新版本", notes = "根据自助机app版本号查询是否有更新版本")
     @ApiImplicitParam(name = "versionCode", value = "自助机app版本号", required = true, dataType = "Integer")
-    @GetMapping("/updateSelf/{versionCode}")
-    public ResultModel query(@PathVariable("versionCode") Integer versionCode) {
-        SysParamModel sysParamModel = new SysParamModel();
-        sysParamModel.setIsDel(0);
-        sysParamModel.setParamType("app_update");
-        sysParamModel.setParamKey("self");
-        EntityWrapper<SysParamModel> entityWrapper = new EntityWrapper<>(sysParamModel);
-        sysParamModel = sysParamService.selectOne(entityWrapper);
+    @GetMapping("/self/{versionCode}")
+    public ResultModel self(@PathVariable("versionCode") Integer versionCode) {
+        SysParamModel sysParamModel = sysParamService.getUnique("app_update", "self");
         if (null == sysParamModel) {
             log.error("自助机app更新失败：参数管理里未配置版本更新");
             return ResultUtil.fail(Constants.ResultCodeEnum.NOCONTENT, "已经是最新版");
@@ -43,6 +38,24 @@ public class ApiAppUpdateController {
             return ResultUtil.fail(Constants.ResultCodeEnum.NOCONTENT, "已经是最新版");
         } else {
             log.info("自助机app触发最新:{}", sysParamModel.getParamUrl());
+            return ResultUtil.ok(sysParamModel.getParamUrl(), sysParamModel.getRemark());
+        }
+    }
+
+    @ApiOperation(value = "检查回收员app最新版本", notes = "根据回收员app版本号查询是否有更新版本")
+    @ApiImplicitParam(name = "versionCode", value = "回收员app版本号", required = true, dataType = "Integer")
+    @GetMapping("/hsy/{versionCode}")
+    public ResultModel updateHsy(@PathVariable("versionCode") Integer versionCode) {
+        SysParamModel sysParamModel = sysParamService.getUnique("app_update", "hsy");
+        if (null == sysParamModel) {
+            log.error("回收员app更新失败：参数管理里未配置版本更新");
+            return ResultUtil.fail(Constants.ResultCodeEnum.NOCONTENT, "已经是最新版");
+        }
+        Integer paramValue = Integer.valueOf(sysParamModel.getParamValue());
+        if (versionCode >= paramValue) {
+            return ResultUtil.fail(Constants.ResultCodeEnum.NOCONTENT, "已经是最新版");
+        } else {
+            log.info("回收员app触发最新:{}", sysParamModel.getParamUrl());
             return ResultUtil.ok(sysParamModel.getParamUrl(), sysParamModel.getRemark());
         }
     }
