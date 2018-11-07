@@ -24,7 +24,7 @@ public class LoginModel implements Serializable {
     @Getter
     @Setter
     @NotBlank(message = "账号不能为空")
-    @Size(min = 4, max = 20, message = "账号长度必须在4至20之间")
+    //@Size(min = 4, max = 20, message = "账号长度必须在4至20之间")
     private String account;
 
     /**
@@ -33,7 +33,7 @@ public class LoginModel implements Serializable {
     @Getter
     @Setter
     @NotBlank(message = "密码不能为空")
-    @Size(min = 6, max = 50, message = "密码长度必须在6至50之间")
+    //@Size(min = 6, max = 50, message = "密码长度必须在6至50之间")
     private String password;
 
     /**

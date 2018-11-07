@@ -57,10 +57,8 @@ layui.config({
     //登录按钮事件
     form.on("submit(login)", function (data) {
         var loadingIndex = base.loading(layer);
-        //var account = encrypt(data.field.account);
-        //var password = encrypt(data.field.account);
-        //data.field.account = account;
-        //data.field.password = password;
+        var b = new Base64();
+        data.field.password = b.encode(hex_md5(b.encode(hex_sha1(data.field.password))));
         $.ajax({
             type: 'POST',
             url: "login",
@@ -79,11 +77,4 @@ layui.config({
         });
         return false;
     });
-
-    function encrypt(word){
-        var key = CryptoJS.enc.Utf8.parse("abcdefgabcdefg12");
-        var srcs = CryptoJS.enc.Utf8.parse(word);
-        var encrypted = CryptoJS.AES.encrypt(srcs, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});
-        return encrypted.toString();
-    }
 })
