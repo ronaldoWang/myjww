@@ -13,4 +13,6 @@
     <dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}" client="zkclient"/>
     <!-- 生成远程服务代理，可以和本地 bean 一样使用 testService -->
     <dubbo:reference id="${table.entityPath}Service" interface="${package.Service}.${table.serviceName}"/>
+
+    <dubbo:consumer timeout="10000" group="${dubbo.reference.group}"/>
 </beans>

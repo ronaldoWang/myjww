@@ -13,11 +13,8 @@
     <dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}" client="zkclient"/>
     <!-- 生成远程服务代理，可以和本地 bean 一样使用 testService -->
     <dubbo:reference id="sysUserService" interface="com.jww.ump.rpc.api.SysUserService"/>
-    <dubbo:reference id="sysAuthorizeService" interface="com.jww.ump.rpc.api.SysAuthorizeService"/>
-    <dubbo:reference id="sysMenuService" interface="com.jww.ump.rpc.api.SysMenuService"/>
-    <dubbo:reference id="sysDeptService" interface="com.jww.ump.rpc.api.SysDeptService"/>
-    <dubbo:reference id="sysRoleService" interface="com.jww.ump.rpc.api.SysRoleService"/>
     <dubbo:reference id="sysDicService" interface="com.jww.ump.rpc.api.SysDicService"/>
     <dubbo:reference id="sysParamService" interface="com.jww.ump.rpc.api.SysParamService"/>
-    <dubbo:reference id="sysLogService" interface="com.jww.ump.rpc.api.SysLogService"/>
+
+    <dubbo:consumer timeout="10000" group="${dubbo.reference.group}"/>
 </beans>

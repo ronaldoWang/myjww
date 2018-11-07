@@ -26,4 +26,6 @@
 
     <dubbo:reference id="developCustomerService"
                      interface="com.jww.customer.developcustomer.rpc.api.DevelopCustomerService" check="false"/>
+
+    <dubbo:consumer timeout="10000" group="${dubbo.reference.group}"/>
 </beans>
