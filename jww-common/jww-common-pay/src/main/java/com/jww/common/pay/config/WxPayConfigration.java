@@ -1,6 +1,5 @@
 package com.jww.common.pay.config;
 
-import com.egzosn.pay.common.api.PayConfigStorage;
 import com.egzosn.pay.common.api.PayService;
 import com.egzosn.pay.wx.api.WxPayConfigStorage;
 import com.egzosn.pay.wx.api.WxPayService;
@@ -38,7 +37,7 @@ public class WxPayConfigration {
     }
 
     @Bean("payService")
-    public PayService getPayService(PayConfigStorage payConfigStorage){
-        return new WxPayService(payConfigStorage);
+    public PayService getPayService(WxPayConfigStorage wxPayConfigStorage){
+        return new WxPayService(wxPayConfigStorage);
     }
 }

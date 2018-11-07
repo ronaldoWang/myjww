@@ -15,7 +15,7 @@ layui.config({
             {field: 'operation', title: '用户操作', width: 90},
             {field: 'operationType', title: '操作类型', templet: '#operationTypeTpl', width: 90},
             {field: 'method', title: '请求方法'},
-            {field: 'params', title: '请求参数'},
+            /*{field: 'params', title: '请求参数'},*/
             {field: 'result', title: '结果', templet: '<div>{{d.result === 1 ? "成功" : "失败"}}</div>', width: 60},
             {field: 'time', title: '执行时长', width: 100},
             {field: 'ip', title: 'IP地址', width: 120},

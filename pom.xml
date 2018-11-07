@@ -21,25 +21,25 @@
         <!-- jdk -->
         <java.version>1.8</java.version>
         <!-- spring相关 -->
-        <spring.version>4.3.16.RELEASE</spring.version>
-        <spring.session.data.redis.version>1.3.2.RELEASE</spring.session.data.redis.version>
+        <spring.version>5.1.2.RELEASE</spring.version>
+        <spring.session.data.redis.version>2.1.1.RELEASE</spring.session.data.redis.version>
         <!-- springboot相关 -->
-        <spring.boot.version>1.5.12.RELEASE</spring.boot.version>
+        <spring.boot.version>1.5.17.RELEASE</spring.boot.version>
         <spring.boot.starter.redis.version>1.4.7.RELEASE</spring.boot.starter.redis.version>
         <springloaded.version>1.2.8.RELEASE</springloaded.version>
-        <hibernate.validator.version>5.4.1.Final</hibernate.validator.version>
+        <hibernate.validator.version>6.0.13.Final</hibernate.validator.version>
         <!-- lombok插件 -->
-        <lombok.version>1.16.20</lombok.version>
+        <lombok.version>1.18.4</lombok.version>
         <!-- 数据库相关 -->
-        <druid.version>1.1.9</druid.version>
+        <druid.version>1.1.12</druid.version>
         <mysql.connector.java.version>6.0.5</mysql.connector.java.version>
-        <mybatis.spring.boot.version>1.3.1</mybatis.spring.boot.version>
+        <mybatis.spring.boot.version>1.3.2</mybatis.spring.boot.version>
         <mybatisplus.spring.boot.version>1.0.5</mybatisplus.spring.boot.version>
         <mybatis.plus.version>2.3</mybatis.plus.version>
         <!-- dubbo -->
-        <dubbo.version>2.5.7</dubbo.version>
-        <zookeeper.version>3.4.12</zookeeper.version>
-        <zkclient.version>0.10</zkclient.version>
+        <dubbo.version>2.6.4</dubbo.version>
+        <zookeeper.version>3.4.13</zookeeper.version>
+        <zkclient.version>0.11</zkclient.version>
         <!-- shiro -->
         <shiro.spring.version>1.4.0</shiro.spring.version>
         <shiro.aspectj.version>1.4.0</shiro.aspectj.version>
@@ -48,13 +48,13 @@
         <!-- maven -->
         <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
         <!-- fastjson -->
-        <fastjson.version>1.2.41</fastjson.version>
+        <fastjson.version>1.2.51</fastjson.version>
         <!-- jackson -->
-        <jackson.version>2.9.2</jackson.version>
+        <jackson.version>2.9.7</jackson.version>
         <!-- hutooljava工具类集合 -->
-        <hutool.version>4.0.10</hutool.version>
+        <hutool.version>4.1.19</hutool.version>
         <!-- 支付 -->
-        <com.egzosn.pay.version>2.0.7-RELEASE</com.egzosn.pay.version>
+        <com.egzosn.pay.version>2.11.3</com.egzosn.pay.version>
         <!-- 接口文档 -->
         <swagger2.spring.boot.starter.version>0.1.2</swagger2.spring.boot.starter.version>
         <!-- aspectjweaver -->
@@ -64,13 +64,13 @@
         <!-- 代码生成器相关 -->
         <velocity.engine.core.version>2.0</velocity.engine.core.version>
         <!-- 阿里云OSS -->
-        <aliyun-sdk-oss.version>3.0.0</aliyun-sdk-oss.version>
+        <aliyun-sdk-oss.version>3.3.0</aliyun-sdk-oss.version>
         <!-- 腾讯云COS -->
-        <cos_api.version>5.2.4</cos_api.version>
+        <cos_api.version>5.4.6</cos_api.version>
         <!-- 七牛云 -->
-        <qiniuyun-sdk-oss.version>7.2.0</qiniuyun-sdk-oss.version>
+        <qiniuyun-sdk-oss.version>7.2.17</qiniuyun-sdk-oss.version>
         <!-- jwt实现 -->
-        <jsonwebtoken.version>0.9.0</jsonwebtoken.version>
+        <jsonwebtoken.version>0.9.1</jsonwebtoken.version>
         <!--dubbo-zipkin-->
         <dubbo.zipkin.version>1.0.2</dubbo.zipkin.version>
         <!--定时任务quartz-->
@@ -78,6 +78,6 @@
         <!--sharding jdbc -->
         <sharding.jdbc.version>3.0.0.M3</sharding.jdbc.version>
         <!--logstash logback -->
-        <logstash.logback.versoin>4.9</logstash.logback.versoin>
+        <logstash.logback.versoin>5.2</logstash.logback.versoin>
     </properties>
 </project>
