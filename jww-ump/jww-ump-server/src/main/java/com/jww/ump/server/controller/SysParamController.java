@@ -1,6 +1,9 @@
 package com.jww.ump.server.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUnit;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Assert;
 import com.jww.common.core.Constants;
 import com.jww.common.core.exception.BusinessException;
@@ -9,6 +12,7 @@ import com.jww.common.oss.service.CloudStorageService;
 import com.jww.common.web.BaseController;
 import com.jww.common.web.model.ResultModel;
 import com.jww.common.web.util.ResultUtil;
+import com.jww.ump.common.UmpConstants;
 import com.jww.ump.model.SysParamModel;
 import com.jww.ump.rpc.api.SysParamService;
 import com.jww.ump.server.annotation.SysLogOpt;
@@ -22,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -92,8 +97,7 @@ public class SysParamController extends BaseController {
     @SysLogOpt(module = "参数管理", value = "参数新增", operationType = Constants.LogOptEnum.ADD)
     public ResultModel add(@Valid SysParamModel sysParamModel, @RequestParam("file") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
-            String filePath = cloudStorageService.upload(file.getBytes(), file.getOriginalFilename());
-            sysParamModel.setParamUrl(filePath);//文件路径
+            upload(sysParamModel, file);
         }
         sysParamModel.setCreateBy(super.getCurrentUserId());
         sysParamModel.setUpdateBy(super.getCurrentUserId());
@@ -114,8 +118,7 @@ public class SysParamController extends BaseController {
     @SysLogOpt(module = "参数管理", value = "参数修改", operationType = Constants.LogOptEnum.MODIFY)
     public ResultModel modify(@Valid SysParamModel sysParamModel, @RequestParam("file") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
-            String filePath = cloudStorageService.upload(file.getBytes(), file.getOriginalFilename());
-            sysParamModel.setParamUrl(filePath);//文件路径
+            upload(sysParamModel, file);
         }
         sysParamModel.setUpdateBy(super.getCurrentUserId());
         sysParamService.modifyById(sysParamModel);
@@ -140,5 +143,18 @@ public class SysParamController extends BaseController {
         }
         return ResultUtil.ok(sysParamService.deleteBatchIds(ids));
     }
-}
 
+    /**
+     * 上传附件
+     *
+     * @param sysParamModel
+     * @param file
+     * @throws IOException
+     */
+    private void upload(SysParamModel sysParamModel, MultipartFile file) throws IOException {
+        StringBuffer dir = new StringBuffer(UmpConstants.OssDir.PARAM);//目录
+        dir.append("/").append(sysParamModel.getParamType()).append("/").append(DateUtil.format(new Date(), DatePattern.PURE_DATETIME_PATTERN)).append(file.getOriginalFilename());
+        String filePath = cloudStorageService.upload(file.getBytes(), dir.toString());
+        sysParamModel.setParamUrl(filePath);//文件路径
+    }
+}

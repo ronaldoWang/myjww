@@ -31,4 +31,11 @@ public class UmpConstants {
         public static final String ROLE_MENU = "sys_role_menu";
         public static final String AUTHOR = "sys_author";
     }
+
+    /**
+     * 附件目录常量
+     */
+    public class OssDir {
+        public static final String PARAM = "param";//参数管理 附件
+    }
 }

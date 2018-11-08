@@ -3,6 +3,7 @@ package com.jww.customer.developcustomer.model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.jww.common.core.base.BaseModel;
+import lombok.Data;
 
 import javax.validation.constraints.Max;
 
@@ -14,6 +15,7 @@ import javax.validation.constraints.Max;
  * @author kevinWang
  * @since 2018-09-16
  */
+@Data
 @TableName("t_develop_customer")
 public class DevelopCustomerModel extends BaseModel {
 
@@ -56,81 +58,4 @@ public class DevelopCustomerModel extends BaseModel {
     private Integer editable;
 
 
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getCustomerNo() {
-        return customerNo;
-    }
-
-    public void setCustomerNo(String customerNo) {
-        this.customerNo = customerNo;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getMobilePhone() {
-        return mobilePhone;
-    }
-
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getEditable() {
-        return editable;
-    }
-
-    public void setEditable(Integer editable) {
-        this.editable = editable;
-    }
-
-    @Override
-    public String toString() {
-        return "DevelopCustomer{" +
-                ", customerName=" + customerName +
-                ", customerNo=" + customerNo +
-                ", sex=" + sex +
-                ", type=" + type +
-                ", mobilePhone=" + mobilePhone +
-                ", summary=" + summary +
-                ", email=" + email +
-                ", editable=" + editable +
-                "}";
-    }
 }

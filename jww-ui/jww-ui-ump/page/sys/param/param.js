@@ -84,8 +84,6 @@ layui.config({
         elem: '#uploadFile'
         , accept: 'file'
         , auto: false
-        , bindAction:
-            '#uploadBtn'
     });
 });
 
