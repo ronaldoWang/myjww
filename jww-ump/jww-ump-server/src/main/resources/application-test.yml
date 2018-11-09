@@ -59,11 +59,3 @@ dubbo:
 logging:
   level:
     root: info
-jwt:
-  isOpen: 1             # 是否开户jwt校验，1：开启；0：关闭
-  header: Authorization   #http请求头所需要的字段
-  secret: Secret        #jwt秘钥
-  expiration: 300       #5分钟 单位:秒
-  auth-path: wx/login     #认证请求的路径
-  md5-key: randomKey      #md5加密混淆key
-  excludePaths: (/swagger.*)|(/api-docs.*)|(/callback.*)|(/configuration/.*)|(/*/configuration/.*)|(/webjars/.*)|(/v2/.*)  #不校验路径

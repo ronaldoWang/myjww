@@ -1,6 +1,5 @@
-package com.jww.api.sys;
+package com.jww.api.appupdate;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.jww.common.core.Constants;
 import com.jww.common.web.model.ResultModel;
 import com.jww.common.web.util.ResultUtil;

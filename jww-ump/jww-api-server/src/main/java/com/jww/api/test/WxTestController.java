@@ -1,4 +1,4 @@
-package com.jww.customer.server.controller;
+package com.jww.api.test;
 
 import com.jww.common.jwt.JwtTokenHelper;
 import com.jww.common.web.BaseController;
