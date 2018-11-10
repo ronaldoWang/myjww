@@ -21,7 +21,7 @@ layui.define(['jquery'], function (exports) {
     dicDoms.each(function () {
         var type = $(this).attr("type");
         var arr = dics[$(this).attr("dicName").toLowerCase()];
-        if (type === 'drop') {
+        if (type === 'select') {
             var targetId = $(this).attr("targetId");
             for (x in arr) {
                 $("#" + targetId).append("<option value='" + arr[x].code + "'>" + arr[x].codeText + "</option>");
