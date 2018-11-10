@@ -124,10 +124,10 @@ public class JwtTokenHelper {
 
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(subject)
-                .setIssuedAt(createdDate)
-                .setExpiration(expirationDate)
-                .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecret())
+                .setSubject(subject)//主题，用户的唯一标识
+                .setIssuedAt(createdDate)//失效时间
+                .setExpiration(expirationDate)//过期时间
+                .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecret())// 设置签名使用的签名算法和签名使用的秘钥
                 .compact();
     }
 
