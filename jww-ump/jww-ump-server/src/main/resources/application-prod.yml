@@ -33,6 +33,8 @@ spring:
   sleuth:
     sampler:
       percentage: 1
+idWorker:
+  workerId: 10
 server:
   port: 8089
 
