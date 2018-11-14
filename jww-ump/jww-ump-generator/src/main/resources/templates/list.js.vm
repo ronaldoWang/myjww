@@ -19,7 +19,7 @@ layui.config({
         #end
             {field: 'opt', title: '操作', fixed: 'right', width: 160, align: 'center', toolbar: '#toolBar'}
         ]],
-        url: '${table.entityPath}/queryListPage',
+        url: '${cfg.parentModuleName}/${table.entityPath}/queryListPage',
         method: 'post',
         contentType : 'application/json',
         request: {
@@ -67,7 +67,7 @@ layui.config({
             layer.confirm('您确定要删除吗？', {icon: 3, title: '确认'}, function () {
                 $.ajax({
                     type: 'DELETE',
-                    url: '${table.entityPath}/delBatchByIds',
+                    url: '${cfg.parentModuleName}/${table.entityPath}/delBatchByIds',
                     data: JSON.stringify(dataIds),
                     success: function (data) {
                         if (data.code == 200) {
@@ -168,7 +168,7 @@ layui.config({
             }
             $.ajax({
                 type: 'DELETE',
-                url: '${table.entityPath}/delBatchByIds',
+                url: '${cfg.parentModuleName}/${table.entityPath}/delBatchByIds',
                 data: JSON.stringify(userIds),
                 success: function (data) {
                     if (data.code == 200) {

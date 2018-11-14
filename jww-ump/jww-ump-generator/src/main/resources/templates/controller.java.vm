@@ -47,7 +47,7 @@ import java.util.Arrays;
 #else
 @Controller
 #end
-@RequestMapping("/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+@RequestMapping("/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${cfg.parentModuleName}/${table.entityPath}#end")
 @Api(value = "$!{table.comment}", description = "$!{table.comment}")
 #if(${kotlin})
 class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
@@ -72,7 +72,7 @@ public class ${table.controllerName} {
     @ApiOperation(value = "查询$!{table.comment}", notes = "根据主键ID查询$!{table.comment}")
     @ApiImplicitParam(name = "id", value = "$!{table.comment}ID", required = true, dataType = "Long")
     @GetMapping("/query/{id}")
-    @RequiresPermissions("${cfg.projectService}:${cfg.packageModuleName}:read")
+    @RequiresPermissions("${cfg.parentModuleName}:${cfg.packageModuleName}:read")
     public ResultModel query(@PathVariable Long id) {
         Assert.notNull(id);
         ${entity}Model entity = service.selectById(id);
@@ -89,10 +89,10 @@ public class ${table.controllerName} {
     */
     @ApiOperation(value = "分页查询$!{table.comment}", notes = "根据主键ID查询$!{table.comment}")
     @PostMapping("/queryListPage")
-    @RequiresPermissions("${cfg.projectService}:${cfg.packageModuleName}:read")
+    @RequiresPermissions("${cfg.parentModuleName}:${cfg.packageModuleName}:read")
     public ResultModel queryListPage(@RequestBody PageModel<${entity}Model> pageModel,${entity}Model entity) {
-        EntityWrapper<${entity}Model> wrapper = new EntityWrapper<>(entity,wrapper);
-        pageModel = (PageModel<${entity}Model>) service.selectPage(pageModel);
+        EntityWrapper<${entity}Model> wrapper = new EntityWrapper<>(entity);
+        pageModel = (PageModel<${entity}Model>) service.selectPage(pageModel,wrapper);
         return ResultUtil.ok(pageModel);
     }
 
@@ -106,7 +106,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "新增$!{table.comment}", notes = "根据$!{table.comment}实体新增$!{table.comment}")
     @PostMapping("/add")
-    @RequiresPermissions("${cfg.projectService}:${cfg.packageModuleName}:edit")
+    @RequiresPermissions("${cfg.parentModuleName}:${cfg.packageModuleName}:edit")
     @SysLogOpt(module = "$!{table.comment}管理", value = "$!{table.comment}新增", operationType = Constants.LogOptEnum.ADD)
     public ResultModel add(@Valid @RequestBody ${entity}Model entity) {
         if (entity != null) {
@@ -126,7 +126,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "修改$!{table.comment}", notes = "根据主键ID修改$!{table.comment}")
     @PostMapping("/modify")
-    @RequiresPermissions("${cfg.projectService}:${cfg.packageModuleName}:edit")
+    @RequiresPermissions("${cfg.parentModuleName}:${cfg.packageModuleName}:edit")
     @SysLogOpt(module = "$!{table.comment}管理", value = "$!{table.comment}修改", operationType = Constants.LogOptEnum.MODIFY)
     public ResultModel modify(@RequestBody ${entity}Model entity) {
         entity.setUpdateBy(this.getCurrentUserId());
@@ -145,7 +145,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(value = "批量删除$!{table.comment}", notes = "根据主键ID集合批量删除$!{table.comment}")
     @DeleteMapping("/delBatchByIds")
-    @RequiresPermissions("${cfg.projectService}:${cfg.packageModuleName}:edit")
+    @RequiresPermissions("${cfg.parentModuleName}:${cfg.packageModuleName}:edit")
     @SysLogOpt(module = "$!{table.comment}管理", value = "$!{table.comment}批量删除", operationType = Constants.LogOptEnum.DELETE)
     public ResultModel delBatchByIds(@RequestBody Long[] ids) {
         Assert.notNull(ids);

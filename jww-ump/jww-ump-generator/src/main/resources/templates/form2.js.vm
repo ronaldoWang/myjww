@@ -5,12 +5,12 @@ layui.config({
         form = layui.form,
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         $ = layui.jquery,
-        submitUrl = "${table.entityPath}/add";
+        submitUrl = "${cfg.parentModuleName}/${table.entityPath}/add";
 
     // 获取父页面的pageOperation，判断是查看、添加、修改
     if (parent.pageOperation === 1) { // 添加
     } else if (parent.pageOperation === 2) { // 修改
-        submitUrl = "${table.entityPath}/modify";
+        submitUrl = "${cfg.parentModuleName}/${table.entityPath}/modify";
     } else { // 查看
         $(".layui-form input").prop("disabled", true);
         $('.layui-form button').hide();
@@ -23,7 +23,7 @@ layui.config({
         $("#id").val(parent.checkedId);
         $.ajax({
             type: 'GET',
-            url: '${table.entityPath}/query/'+parent.checkedId,
+            url: '${cfg.parentModuleName}/${table.entityPath}/query/'+parent.checkedId,
             success: function (data) {
                 if (data.code === 200) {
                     if (data.data !== null) {
