@@ -12,7 +12,7 @@ import java.util.List;
  * 菜单 服务类
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-11-29
  */
 public interface SysMenuService extends BaseService<SysMenuModel> {
@@ -21,7 +21,7 @@ public interface SysMenuService extends BaseService<SysMenuModel> {
      * 查找所有菜单
      *
      * @return List<SysMenuModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-02 13:59
      */
     List<SysMenuModel> queryList();
@@ -31,7 +31,7 @@ public interface SysMenuService extends BaseService<SysMenuModel> {
      *
      * @param page
      * @return Page<SysMenuModel>
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/18 13:52
      */
     Page<SysMenuModel> queryListPage(Page<SysMenuModel> page);
@@ -41,7 +41,7 @@ public interface SysMenuService extends BaseService<SysMenuModel> {
      *
      * @param userId
      * @return List<SysMenuModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-03 00:56
      */
     List<SysTreeModel> queryMenuTreeByUserId(Long userId);
@@ -50,7 +50,7 @@ public interface SysMenuService extends BaseService<SysMenuModel> {
      * 查找功能菜单树（包含目录、菜单和按钮）
      *
      * @return List<TreeModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-19 11:14
      */
     List<SysTreeModel> queryFuncMenuTree();
@@ -60,7 +60,7 @@ public interface SysMenuService extends BaseService<SysMenuModel> {
      *
      * @param roleId
      * @return List<TreeModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-19 11:14
      */
     List<SysTreeModel> queryFuncMenuTree(Long roleId);
@@ -71,7 +71,7 @@ public interface SysMenuService extends BaseService<SysMenuModel> {
      * @param id
      * @param menuType
      * @return List<SysTreeModel>
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/22 22:59
      */
     List<SysTreeModel> queryTree(Long id, Integer menuType);
@@ -81,7 +81,7 @@ public interface SysMenuService extends BaseService<SysMenuModel> {
      *
      * @param id 菜单编号
      * @return Boolean 删除成功返回true,否则返回false
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/23 23:20
      */
     Boolean delete(Long id);
@@ -91,7 +91,7 @@ public interface SysMenuService extends BaseService<SysMenuModel> {
      *
      * @param ids 要删除的菜单编号数组
      * @return 返回删除成功记录数
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/24 14:06
      */
     Integer deleteBatch(Long[] ids);

@@ -8,8 +8,8 @@ import com.jww.ump.model.SysMenuModel;
 import com.jww.ump.rpc.api.SysAuthorizeService;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,10 +19,10 @@ import java.util.List;
 /**
  * 权限业务处理实现类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @create 2017-11-29
  **/
-@Service("sysAuthorizeService")
+@Service
 public class SysAuthorizeServiceImpl implements SysAuthorizeService {
 
     @Autowired

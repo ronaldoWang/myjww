@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 角色授权表 Mapper 接口
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017-12-17
  */
 public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenuModel> {
@@ -19,7 +19,7 @@ public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenuModel> {
      *
      * @param roleId 角色ID
      * @return List<Long>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-27 12:05
      */
     List<Long> selectMenuIdListByRoleId(@Param("roleId") Long roleId);

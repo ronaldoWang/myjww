@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 系统日志，切面处理类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/16 17:04
  */
 @Slf4j
@@ -62,7 +62,7 @@ public class WebLogAspect {
      * @param pjp
      * @param request
      * @return StringBuffer
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-12 11:07
      */
     private StringBuffer appendLogStrPre(ProceedingJoinPoint pjp, HttpServletRequest request) {
@@ -82,7 +82,7 @@ public class WebLogAspect {
      * @param logbf
      * @param result
      * @return String
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-12 11:08
      */
     private String appendLogStrAfter(StringBuffer logbf, Object result) {

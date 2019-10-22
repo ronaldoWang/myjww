@@ -1,6 +1,7 @@
 package com.jww.ump.server.controller;
 
 
+import cn.hutool.core.lang.Assert;
 import com.jww.common.core.Constants;
 import com.jww.common.core.model.PageModel;
 import com.jww.common.web.BaseController;
@@ -10,12 +11,11 @@ import com.jww.ump.model.SysMenuModel;
 import com.jww.ump.model.SysTreeModel;
 import com.jww.ump.rpc.api.SysMenuService;
 import com.jww.ump.server.annotation.SysLogOpt;
-import cn.hutool.core.lang.Assert;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,7 +27,7 @@ import java.util.List;
  * 菜单 前端控制器
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-11-29
  */
 @RestController
@@ -35,14 +35,14 @@ import java.util.List;
 @Api(value = "菜单管理", description = "菜单管理")
 public class SysMenuController extends BaseController {
 
-    @Autowired
+    @Reference(check = false)
     private SysMenuService sysMenuService;
 
     /**
      * 查询所有菜单
      *
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-02 00:24
      */
     @ApiOperation(value = "查询菜单列表", notes = "查询全部菜单列表")
@@ -57,7 +57,7 @@ public class SysMenuController extends BaseController {
      *
      * @param pageModel 分页实体
      * @return ResultModel
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/18 21:34
      */
     @ApiOperation(value = "分页查询菜单列表", notes = "根据分页参数查询菜单列表")
@@ -72,7 +72,7 @@ public class SysMenuController extends BaseController {
      *
      * @param userId 用户ID
      * @return ResultModel
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/18 21:36
      */
     @ApiOperation(value = "查询用户权限菜单", notes = "根据用户ID查询用户权限菜单")
@@ -87,7 +87,7 @@ public class SysMenuController extends BaseController {
      *
      * @param id 菜单ID
      * @return ResultModel
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/18 21:51
      */
     @ApiOperation(value = "删除菜单", notes = "根据菜单ID删除菜单")
@@ -103,7 +103,7 @@ public class SysMenuController extends BaseController {
      *
      * @param ids 菜单ID集合
      * @return ResultModel
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/18 21:52
      */
     @ApiOperation(value = "批量删除菜单", notes = "根据主键ID集合批量删除菜单")
@@ -120,7 +120,7 @@ public class SysMenuController extends BaseController {
      *
      * @param id 菜单ID
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-03 14:10
      */
     @ApiOperation(value = "查询菜单", notes = "根据主键ID查询菜单")
@@ -137,7 +137,7 @@ public class SysMenuController extends BaseController {
      *
      * @param sysMenuModel 菜单实体
      * @return ResultModel
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/18 21:54
      */
     @ApiOperation(value = "修改菜单", notes = "根据主键ID修改菜单")
@@ -156,7 +156,7 @@ public class SysMenuController extends BaseController {
      *
      * @param sysMenuModel 菜单实体
      * @return ResultModel
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/18 21:54
      */
     @ApiOperation(value = "新增菜单", notes = "根据菜单实体新增菜单")
@@ -180,7 +180,7 @@ public class SysMenuController extends BaseController {
      *
      * @param roleId 角色ID
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-03 19:20
      */
     @ApiOperation(value = "查询权限功能树", notes = "根据角色ID查询角色对应权限功能树")
@@ -195,7 +195,7 @@ public class SysMenuController extends BaseController {
      * 查询所有权限功能树
      *
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-03 19:22
      */
     @ApiOperation(value = "查询所有权限功能树", notes = "查询所有权限功能树")
@@ -212,7 +212,7 @@ public class SysMenuController extends BaseController {
      * @param menuType 菜单类型
      * @param menuId   菜单ID
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-03 19:23
      */
     @ApiOperation(value = "查询菜单树", notes = "根据菜单类型和菜单ID查询菜单树")
@@ -228,7 +228,7 @@ public class SysMenuController extends BaseController {
      *
      * @param menuType 菜单类型
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-03 19:25
      */
     @ApiOperation(value = "查询菜单树", notes = "根据菜单类型查询菜单树")

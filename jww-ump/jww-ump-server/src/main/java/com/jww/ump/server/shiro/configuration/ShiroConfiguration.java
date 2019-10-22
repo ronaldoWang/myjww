@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * shiro配置
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/29 13:08
  */
 @Configuration
@@ -32,7 +32,7 @@ public class ShiroConfiguration {
      *
      * @param sysUserRealm
      * @return SecurityManager
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/11/29 13:29
      */
     @Bean
@@ -48,7 +48,7 @@ public class ShiroConfiguration {
      *
      * @param securityManager
      * @return ShiroFilterFactoryBean
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/11/29 13:47
      */
     @Bean
@@ -96,7 +96,7 @@ public class ShiroConfiguration {
      * Shiro生命周期处理器
      *
      * @return LifecycleBeanPostProcessor
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/11/29 13:49
      */
     @Bean

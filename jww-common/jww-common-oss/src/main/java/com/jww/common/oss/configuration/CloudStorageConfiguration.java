@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 云存储配置
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2018-01-31 14:58
  */
 @Configuration

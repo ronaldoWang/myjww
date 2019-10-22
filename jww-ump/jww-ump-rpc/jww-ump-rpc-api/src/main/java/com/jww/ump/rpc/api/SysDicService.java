@@ -9,7 +9,7 @@ import com.jww.ump.model.SysDicModel;
  * 字典管理 服务类
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-12-17
  */
 public interface SysDicService extends BaseService<SysDicModel> {
@@ -19,7 +19,7 @@ public interface SysDicService extends BaseService<SysDicModel> {
      *
      * @param page
      * @return Page<SysDicModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/12/4 14:45
      */
     Page<SysDicModel> queryListPage(Page<SysDicModel> page);

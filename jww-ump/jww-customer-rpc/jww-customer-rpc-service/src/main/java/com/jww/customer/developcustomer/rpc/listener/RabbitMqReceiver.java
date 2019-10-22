@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- * Created by ThinkPad on 2018/9/26.
+ * Created by haoxi.wang on 2018/9/26.
  */
-@Component
+//@Component
 public class RabbitMqReceiver {
     private static final Logger log = LoggerFactory.getLogger(RabbitMqReceiver.class);
 

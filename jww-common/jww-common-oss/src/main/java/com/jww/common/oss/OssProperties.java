@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * oss配置信息
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2018-02-01
  **/
 @ConfigurationProperties(prefix = OssProperties.OSS_PREFIX)

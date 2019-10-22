@@ -8,7 +8,7 @@ import com.jww.ump.model.SysRoleMenuModel;
  * 角色授权表 服务类
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-12-17
  */
 public interface SysRoleMenuService extends BaseService<SysRoleMenuModel> {
@@ -18,7 +18,7 @@ public interface SysRoleMenuService extends BaseService<SysRoleMenuModel> {
      *
      * @param roleId
      * @return boolean
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-24 15:01
      */
     boolean delBatchByRoleId(Long roleId);

@@ -1,5 +1,6 @@
 package com.jww.ump.server.controller;
 
+import cn.hutool.core.lang.Assert;
 import com.jww.common.core.Constants;
 import com.jww.common.core.model.PageModel;
 import com.jww.common.web.BaseController;
@@ -9,12 +10,11 @@ import com.jww.ump.model.SysDeptModel;
 import com.jww.ump.model.SysTreeModel;
 import com.jww.ump.rpc.api.SysDeptService;
 import com.jww.ump.server.annotation.SysLogOpt;
-import cn.hutool.core.lang.Assert;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,7 +32,7 @@ import java.util.List;
 @Api(value = "部门管理", description = "部门管理")
 public class SysDeptController extends BaseController {
 
-    @Autowired
+    @Reference(check = false)
     private SysDeptService sysDeptService;
 
     /**
@@ -40,7 +40,7 @@ public class SysDeptController extends BaseController {
      *
      * @param id 部门ID
      * @return ResultModel<SysDeptModel>
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 2017-12-05 13:35
      */
     @ApiOperation(value = "查询部门", notes = "根据部门主键ID查询部门")
@@ -58,7 +58,7 @@ public class SysDeptController extends BaseController {
      *
      * @param pageModel 分页实体
      * @return com.jww.common.web.model.ResultModel
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 17/12/25 21:28:13
      */
     @ApiOperation(value = "分页查询部门列表", notes = "根据分页参数查询部门列表")
@@ -74,7 +74,7 @@ public class SysDeptController extends BaseController {
      *
      * @param sysDeptModel 部门实体
      * @return com.jww.common.web.model.ResultModel
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 17/12/25 21:28:41
      */
     @ApiOperation(value = "新增部门", notes = "根据部门实体新增部门")
@@ -94,7 +94,7 @@ public class SysDeptController extends BaseController {
      *
      * @param sysDeptModel 部门实体
      * @return com.jww.common.web.model.ResultModel
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 17/12/25 21:29:09
      */
     @ApiOperation(value = "修改部门", notes = "根据主键ID修改部门")
@@ -113,7 +113,7 @@ public class SysDeptController extends BaseController {
      *
      * @param ids 部门ID集合
      * @return com.jww.common.web.model.ResultModel
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 17/12/25 21:29:23
      */
     @ApiOperation(value = "批量删除部门", notes = "根据主键ID集合批量删除部门")
@@ -130,7 +130,7 @@ public class SysDeptController extends BaseController {
      *
      * @param id 部门ID
      * @return com.jww.common.web.model.ResultModel
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 17/12/25 21:29:52
      */
     @ApiOperation(value = "查询部门树", notes = "根据部门ID查询部门树结构数据")
@@ -145,7 +145,7 @@ public class SysDeptController extends BaseController {
      * 查询部门树方法
      *
      * @return com.jww.common.web.model.ResultModel
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 17/12/25 21:30:28
      */
     @ApiOperation(value = "查询部门树", notes = "查询全部部门树结构数据")
@@ -161,7 +161,7 @@ public class SysDeptController extends BaseController {
      *
      * @param id 部门ID
      * @return com.jww.common.web.model.ResultModel
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 17/12/25 21:30:45
      */
     @ApiOperation(value = "删除部门", notes = "根据部门ID删除部门")

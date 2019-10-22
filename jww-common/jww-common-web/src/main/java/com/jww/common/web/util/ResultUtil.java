@@ -8,7 +8,7 @@ import cn.hutool.core.util.StrUtil;
 /**
  * 返回结果工具类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/11 20:28
  */
 public class ResultUtil {

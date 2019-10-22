@@ -11,7 +11,7 @@ import java.io.InputStream;
 /**
  * 阿里云对象存储服务类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2018-01-31 14:58
  */
 public class AliCloudStorageServiceImpl implements CloudStorageService {

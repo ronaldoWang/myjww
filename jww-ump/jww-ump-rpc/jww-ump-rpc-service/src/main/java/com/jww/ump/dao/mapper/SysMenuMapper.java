@@ -12,7 +12,7 @@ import java.util.List;
  * 菜单 Mapper 接口
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-11-29
  */
 public interface SysMenuMapper extends BaseMapper<SysMenuModel> {
@@ -22,7 +22,7 @@ public interface SysMenuMapper extends BaseMapper<SysMenuModel> {
      *
      * @param userId
      * @return List<SysMenuModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-03 00:51
      */
     List<SysMenuModel> selectMenuTreeByUserId(@Param("userId") Long userId);

@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * 业务处理基类实现
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/19 20:36
  */
 public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseModel>

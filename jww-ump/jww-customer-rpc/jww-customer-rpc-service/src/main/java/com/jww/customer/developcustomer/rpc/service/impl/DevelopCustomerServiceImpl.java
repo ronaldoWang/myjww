@@ -5,12 +5,11 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.jww.common.core.base.BaseServiceImpl;
-import com.jww.common.rabbitmq.utils.RabbitMqUtils;
 import com.jww.customer.developcustomer.dao.mapper.DevelopCustomerMapper;
 import com.jww.customer.developcustomer.model.DevelopCustomerModel;
 import com.jww.customer.developcustomer.rpc.api.DevelopCustomerService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.apache.dubbo.config.annotation.Service;
 
 import java.io.Serializable;
 import java.util.*;
@@ -25,7 +24,7 @@ import java.util.*;
  */
 
 @Slf4j
-@Service("developCustomerService")
+@Service
 public class DevelopCustomerServiceImpl extends BaseServiceImpl<DevelopCustomerMapper, DevelopCustomerModel> implements DevelopCustomerService {
     @Override
     public Page<DevelopCustomerModel> selectPage(Page<DevelopCustomerModel> page) {

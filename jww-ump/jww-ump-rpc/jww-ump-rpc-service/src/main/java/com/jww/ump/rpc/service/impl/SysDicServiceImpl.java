@@ -9,9 +9,9 @@ import com.jww.ump.model.SysDicModel;
 import com.jww.ump.rpc.api.SysDicService;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.*;
@@ -21,10 +21,10 @@ import java.util.*;
  * 字典管理 服务实现类
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-12-17
  */
-@Service("sysDicService")
+@Service
 @CacheConfig(cacheNames = UmpConstants.UmpCacheName.DIC)
 public class SysDicServiceImpl extends BaseServiceImpl<SysDicMapper, SysDicModel> implements SysDicService {
 

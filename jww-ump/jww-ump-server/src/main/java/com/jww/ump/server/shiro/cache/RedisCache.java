@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * Shiro缓存之Redis实现类
  *
- * @author shadj
+ * @author haoxi.wang
  * @date 2017/12/29 18:28
  */
 @Slf4j

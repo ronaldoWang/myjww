@@ -7,7 +7,7 @@ import com.jww.ump.model.SysLogModel;
 /**
  * 日志业务类
  *
- * @author RickyWang
+ * @author haoxi.wang
  * @date 17/12/26 12:41:05
  */
 public interface SysLogService extends BaseService<SysLogModel> {
@@ -16,7 +16,7 @@ public interface SysLogService extends BaseService<SysLogModel> {
      *
      * @param page
      * @return com.baomidou.mybatisplus.plugins.Page<com.jww.ump.model.SysLogModel>
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:03:43
      */
     public Page<SysLogModel> queryListPage(Page<SysLogModel> page);

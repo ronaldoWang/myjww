@@ -1,7 +1,7 @@
 spring:
   redis:
     database: 0
-    host: 47.99.90.68
+    host: localhost
     port: 6379
     password:
     timeout: 0
@@ -32,15 +32,21 @@ spring:
       #            <artifactId>activemq-pool</artifactId>
       #        <!-- <version>5.7.0</version> -->
       #    </dependency>
-  zipkin:
-    baseUrl:  http://localhost:9411
-  sleuth:
-    sampler:
-      percentage: 1
+  dubbo:
+    registry:
+      protocol: zookeeper
+      address: localhost:2181
+    trace:
+      enabled: true
+    reference:
+      group: dev
+    consumer:
+        timeout: 10000
+        retries: 0
 idWorker:
   workerId: 10
 server:
-  port: 8089
+  port: 9090
 oss:
   type: 2
   accessKeyId: AKIDlQNOI539ORL3axmII6i8MO9tUt9GluWw
@@ -48,15 +54,6 @@ oss:
   bucketName: aihuishou-1251883742
   domain: https://aihuishou-1251883742.cos.ap-shanghai.myqcloud.com
   endPoint: ap-shanghai
-
-dubbo:
-  registry:
-    protocol: zookeeper
-    address: 47.99.90.68:2181
-  trace:
-    enabled: true
-  reference:
-    group: dev
 
 logging:
   level:

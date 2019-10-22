@@ -31,17 +31,19 @@ spring:
   sleuth:
     sampler:
       percentage: 1
+  dubbo:
+    registry:
+      protocol: zookeeper
+      address: 47.99.90.68:2181
+    trace:
+      enabled: true
+    reference:
+      group: test
+    consumer:
+      timeout: 10000
+      retries: 0
 server:
   port: 8081
-
-dubbo:
-  registry:
-    protocol: zookeeper
-    address: 47.99.90.68:2181
-  trace:
-    enabled: true
-  reference:
-    group: test
 
 logging:
   level:

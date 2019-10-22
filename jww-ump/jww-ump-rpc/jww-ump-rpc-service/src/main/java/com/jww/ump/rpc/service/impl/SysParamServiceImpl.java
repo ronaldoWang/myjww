@@ -10,9 +10,9 @@ import com.jww.ump.common.UmpConstants;
 import com.jww.ump.dao.mapper.SysParamMapper;
 import com.jww.ump.model.SysParamModel;
 import com.jww.ump.rpc.api.SysParamService;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.*;
@@ -22,10 +22,10 @@ import java.util.*;
  * 全局参数表 服务实现类
  * </p>
  *
- * @author shadj
+ * @author haoxi.wang
  * @since 2017-12-24
  */
-@Service("sysParamService")
+@Service
 @CacheConfig(cacheNames = UmpConstants.UmpCacheName.PARAM)
 public class SysParamServiceImpl extends BaseServiceImpl<SysParamMapper, SysParamModel> implements SysParamService {
 

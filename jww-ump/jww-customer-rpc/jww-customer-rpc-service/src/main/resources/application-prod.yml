@@ -34,6 +34,17 @@ spring:
         #        是否支持重试
         retry:
           enabled: true
+  dubbo:
+    registry:
+      protocol: zookeeper
+      address: 192.168.0.74:2181,192.168.0.74:2182,192.168.0.74:2183
+    protocol:
+      name: dubbo
+      port: -1
+    service:
+      group: prod
+      shutdown:
+        wait: 15000
 
 sharding:
   jdbc:
@@ -56,7 +67,7 @@ sharding:
       names: ds0
       ds0:
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://47.99.90.68:3306/jww?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+        url: jdbc:mysql://139.196.111.53:3306/jww?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
         username: jww
         password: jww_1234
         initial-size: 5
@@ -109,18 +120,6 @@ mybatis-plus:
 
 server:
   port: 8086
-
-dubbo:
-  registry:
-    protocol: zookeeper
-    address: 192.168.0.74:2181,192.168.0.74:2182,192.168.0.74:2183
-  protocol:
-    name: dubbo
-    port: -1
-  service:
-    group: prod
-    shutdown:
-      wait: 15000
 
 logging:
   level:

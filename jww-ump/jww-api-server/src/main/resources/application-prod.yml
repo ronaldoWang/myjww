@@ -31,20 +31,22 @@ spring:
   sleuth:
     sampler:
       percentage: 1
+  dubbo:
+    application:
+      name: jww-api-dubbo-consumer
+      owner: jww-api-dubbo-consumer
+    registry:
+      protocol: zookeeper
+      address: 192.168.0.74:2181,192.168.0.74:2182,192.168.0.74:2183
+    trace:
+      enabled: true
+    reference:
+      group: prod
+    consumer:
+      timeout: 10000
+      retries: 0
 server:
   port: 8081
-
-dubbo:
-  application:
-    name: jww-api-dubbo-consumer
-    owner: jww-api-dubbo-consumer
-  registry:
-    protocol: zookeeper
-    address: 192.168.0.74:2181,192.168.0.74:2182,192.168.0.74:2183
-  trace:
-    enabled: true
-  reference:
-    group: prod
 
 logging:
   level:

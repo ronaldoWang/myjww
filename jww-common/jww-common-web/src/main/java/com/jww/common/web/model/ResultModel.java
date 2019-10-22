@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 /**
  * 返回结果类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/9 23:45
  */
 @NoArgsConstructor

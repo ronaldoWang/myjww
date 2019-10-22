@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 /**
  * Web层辅助类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/16 17:13
  */
 @Slf4j

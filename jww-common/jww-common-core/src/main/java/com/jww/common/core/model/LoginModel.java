@@ -11,7 +11,7 @@ import java.io.Serializable;
 /**
  * 登录实体
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/12 11:54
  */
 @ToString

@@ -1,7 +1,6 @@
 package com.jww.ump.rpc.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -14,12 +13,11 @@ import com.jww.ump.model.SysRoleMenuModel;
 import com.jww.ump.model.SysRoleModel;
 import com.jww.ump.rpc.api.SysRoleMenuService;
 import com.jww.ump.rpc.api.SysRoleService;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -30,10 +28,10 @@ import java.util.*;
  * 角色信息表 服务实现类
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-12-17
  */
-@Service("sysRoleService")
+@Service
 @CacheConfig(cacheNames = UmpConstants.UmpCacheName.ROLE)
 public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRoleModel> implements SysRoleService {
 
@@ -107,7 +105,7 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRoleMo
      * @param sysRoleModel
      * @param menuIds
      * @return
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-24 14:49
      */
     private List<SysRoleMenuModel> getRoleMenuListByMenuIds(SysRoleModel sysRoleModel, List<Long> menuIds) {

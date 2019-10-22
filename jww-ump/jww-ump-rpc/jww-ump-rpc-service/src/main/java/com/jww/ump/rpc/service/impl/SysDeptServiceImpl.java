@@ -1,5 +1,7 @@
 package com.jww.ump.rpc.service.impl;
 
+import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -12,15 +14,13 @@ import com.jww.ump.dao.mapper.SysTreeMapper;
 import com.jww.ump.model.SysDeptModel;
 import com.jww.ump.model.SysTreeModel;
 import com.jww.ump.rpc.api.SysDeptService;
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -29,7 +29,7 @@ import java.util.List;
  * @author: Ricky Wang
  * @Date: 17/12/1 14:49:30
  */
-@Service("sysDeptService")
+@Service
 @Slf4j
 @CacheConfig(cacheNames = UmpConstants.UmpCacheName.DEPT)
 public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDeptModel> implements SysDeptService {

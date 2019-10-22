@@ -1,6 +1,5 @@
 package com.jww.quartz.utils;
 
-import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.jww.common.core.util.SpringContextUtils;
 import com.jww.quartz.model.SysScheduleJobLogModel;

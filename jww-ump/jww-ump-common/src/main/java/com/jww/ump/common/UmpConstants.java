@@ -3,7 +3,7 @@ package com.jww.ump.common;
 /**
  * 通用常量类
  *
- * @author shadj
+ * @author haoxi.wang
  * @date 2018/1/14 15:05
  */
 public class UmpConstants {

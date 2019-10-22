@@ -11,6 +11,7 @@ import com.jww.ump.model.SysUserModel;
 import com.jww.ump.rpc.api.SysLogService;
 import com.jww.ump.server.annotation.SysLogOpt;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Reference;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -28,7 +29,7 @@ import java.util.Date;
 /**
  * 日志入库切面
  *
- * @author RickyWang
+ * @author haoxi.wang
  * @date 2017/12/27 13:56
  */
 @Slf4j
@@ -40,7 +41,7 @@ public class LogAspect {
      */
     private long startTime = 0L;
 
-    @Autowired
+    @Reference(check = false)
     private SysLogService logService;
 
     @Pointcut("execution(* *..controller..*.*(..)) && @annotation(com.jww.ump.server.annotation.SysLogOpt)")

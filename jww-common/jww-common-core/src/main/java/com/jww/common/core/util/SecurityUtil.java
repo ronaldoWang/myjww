@@ -7,7 +7,7 @@ import cn.hutool.crypto.SecureUtil;
 /**
  * 加解密工具类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/12 11:54
  */
 public class SecurityUtil {
@@ -17,7 +17,7 @@ public class SecurityUtil {
      *
      * @param password
      * @return String
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-12 00:20
      */
     public static String encryptPassword(String password) {

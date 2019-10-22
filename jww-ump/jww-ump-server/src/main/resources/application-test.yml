@@ -37,6 +37,14 @@ spring:
   sleuth:
     sampler:
       percentage: 1
+  dubbo:
+    registry:
+      protocol: zookeeper
+      address: 47.99.90.68:2181
+    trace:
+      enabled: true
+    reference:
+      group: test
 idWorker:
   workerId: 10
 server:
@@ -48,15 +56,6 @@ oss:
   bucketName: aihuishou-1251883742
   domain: https://aihuishou-1251883742.cos.ap-shanghai.myqcloud.com
   endPoint: ap-shanghai
-
-dubbo:
-  registry:
-    protocol: zookeeper
-    address: 47.99.90.68:2181
-  trace:
-    enabled: true
-  reference:
-    group: test
 
 logging:
   level:

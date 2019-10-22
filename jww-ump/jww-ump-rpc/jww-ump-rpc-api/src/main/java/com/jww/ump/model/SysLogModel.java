@@ -8,7 +8,7 @@ import lombok.ToString;
 /**
  * 日志表
  *
- * @author RickyWang
+ * @author haoxi.wang
  * @date 17/12/26 12:41:27
  */
 @TableName("sys_log")

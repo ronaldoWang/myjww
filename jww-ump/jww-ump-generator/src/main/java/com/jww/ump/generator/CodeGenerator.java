@@ -5,7 +5,7 @@ import com.jww.common.core.util.MybatisPlusGeneratorUtil;
 /**
  * 代码生成器
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/25 14:05
  */
 public class CodeGenerator {

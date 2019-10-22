@@ -10,7 +10,7 @@ import lombok.Data;
  * 部门
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-11-25
  */
 @Data

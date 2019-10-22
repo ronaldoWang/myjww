@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 权限mapper
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017-11-29
  **/
 public interface SysAuthorizeMapper {
@@ -17,7 +17,7 @@ public interface SysAuthorizeMapper {
      *
      * @param userId 用户ID
      * @return List<String>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-27 11:55
      */
     List<String> selectPermissionsByUserId(@Param("userId") Long userId);

@@ -13,8 +13,8 @@ import com.jww.ump.server.annotation.SysLogOpt;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +28,7 @@ import java.util.List;
  * 字典管理 前端控制器
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-11-17
  */
 @RestController
@@ -36,7 +36,7 @@ import java.util.List;
 @Api(value = "字典管理", description = "字典管理")
 public class SysDicController extends BaseController {
 
-    @Autowired
+    @Reference(check = false)
     private SysDicService sysDicService;
 
     /**
@@ -44,7 +44,7 @@ public class SysDicController extends BaseController {
      *
      * @param dicId 字典主键
      * @return ResultModel<SysDicModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-05 13:35
      */
     @ApiOperation(value = "查询字典", notes = "根据字典主键ID查询字典")
@@ -62,7 +62,7 @@ public class SysDicController extends BaseController {
      *
      * @param pageModel 分页实体
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-03 12:53
      */
     @ApiOperation(value = "分页查询字典", notes = "根据字典主键ID查询字典")
@@ -78,7 +78,7 @@ public class SysDicController extends BaseController {
      *
      * @param sysDicModel 字典实体
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-03 13:28
      */
     @ApiOperation(value = "新增字典", notes = "根据字典实体新增字典")
@@ -96,7 +96,7 @@ public class SysDicController extends BaseController {
      *
      * @param sysDicModel 字典实体
      * @return com.jww.common.web.model.ResultModel
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 17/12/25 21:29:09
      */
     @ApiOperation(value = "修改字典", notes = "根据字典ID修改字典")
@@ -114,7 +114,7 @@ public class SysDicController extends BaseController {
      *
      * @param ids 主键集合
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-23 02:46
      */
     @ApiOperation(value = "批量删除字典", notes = "根据主键ID集合批量删除字典")

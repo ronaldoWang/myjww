@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 用户表 Mapper 接口
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/17 15:51
  */
 public interface SysUserMapper extends BaseMapper<SysUserModel> {
@@ -21,7 +21,7 @@ public interface SysUserMapper extends BaseMapper<SysUserModel> {
      * @param page      分页对象
      * @param searchKey 关键字
      * @return List<SysUserModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-27 12:06
      */
     List<SysUserModel> selectPage(Page<SysUserModel> page, @Param("searchKey") String searchKey);
@@ -31,7 +31,7 @@ public interface SysUserMapper extends BaseMapper<SysUserModel> {
      *
      * @param id 用户ID
      * @return SysUserModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-27 12:07
      */
     SysUserModel selectOne(@Param("id") Long id);

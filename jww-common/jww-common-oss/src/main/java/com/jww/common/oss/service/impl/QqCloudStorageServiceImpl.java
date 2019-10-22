@@ -18,7 +18,7 @@ import java.io.InputStream;
 /**
  * 腾讯云对象存储服务类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2018-02-1 14:58
  */
 public class QqCloudStorageServiceImpl implements CloudStorageService {

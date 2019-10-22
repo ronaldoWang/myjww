@@ -2,7 +2,6 @@ package com.jww.quartz.rpc.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.jww.common.core.base.BaseServiceImpl;
@@ -10,7 +9,7 @@ import com.jww.quartz.dao.mapper.SysScheduleJobLogMapper;
 import com.jww.quartz.model.SysScheduleJobLogModel;
 import com.jww.quartz.rpc.api.SysScheduleJobLogService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -26,7 +25,7 @@ import java.util.*;
  */
 
 @Slf4j
-@Service("sysScheduleJobLogService")
+@Service
 public class SysScheduleJobLogServiceImpl extends BaseServiceImpl<SysScheduleJobLogMapper, SysScheduleJobLogModel> implements SysScheduleJobLogService {
 
     @Override

@@ -1,22 +1,20 @@
 package com.jww.ump.server.controller;
 
+import cn.hutool.core.lang.Assert;
 import com.jww.common.core.Constants;
 import com.jww.common.core.exception.BusinessException;
 import com.jww.common.core.model.PageModel;
 import com.jww.common.web.BaseController;
 import com.jww.common.web.model.ResultModel;
 import com.jww.common.web.util.ResultUtil;
-import com.jww.ump.model.SysDeptModel;
 import com.jww.ump.model.SysRoleModel;
-import com.jww.ump.rpc.api.SysDeptService;
 import com.jww.ump.rpc.api.SysRoleService;
 import com.jww.ump.server.annotation.SysLogOpt;
-import cn.hutool.core.lang.Assert;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,7 +25,7 @@ import java.util.List;
  * 角色信息表 前端控制器
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-11-17
  */
 @RestController
@@ -35,7 +33,7 @@ import java.util.List;
 @Api(value = "角色管理", description = "角色管理")
 public class SysRoleController extends BaseController {
 
-    @Autowired
+    @Reference(check = false)
     private SysRoleService sysRoleService;
 
     //@Autowired
@@ -46,7 +44,7 @@ public class SysRoleController extends BaseController {
      *
      * @param roleId
      * @return ResultModel<SysRoleModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-05 13:35
      */
     @ApiOperation(value = "查询角色", notes = "根据角色主键ID查询角色")
@@ -66,7 +64,7 @@ public class SysRoleController extends BaseController {
      *
      * @param pageModel 分页实体
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-04 11:25
      */
     @ApiOperation(value = "分页查询角色列表", notes = "根据分页参数查询角色列表")
@@ -81,7 +79,7 @@ public class SysRoleController extends BaseController {
      *
      * @param sysRoleModel 角色实体
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-04 11:26
      */
     @ApiOperation(value = "新增角色", notes = "根据角色实体新增角色")
@@ -99,7 +97,7 @@ public class SysRoleController extends BaseController {
      *
      * @param sysRoleModel 角色实体
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-04 11:27
      */
     @ApiOperation(value = "修改角色", notes = "根据角色ID修改角色")
@@ -117,7 +115,7 @@ public class SysRoleController extends BaseController {
      *
      * @param ids 角色ID集合
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-23 02:46
      */
     @ApiOperation(value = "批量删除角色", notes = "根据主键ID集合批量删除角色")
@@ -135,7 +133,7 @@ public class SysRoleController extends BaseController {
      * 根据部门ID查询所属角色
      *
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-04 11:28
      */
     @ApiOperation(value = "查询角色", notes = "查询所属角色列表")

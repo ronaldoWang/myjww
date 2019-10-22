@@ -9,8 +9,8 @@ import com.jww.ump.rpc.api.SysLogService;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
@@ -19,10 +19,10 @@ import java.util.Map;
  * 系统日志 服务实现类
  * </p>
  *
- * @author RickyWang
+ * @author haoxi.wang
  * @since 2017-12-26
  */
-@Service("sysLogService")
+@Service
 @Slf4j
 public class SysLogServiceImpl extends BaseServiceImpl<SysLogMapper, SysLogModel> implements SysLogService {
 

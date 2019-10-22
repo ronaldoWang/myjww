@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * 数据模型基类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/10 12:02
  */
 @Data

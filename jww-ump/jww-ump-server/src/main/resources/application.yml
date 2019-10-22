@@ -3,11 +3,10 @@ spring:
     active: dev
   application:
     name: jww-ump-dubbo-consumer
-dubbo:
-  application:
-    name: jww-ump-dubbo-consumer
-    owner: jww-ump-dubbo-consumer
-
+  dubbo:
+    application:
+      name: jww-ump-dubbo-consumer
+      owner: jww-ump-dubbo-consumer
 auto:
   swagger2:
     apiInfo:

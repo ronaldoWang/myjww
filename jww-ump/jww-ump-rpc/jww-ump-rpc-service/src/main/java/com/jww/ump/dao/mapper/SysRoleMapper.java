@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 角色信息表 Mapper 接口
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017-12-17
  */
 public interface SysRoleMapper extends BaseMapper<SysRoleModel> {
@@ -22,7 +22,7 @@ public interface SysRoleMapper extends BaseMapper<SysRoleModel> {
      * @param page    分页实体
      * @param wrapper wrapper条件
      * @return List<SysRoleModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-27 12:03
      */
     List<SysRoleModel> selectRoleList(Pagination page, @Param("ew") Wrapper<SysRoleModel> wrapper);

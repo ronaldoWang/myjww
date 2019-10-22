@@ -48,7 +48,7 @@
         </dependency>
         <!-- dubbo相关 -->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
             <version>${dubbo.version}</version>
             <exclusions>

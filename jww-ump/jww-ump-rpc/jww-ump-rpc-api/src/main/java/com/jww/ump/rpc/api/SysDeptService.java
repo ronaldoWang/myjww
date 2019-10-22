@@ -20,7 +20,7 @@ public interface SysDeptService extends BaseService<SysDeptModel> {
      *
      * @param sysDeptModel
      * @return com.jww.ump.model.SysDeptModel
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:04:47
      */
     public SysDeptModel addDept(SysDeptModel sysDeptModel);
@@ -30,7 +30,7 @@ public interface SysDeptService extends BaseService<SysDeptModel> {
      *
      * @param sysDeptModel
      * @return boolean
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:05:10
      */
     public boolean modifyDept(SysDeptModel sysDeptModel);
@@ -40,7 +40,7 @@ public interface SysDeptService extends BaseService<SysDeptModel> {
      *
      * @param page
      * @return com.baomidou.mybatisplus.plugins.Page<com.jww.ump.model.SysDeptModel>
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:05:30
      */
     Page<SysDeptModel> queryListPage(Page<SysDeptModel> page);
@@ -50,7 +50,7 @@ public interface SysDeptService extends BaseService<SysDeptModel> {
      *
      * @param id
      * @return com.jww.ump.model.SysDeptModel
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:05:53
      */
     public SysDeptModel queryOne(Long id);
@@ -60,7 +60,7 @@ public interface SysDeptService extends BaseService<SysDeptModel> {
      *
      * @param ids
      * @return java.lang.Integer
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:06:11
      */
     public Integer deleteBatch(Long[] ids);
@@ -70,7 +70,7 @@ public interface SysDeptService extends BaseService<SysDeptModel> {
      *
      * @param
      * @return java.util.List<com.jww.ump.model.SysTreeModel>
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:06:33
      */
     public List<SysTreeModel> queryTree();
@@ -79,7 +79,7 @@ public interface SysDeptService extends BaseService<SysDeptModel> {
      *
      * @param id
      * @return java.util.List<com.jww.ump.model.SysTreeModel>
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:06:33
      */
     public List<SysTreeModel> queryTree(Long id);
@@ -89,7 +89,7 @@ public interface SysDeptService extends BaseService<SysDeptModel> {
      *
      * @param id
      * @return boolean
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:07:49
      */
     public boolean delDept(Long id);
@@ -99,7 +99,7 @@ public interface SysDeptService extends BaseService<SysDeptModel> {
      *
      * @param id
      * @return java.util.List<com.jww.ump.model.SysDeptModel>
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:08:09
      */
     public List<SysDeptModel> querySubDept(Long id);
@@ -109,7 +109,7 @@ public interface SysDeptService extends BaseService<SysDeptModel> {
      *
      * @param id
      * @return int
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:08:35
      */
     public int querySubDeptCount(Long id);
@@ -119,7 +119,7 @@ public interface SysDeptService extends BaseService<SysDeptModel> {
      *
      * @param ids
      * @return int
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:08:53
      */
     public int querySubDeptCount(Long[] ids);

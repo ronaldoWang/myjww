@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * 系统通用常量
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/10 11:20
  */
 public final class Constants {

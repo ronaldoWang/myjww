@@ -20,7 +20,7 @@ public interface SysTreeMapper extends com.baomidou.mybatisplus.mapper.BaseMappe
      *
      * @param id
      * @return java.util.List<com.jww.ump.model.SysTreeModel>
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:10:01
      */
     List<SysTreeModel> selectDeptTree(@Param("id") Long id);
@@ -31,7 +31,7 @@ public interface SysTreeMapper extends com.baomidou.mybatisplus.mapper.BaseMappe
      * @param id
      * @param menuType
      * @return java.util.List<com.jww.ump.model.SysTreeModel>
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 18/1/1 15:10:21
      */
     List<SysTreeModel> selectMenuTree(@Param("id") Long id, @Param("menuType") Integer menuType);

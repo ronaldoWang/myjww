@@ -8,7 +8,7 @@ import com.jww.ump.model.SysDicModel;
  * 数据字典明细表 Mapper 接口
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-12-17
  */
 public interface SysDicMapper extends BaseMapper<SysDicModel> {

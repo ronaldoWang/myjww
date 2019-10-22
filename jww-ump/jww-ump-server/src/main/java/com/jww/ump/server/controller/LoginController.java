@@ -8,7 +8,6 @@ import cn.hutool.core.util.StrUtil;
 import com.jww.common.core.Constants;
 import com.jww.common.core.exception.LoginException;
 import com.jww.common.core.model.LoginModel;
-import com.jww.common.core.util.SecurityUtil;
 import com.jww.common.redis.util.CacheUtil;
 import com.jww.common.web.BaseController;
 import com.jww.common.web.model.ResultModel;
@@ -19,10 +18,10 @@ import com.jww.ump.server.annotation.SysLogOpt;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,7 +32,7 @@ import java.util.Map;
 /**
  * 登陆控制器
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017-11-30
  **/
 @Slf4j
@@ -41,7 +40,7 @@ import java.util.Map;
 @Api(value = "登录接口", description = "登录接口")
 public class LoginController extends BaseController {
 
-    @Autowired
+    @Reference(check = false)
     private SysUserService sysUserService;
 
     /**
@@ -50,7 +49,7 @@ public class LoginController extends BaseController {
      *
      * @param captchaId 验证码ID
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-27 21:10
      */
     @ApiOperation(value = "获取验证码")
@@ -75,7 +74,7 @@ public class LoginController extends BaseController {
      *
      * @param loginModel 登录对象
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-11-30 16:14
      */
     @ApiOperation(value = "用户登录")
@@ -123,7 +122,7 @@ public class LoginController extends BaseController {
      * 登出
      *
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-04 11:36
      */
     @ApiOperation(value = "用户登出")
@@ -138,7 +137,7 @@ public class LoginController extends BaseController {
      * 未登陆
      *
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-11-30 16:03
      */
     @RequestMapping(value = "/unlogin", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
@@ -150,7 +149,7 @@ public class LoginController extends BaseController {
      * 未授权
      *
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-11-30 16:03
      */
     @RequestMapping(value = "/unauthorized", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})

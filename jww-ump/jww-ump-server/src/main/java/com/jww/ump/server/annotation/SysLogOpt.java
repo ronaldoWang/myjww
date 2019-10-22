@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 /**
  * 日志注解
  *
- * @author RickyWang
+ * @author haoxi.wang
  * @date 2017/12/27 13:56
  */
 @Target(ElementType.METHOD)

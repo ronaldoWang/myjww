@@ -1,5 +1,7 @@
 package com.jww.ump.server.controller;
 
+import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.ObjectUtil;
 import com.jww.common.core.Constants;
 import com.jww.common.core.exception.BusinessException;
 import com.jww.common.core.model.PageModel;
@@ -11,14 +13,12 @@ import com.jww.ump.model.SysUserModel;
 import com.jww.ump.model.SysUserRoleModel;
 import com.jww.ump.rpc.api.SysUserService;
 import com.jww.ump.server.annotation.SysLogOpt;
-import cn.hutool.core.lang.Assert;
-import cn.hutool.core.util.ObjectUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * 用户管理控制器
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/17 00:22
  */
 @Slf4j
@@ -37,7 +37,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class SysUserController extends BaseController {
 
-    @Autowired
+    @Reference(check = false)
     private SysUserService sysUserService;
 
     /**
@@ -45,7 +45,7 @@ public class SysUserController extends BaseController {
      *
      * @param id
      * @return ResultModel<SysUserModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-05 13:35
      */
     @ApiOperation(value = "查询用户", notes = "根据用户主键ID查询用户")
@@ -63,7 +63,7 @@ public class SysUserController extends BaseController {
      *
      * @param pageModel 分页实体
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/12/2 14:31
      */
     @ApiOperation(value = "分页查询用户列表", notes = "根据分页参数查询用户列表")
@@ -78,7 +78,7 @@ public class SysUserController extends BaseController {
      *
      * @param sysUserModel 用户实体
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-03 10:18
      */
     @ApiOperation(value = "新增用户", notes = "根据用户实体新增用户")
@@ -102,7 +102,7 @@ public class SysUserController extends BaseController {
      *
      * @param ids 用户ID集合
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-04 11:32
      */
     @ApiOperation(value = "批量删除用户", notes = "根据主键ID集合批量删除用户")
@@ -121,7 +121,7 @@ public class SysUserController extends BaseController {
      *
      * @param sysUserModel 用户实体
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-04 11:33
      */
     @ApiOperation(value = "修改用户", notes = "根据用户ID修改用户")
@@ -139,7 +139,7 @@ public class SysUserController extends BaseController {
      *
      * @param sysUserModel 用户实体
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-04 11:33
      */
     @ApiOperation(value = "修改个人资料", notes = "根据用户ID修改用户个人资料")
@@ -159,7 +159,7 @@ public class SysUserController extends BaseController {
      *
      * @param userId 用户ID
      * @return com.jww.common.web.model.ResultModel
-     * @author RickyWang
+     * @author haoxi.wang
      * @date 17/12/25 21:26:57
      */
     @ApiOperation(value = "查询用户角色关系", notes = "根据用户id查询用户角色关系")
@@ -176,7 +176,7 @@ public class SysUserController extends BaseController {
      *
      * @param sysUserModel 用户实体
      * @return ResultModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/12/30 22:18
      */
     @ApiOperation(value = "修改密码", notes = "修改密码")

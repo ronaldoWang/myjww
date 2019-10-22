@@ -1,7 +1,7 @@
 package com.jww.common.log.rpc;
 
-import com.alibaba.dubbo.rpc.RpcContext;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.rpc.RpcContext;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 /**
  * rpc提供者和消费者日志打印
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/16 17:04
  */
 @Slf4j

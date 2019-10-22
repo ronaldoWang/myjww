@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebInitParam;
 /**
  * druid过滤器
  *
- * @author shadj
+ * @author haoxi.wang
  * @date 2017/12/21 0:06
  */
 @WebFilter(filterName="druidWebStatFilter",urlPatterns="/*",

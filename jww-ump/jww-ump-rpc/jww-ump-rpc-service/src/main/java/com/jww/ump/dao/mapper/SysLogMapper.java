@@ -8,7 +8,7 @@ import com.jww.ump.model.SysLogModel;
  * 系统日志 Mapper 接口
  * </p>
  *
- * @author RickyWang
+ * @author haoxi.wang
  * @since 2017-12-26
  */
 public interface SysLogMapper extends BaseMapper<SysLogModel> {

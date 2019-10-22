@@ -3,7 +3,7 @@ spring:
     active: dev
   application:
     name: jww-customer-dubbo-provider
-dubbo:
-  application:
-    name: jww-customer-dubbo-provider
-    owner: jww-customer-dubbo-provider
+  dubbo:
+    application:
+      name: jww-customer-dubbo-provider
+      owner: jww-customer-dubbo-provider

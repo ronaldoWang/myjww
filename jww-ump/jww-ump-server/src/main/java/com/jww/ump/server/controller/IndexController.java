@@ -9,8 +9,8 @@ import com.jww.ump.model.SysDicModel;
 import com.jww.ump.model.SysMenuModel;
 import com.jww.ump.rpc.api.SysAuthorizeService;
 import com.jww.ump.rpc.api.SysDicService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,24 +23,24 @@ import java.util.Map;
 /**
  * 首页前端控制器
  *
- * @author shadj
+ * @author haoxi.wang
  * @date 2017/12/31 21:13
  */
 @RestController
 @RequestMapping("/index")
 public class IndexController extends BaseController {
 
-    @Autowired
+    @Reference(check = false)
     private SysAuthorizeService sysAuthorizeService;
 
-    @Autowired
+    @Reference(check = false)
     private SysDicService sysDicService;
 
     /**
      * 获取当前用户的权限集合
      *
      * @return ResultModel
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/31 21:10
      */
     @GetMapping("/permissions")

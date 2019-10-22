@@ -12,7 +12,7 @@ import java.util.List;
  * 角色信息表
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-11-29
  */
 @Data

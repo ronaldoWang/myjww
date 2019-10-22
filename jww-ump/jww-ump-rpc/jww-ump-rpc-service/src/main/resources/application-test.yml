@@ -13,12 +13,23 @@ spring:
     lock:
       waitTimeOut: 5
       lockTimeOut: 30
+  dubbo:
+    registry:
+      protocol: zookeeper
+      address: 47.99.90.68:2181
+    protocol:
+      name: dubbo
+      port: -1
+    service:
+      group: test
+      shutdown:
+        wait: 15000
 
 
 datasource:
   type: com.alibaba.druid.pool.DruidDataSource
   master:
-    url: jdbc:mysql://47.99.90.68:3306/jww?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://139.196.111.53:3306/jww?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
     username: jww
     password: jww_1234
     driverClassName: com.mysql.jdbc.Driver
@@ -31,7 +42,7 @@ datasource:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=2000
     useGlobalDataSourceStat: true
   slaver:
-    url: jdbc:mysql://47.99.90.68:3306/jww?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://139.196.111.53:3306/jww?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
     username: jww
     password: jww_1234
     driverClassName: com.mysql.jdbc.Driver
@@ -76,18 +87,6 @@ mybatis-plus:
 
 server:
   port: 8088
-
-dubbo:
-  registry:
-    protocol: zookeeper
-    address: 47.99.90.68:2181
-  protocol:
-    name: dubbo
-    port: -1
-  service:
-    group: test
-    shutdown:
-      wait: 15000
 
 logging:
   level:

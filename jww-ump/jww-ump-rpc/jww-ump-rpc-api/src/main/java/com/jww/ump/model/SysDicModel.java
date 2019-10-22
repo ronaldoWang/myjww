@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
  * 数据字典明细表
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-12-17
  */
 @Data

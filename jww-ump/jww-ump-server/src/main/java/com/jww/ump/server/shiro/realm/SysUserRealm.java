@@ -6,12 +6,12 @@ import com.jww.ump.model.SysUserModel;
 import com.jww.ump.rpc.api.SysAuthorizeService;
 import com.jww.ump.rpc.api.SysUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,17 +19,17 @@ import java.util.List;
 /**
  * shiro权限获取
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/29 15:00
  */
 @Slf4j
 @Component
 public class SysUserRealm extends AuthorizingRealm {
 
-    @Autowired
+    @Reference(check = false)
     private SysUserService sysUserService;
 
-    @Autowired
+    @Reference(check = false)
     private SysAuthorizeService sysAuthorizeService;
 
     /**
@@ -37,7 +37,7 @@ public class SysUserRealm extends AuthorizingRealm {
      *
      * @param principals
      * @return AuthorizationInfo
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-25 19:52
      */
     @Override
@@ -57,7 +57,7 @@ public class SysUserRealm extends AuthorizingRealm {
      *
      * @param token
      * @return AuthenticationInfo
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-25 19:51
      */
     @Override

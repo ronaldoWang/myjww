@@ -14,8 +14,8 @@ import com.jww.ump.server.annotation.SysLogOpt;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -34,7 +34,7 @@ import java.util.Date;
 @RequestMapping("/sysScheduleJobLog")
 @Api(value = "定时任务日志", description = "定时任务日志")
 public class SysScheduleJobLogController extends BaseController {
-    @Autowired
+    @Reference(check = false)
     private SysScheduleJobLogService service;
 
     /**

@@ -16,7 +16,7 @@ public interface CacheManager {
      *
      * @param key
      * @return Object
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-28 00:05
      */
     Object get(final String key);
@@ -26,7 +26,7 @@ public interface CacheManager {
      *
      * @param pattern
      * @return Set<Object>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-28 00:05
      */
     Set<Object> getAll(final String pattern);

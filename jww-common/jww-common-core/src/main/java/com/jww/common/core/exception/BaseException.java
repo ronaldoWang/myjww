@@ -5,7 +5,7 @@ import com.jww.common.core.Constants;
 /**
  * 统一异常基类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/9 23:02
  */
 public abstract class BaseException extends RuntimeException {
@@ -29,7 +29,7 @@ public abstract class BaseException extends RuntimeException {
      * 获取错误码
      *
      * @return ResultCodeEnum 错误码
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/11/10 09:38
      */
     public abstract Constants.ResultCodeEnum getCode();

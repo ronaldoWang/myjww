@@ -17,7 +17,7 @@ import java.util.Date;
  * 用户管理
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-11-28
  */
 @Data

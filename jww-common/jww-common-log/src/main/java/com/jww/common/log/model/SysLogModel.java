@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * 系统日志实体类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/9 17:37
  */
 @Data

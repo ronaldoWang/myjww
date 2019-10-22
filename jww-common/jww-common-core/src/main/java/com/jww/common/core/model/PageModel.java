@@ -7,7 +7,7 @@ import com.jww.common.core.base.BaseModel;
 /**
  * 分页实体类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/23 22:14
  */
 public class PageModel<T extends BaseModel> extends Page<T> {

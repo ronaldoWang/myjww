@@ -51,7 +51,7 @@ public interface CloudStorageService {
      *
      * @param path 文件路径
      * @return InputStream
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-03-08 21:58
      */
     InputStream download(String path);
@@ -60,7 +60,7 @@ public interface CloudStorageService {
      * 删除文件
      *
      * @param path 文件路径
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-03-11 00:21
      */
     void delete(String path);

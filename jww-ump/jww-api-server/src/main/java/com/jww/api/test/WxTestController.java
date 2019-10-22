@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 登陆控制器
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017-11-30
  **/
 @Slf4j

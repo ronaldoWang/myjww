@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * Shiro缓存管理器（Redis实现）
  *
- * @author shadj
+ * @author haoxi.wang
  * @date 2017/12/29 18:21
  */
 @Slf4j

@@ -107,7 +107,7 @@ public class MqConfig {
      *
      * @param cachingConnectionFactory
      * @return DefaultJmsListenerContainerFactory
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2018-01-02 11:18
      */
     @Bean(name = "jmsQueueListener")

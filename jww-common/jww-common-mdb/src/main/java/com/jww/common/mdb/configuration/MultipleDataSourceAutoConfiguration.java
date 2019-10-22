@@ -35,7 +35,7 @@ import java.util.Map;
 /**
  * 多数据源自动配置
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/20 23:15
  */
 @Configuration
@@ -71,7 +71,7 @@ public class MultipleDataSourceAutoConfiguration {
      * 主数据源
      *
      * @return DataSource
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/11/21 00:05
      */
     @Primary
@@ -85,7 +85,7 @@ public class MultipleDataSourceAutoConfiguration {
      * 从数据源
      *
      * @return DataSource
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/11/21 00:05
      */
     @Bean("slaverDataSource")
@@ -98,7 +98,7 @@ public class MultipleDataSourceAutoConfiguration {
      * 动态数据源
      *
      * @return DynamicDataSource
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/11/21 00:56
      */
     @Bean("dynamicDataSource")
@@ -118,7 +118,7 @@ public class MultipleDataSourceAutoConfiguration {
      *
      * @param dynamicDataSource
      * @return SqlSessionFactory
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/11/21 00:56
      */
     @Bean
@@ -174,7 +174,7 @@ public class MultipleDataSourceAutoConfiguration {
      *
      * @param dynamicDataSource
      * @return DataSourceTransactionManager
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/11/21 00:57
      */
     @Bean

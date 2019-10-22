@@ -5,7 +5,7 @@ import com.jww.common.core.Constants;
 /**
  * 登录异常类
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/10 11:24
  */
 public class LoginException extends BaseException {

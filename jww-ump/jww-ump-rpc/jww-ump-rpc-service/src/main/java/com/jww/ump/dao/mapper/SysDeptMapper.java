@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 部门 Mapper 接口
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017-11-25
  */
 public interface SysDeptMapper extends BaseMapper<SysDeptModel> {
@@ -20,7 +20,7 @@ public interface SysDeptMapper extends BaseMapper<SysDeptModel> {
      * @param page 分页参数
      * @param deptName 部门名称
      * @return List<SysDeptModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-27 11:57
      */
     List<SysDeptModel> selectPage(Page<SysDeptModel> page, @Param("deptName") String deptName);
@@ -30,7 +30,7 @@ public interface SysDeptMapper extends BaseMapper<SysDeptModel> {
      *
      * @param id 部门ID
      * @return SysDeptModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-27 11:58
      */
     SysDeptModel selectOne(@Param("id") Long id);

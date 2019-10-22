@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * CSRF过滤器
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/12/03 15:00
  */
 @Slf4j
@@ -64,7 +64,7 @@ public class CsrfFilter implements Filter {
      *
      * @param referUrl url
      * @return boolean
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-03 21:11
      */
     private boolean isWhiteReq(String referUrl) {

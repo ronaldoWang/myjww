@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * fastjson配置
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/27 16:19
  */
 @Slf4j

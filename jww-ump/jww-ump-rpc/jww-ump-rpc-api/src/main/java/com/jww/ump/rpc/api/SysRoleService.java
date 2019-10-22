@@ -11,7 +11,7 @@ import java.util.List;
  * 角色信息表 服务类
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-12-17
  */
 public interface SysRoleService extends BaseService<SysRoleModel> {
@@ -21,7 +21,7 @@ public interface SysRoleService extends BaseService<SysRoleModel> {
      *
      * @param page
      * @return Page<SysRoleModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/12/4 14:45
      */
     Page<SysRoleModel> queryListPage(Page<SysRoleModel> page);
@@ -32,7 +32,7 @@ public interface SysRoleService extends BaseService<SysRoleModel> {
      *
      * @param sysRoleModel
      * @return SysRoleModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-19 15:37
      */
     @Override
@@ -43,7 +43,7 @@ public interface SysRoleService extends BaseService<SysRoleModel> {
      *
      * @param sysRoleModel
      * @return SysRoleModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-24 14:41
      */
     @Override
@@ -53,7 +53,7 @@ public interface SysRoleService extends BaseService<SysRoleModel> {
      * 查询部门下所有角色
      *
      * @return List<SysRoleModel>
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/29 17:31
      */
     List<SysRoleModel> queryRoles();

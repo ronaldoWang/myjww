@@ -11,10 +11,10 @@ import com.jww.quartz.model.SysScheduleJobModel;
 import com.jww.quartz.rpc.api.SysScheduleJobService;
 import com.jww.quartz.utils.ScheduleUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Service;
 import org.quartz.CronTrigger;
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
@@ -31,7 +31,7 @@ import java.util.*;
  */
 
 @Slf4j
-@Service("sysScheduleJobService")
+@Service
 public class SysScheduleJobServiceImpl extends BaseServiceImpl<SysScheduleJobMapper, SysScheduleJobModel> implements SysScheduleJobService {
     private final static String JOB_NAME = "TASK_";
 

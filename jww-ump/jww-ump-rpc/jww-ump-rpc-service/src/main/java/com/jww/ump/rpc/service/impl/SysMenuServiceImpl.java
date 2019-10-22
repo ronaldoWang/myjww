@@ -20,12 +20,12 @@ import com.jww.ump.model.SysMenuModel;
 import com.jww.ump.model.SysTreeModel;
 import com.jww.ump.rpc.api.SysMenuService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,11 +37,11 @@ import java.util.Map;
  * 菜单 服务实现类
  * </p>
  *
- * @author wanyong
+ * @author haoxi.wang
  * @since 2017-11-29
  */
 @Slf4j
-@Service("sysMenuService")
+@Service
 @CacheConfig(cacheNames = UmpConstants.UmpCacheName.MENU)
 public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenuModel> implements SysMenuService {
 
@@ -118,14 +118,14 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenuMo
         } else {
             sysMenuModelList = sysMenuMapper.selectMenuTreeByUserId(userId);
         }
-        return convertTreeData(sysMenuModelList, null);
+        return convertTrejwwta(sysMenuModelList, null);
     }
 
     @Override
     @Cacheable
     public List<SysTreeModel> queryFuncMenuTree() {
         List<SysMenuModel> sysMenuModelList = queryList();
-        return convertTreeData(sysMenuModelList, null);
+        return convertTrejwwta(sysMenuModelList, null);
     }
 
     @Override
@@ -134,7 +134,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenuMo
         List<SysMenuModel> sysMenuModelList = queryList();
         List<Long> menuIdList = sysRoleMenuMapper.selectMenuIdListByRoleId(roleId);
         System.out.println("menuIdList:" + JSON.toJSONString(menuIdList));
-        return convertTreeData(sysMenuModelList, menuIdList.toArray());
+        return convertTrejwwta(sysMenuModelList, menuIdList.toArray());
     }
 
     @Override
@@ -230,10 +230,10 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenuMo
      * @param sysMenuModelList
      * @param checkedMenuIds
      * @return List<SysTreeModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-19 10:55
      */
-    private List<SysTreeModel> convertTreeData(List<SysMenuModel> sysMenuModelList, Object[] checkedMenuIds) {
+    private List<SysTreeModel> convertTrejwwta(List<SysMenuModel> sysMenuModelList, Object[] checkedMenuIds) {
         Map<Long, List<SysTreeModel>> map = new HashMap<>(3);
         for (SysMenuModel sysMenuModel : sysMenuModelList) {
             if (sysMenuModel != null && map.get(sysMenuModel.getParentId()) == null) {
@@ -260,7 +260,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenuMo
      * @param map
      * @param id
      * @return List<SysTreeModel>
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-19 10:56
      */
     private List<SysTreeModel> getChild(Map<Long, List<SysTreeModel>> map, Long id) {
@@ -281,7 +281,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenuMo
      * @param sysMenuModel
      * @param checkedMenuIds
      * @return SysTreeModel
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-19 14:22
      */
     private SysTreeModel convertTreeModel(SysMenuModel sysMenuModel, Object[] checkedMenuIds) {

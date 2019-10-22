@@ -6,7 +6,7 @@ import cn.hutool.core.util.StrUtil;
 /**
  * 数据源DbContextHolder
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/17 13:31
  */
 public class DbContextHolder {
@@ -16,7 +16,7 @@ public class DbContextHolder {
      * 设置数据源
      *
      * @param dataSourceEnum
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/11/17 19:46
      */
     public static void setDbType(Constants.DataSourceEnum dataSourceEnum) {
@@ -27,7 +27,7 @@ public class DbContextHolder {
      * 取得当前数据源
      *
      * @return String
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/11/17 19:46
      */
     public static String getDbType() {
@@ -42,7 +42,7 @@ public class DbContextHolder {
     /**
      * 清除上下文数据
      *
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017-12-11 19:46
      */
     public static void clearDbType() {

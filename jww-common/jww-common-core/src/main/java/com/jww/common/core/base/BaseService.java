@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.service.IService;
 /**
  * 业务处理基类接口
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/12 11:56
  */
 public interface BaseService<T extends BaseModel> extends IService<T> {
@@ -15,7 +15,7 @@ public interface BaseService<T extends BaseModel> extends IService<T> {
      *
      * @param entity 实体
      * @return T
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/12/6 13:28
      */
     T add(T entity);
@@ -25,7 +25,7 @@ public interface BaseService<T extends BaseModel> extends IService<T> {
      *
      * @param entity 实体
      * @return T
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/12/6 13:29
      */
     T modifyById(T entity);
@@ -35,7 +35,7 @@ public interface BaseService<T extends BaseModel> extends IService<T> {
      *
      * @param id 实体主键
      * @return T
-     * @author wanyong
+     * @author haoxi.wang
      * @date 2017/12/6 13:29
      */
     T queryById(Long id);

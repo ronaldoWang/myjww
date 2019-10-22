@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
  * 全局参数表
  * </p>
  *
- * @author shadj
+ * @author haoxi.wang
  * @since 2017-12-24
  */
 @Data

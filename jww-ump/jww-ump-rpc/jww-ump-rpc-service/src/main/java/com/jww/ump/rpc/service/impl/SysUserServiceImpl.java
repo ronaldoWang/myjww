@@ -14,10 +14,10 @@ import com.jww.ump.model.SysUserRoleModel;
 import com.jww.ump.rpc.api.SysUserService;
 import cn.hutool.core.lang.Assert;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -27,11 +27,11 @@ import java.util.List;
 /**
  * 用户管理服务实现
  *
- * @author wanyong
+ * @author haoxi.wang
  * @date 2017/11/17 16:43
  */
 @Slf4j
-@Service("sysUserService")
+@Service
 @CacheConfig(cacheNames = UmpConstants.UmpCacheName.USER)
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUserModel> implements SysUserService {
 

@@ -9,7 +9,7 @@ import com.jww.ump.model.SysParamModel;
  * 全局参数表 服务类
  * </p>
  *
- * @author shadj
+ * @author haoxi.wang
  * @since 2017-12-24
  */
 public interface SysParamService extends BaseService<SysParamModel> {
@@ -19,7 +19,7 @@ public interface SysParamService extends BaseService<SysParamModel> {
      *
      * @param page
      * @return Page<SysParamModel>
-     * @author shadj
+     * @author haoxi.wang
      * @date 2017/12/24 14:45
      */
     Page<SysParamModel> queryListPage(Page<SysParamModel> page);
