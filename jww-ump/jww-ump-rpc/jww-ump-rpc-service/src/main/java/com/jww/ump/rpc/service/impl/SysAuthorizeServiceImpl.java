@@ -36,8 +36,9 @@ public class SysAuthorizeServiceImpl implements SysAuthorizeService {
         //如果是超级管理员，则查询所有权限code
         if (UmpConstants.USERID_ADMIN.equals(userId)) {
             EntityWrapper<SysMenuModel> wrapper = new EntityWrapper<SysMenuModel>();
-            wrapper.eq("is_del", 0);
-            List<SysMenuModel> list = sysMenuMapper.selectList(wrapper);
+            wrapper.eq("a.is_del", 0);
+            wrapper.eq("b.is_del", 0);
+            List<SysMenuModel> list = sysMenuMapper.selectAll(wrapper);
             if (CollUtil.isNotEmpty(list)) {
                 for (SysMenuModel sysMenuModel : list) {
                     permissions.add(sysMenuModel.getPermission());

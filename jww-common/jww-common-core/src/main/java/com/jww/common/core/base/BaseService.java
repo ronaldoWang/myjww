@@ -1,5 +1,6 @@
 package com.jww.common.core.base;
 
+
 import com.baomidou.mybatisplus.service.IService;
 
 /**

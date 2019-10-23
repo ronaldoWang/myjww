@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @date 18/11/13 15:11:47
  */
 @Component
-@ConfigurationProperties(prefix = "idWorker.workerId")
+@ConfigurationProperties(prefix = "idworker")
 public class IdWorkerProperties {
 
     @Getter
