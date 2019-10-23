@@ -29,7 +29,6 @@ public class ScheduleJob extends QuartzJobBean {
     private Logger logger = LoggerFactory.getLogger(getClass());
     private ExecutorService service = Executors.newSingleThreadExecutor();
 
-    @Autowired
     SysScheduleJobLogService sysScheduleJobLogService = (SysScheduleJobLogService) SpringContextUtils.getBean("sysScheduleJobLogService");
 
     @Override
