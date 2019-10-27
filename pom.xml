@@ -70,7 +70,7 @@
         <!-- 七牛云 -->
         <qiniuyun-sdk-oss.version>7.2.17</qiniuyun-sdk-oss.version>
         <!-- jwt实现 -->
-        <jsonwebtoken.version>0.9.1</jsonwebtoken.version>
+        <java-jwt.version>3.8.3</java-jwt.version>
         <!--dubbo-zipkin-->
         <!--<dubbo.zipkin.version>1.0.2</dubbo.zipkin.version>-->
         <!--定时任务quartz-->

@@ -1,8 +1,8 @@
 package com.jww.common.redis.helper;
 
+import cn.hutool.core.util.StrUtil;
 import com.jww.common.redis.manager.CacheManager;
 import com.jww.common.redis.util.CacheUtil;
-import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -204,7 +204,7 @@ public final class RedisHelper implements CacheManager {
             public Object execute(RedisOperations operations) throws DataAccessException {
                 operations.watch(key);
                 String value = (String) operations.opsForValue().get(key);
-                if(lockValue.equals(value)){
+                if (lockValue.equals(value)) {
                     operations.multi();
                     operations.delete(key);
                     Object rs = operations.exec();
@@ -265,5 +265,14 @@ public final class RedisHelper implements CacheManager {
     @Override
     public boolean sdel(String key, Serializable value) {
         return redisTemplate.boundSetOps(key).remove(value) == 1;
+    }
+
+    public boolean hasKey(String key) {
+        try {
+            return redisTemplate.hasKey(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

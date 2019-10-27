@@ -31,32 +31,43 @@ spring:
       #            <artifactId>activemq-pool</artifactId>
       #        <!-- <version>5.7.0</version> -->
       #    </dependency>
+  application:
+    name: jww-ump-dubbo-consumer
+  zipkin:
+    baseUrl:  http://localhost:9411
+  sleuth:
+    sampler:
+      percentage: 1
   dubbo:
+    application:
+      name: jww-ump-dubbo-consumer
+      owner: jww-ump-dubbo-consumer
     registry:
       protocol: zookeeper
-      address: localhost:2181
+      address: 192.168.0.74:2181,192.168.0.74:2182,192.168.0.74:2183
     trace:
       enabled: true
     reference:
-      group: dev
-    consumer:
-        timeout: 10000
-        retries: 0
+      group: prod
 idworker:
   worker-id: 10
 server:
-  port: 9090
+  port: 8089
   servlet:
     session:
       timeout: PT60M
-oss:
-  type: 2
-  accessKeyId: AKIDlQNOI539ORL3axmII6i8MO9tUt9GluWw
-  accessKeySecret: NZgbKrCoIaihV7XlnttiLm2B7wayEIBt
-  bucketName: aihuishou-1251883742
-  domain: https://aihuishou-1251883742.cos.ap-shanghai.myqcloud.com
-  endPoint: ap-shanghai
 
 logging:
   level:
     root: info
+jwt:
+  # AES密码加密私钥(Base64加密)
+  encryptAESKey: V2FuZzkyNuYSKIuwqTQkFQSUpXVA
+  # JWT认证加密私钥(Base64加密)
+  encryptJWTKey: secret
+  # AccessToken过期时间-5分钟-5*60(秒为单位)
+  accessTokenExpireTime: 300
+  # RefreshToken过期时间-30分钟-30*60(秒为单位)
+  refreshTokenExpireTime: 1800
+  # Shiro缓存过期时间-5分钟-5*60(秒为单位)(一般设置与AccessToken过期时间一致)
+  shiroCacheExpireTime: 300

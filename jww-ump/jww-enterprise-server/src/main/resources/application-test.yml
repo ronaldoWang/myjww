@@ -31,21 +31,23 @@ spring:
       #            <artifactId>activemq-pool</artifactId>
       #        <!-- <version>5.7.0</version> -->
       #    </dependency>
+  zipkin:
+    baseUrl:  http://localhost:9411
+  sleuth:
+    sampler:
+      percentage: 1
   dubbo:
     registry:
       protocol: zookeeper
-      address: localhost:2181
+      address: 47.99.90.68:2181
     trace:
       enabled: true
     reference:
-      group: dev
-    consumer:
-        timeout: 10000
-        retries: 0
+      group: test
 idworker:
   worker-id: 10
 server:
-  port: 9090
+  port: 8089
   servlet:
     session:
       timeout: PT60M
@@ -60,3 +62,14 @@ oss:
 logging:
   level:
     root: info
+jwt:
+  # AES密码加密私钥(Base64加密)
+  encryptAESKey: V2FuZzkyNuYSKIuwqTQkFQSUpXVA
+  # JWT认证加密私钥(Base64加密)
+  encryptJWTKey: secret
+  # AccessToken过期时间-5分钟-5*60(秒为单位)
+  accessTokenExpireTime: 300
+  # RefreshToken过期时间-30分钟-30*60(秒为单位)
+  refreshTokenExpireTime: 1800
+  # Shiro缓存过期时间-5分钟-5*60(秒为单位)(一般设置与AccessToken过期时间一致)
+  shiroCacheExpireTime: 300

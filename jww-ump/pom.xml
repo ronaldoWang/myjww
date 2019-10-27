@@ -22,6 +22,7 @@
         <module>jww-job-rpc</module>
         <module>jww-customer-rpc</module>
         <module>jww-api-server</module>
+        <module>jww-enterprise-server</module>
     </modules>
 
 </project>

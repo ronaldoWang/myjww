@@ -20,8 +20,6 @@ spring:
       file-size-threshold: 0
       max-file-size: 50Mb
       max-request-size: 100Mb
-    session:
-      timeout: PT60M
   activemq:
     broker-url: tcp://47.99.90.68:61616
     user: admin
@@ -50,6 +48,9 @@ idworker:
   worker-id: 10
 server:
   port: 8089
+  servlet:
+    session:
+      timeout: PT60M
 oss:
   type: 2
   accessKeyId: AKIDlQNOI539ORL3axmII6i8MO9tUt9GluWw

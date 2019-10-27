@@ -1,5 +1,6 @@
 package com.jww.common.jwt.configration;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,85 +10,22 @@ import org.springframework.context.annotation.Configuration;
  * @author shadj
  * @date 2018/5/12 11:50
  */
+@Data
 @Configuration
 @ConfigurationProperties(prefix = JwtProperties.JWT_PREFIX)
 public class JwtProperties {
 
     public static final String JWT_PREFIX = "jwt";
+
     public static final String JWT_ISOPEN_CLOSE = "0";
 
+    public String encryptAESKey;//AES密码加密私钥(Base64加密)
 
-    private String isOpen = "1";
+    public String encryptJWTKey;//JWT认证加密私钥(Base64加密)
 
-    private String header = "Authorization";
+    public Long accessTokenExpireTime;//AccessToken过期时间-5分钟-5*60(秒为单位)
 
-    private String secret = "defaultSecret";
+    public Long refreshTokenExpireTime;// RefreshToken过期时间-30分钟-30*60(秒为单位)
 
-    private Long expiration = 604800L;
-
-    private String authPath = "wx/login";
-
-    private String md5Key = "randomKey";
-
-    private String excludePaths;
-
-    public String getExcludePaths() {
-        return excludePaths;
-    }
-
-    public void setExcludePaths(String excludePaths) {
-        this.excludePaths = excludePaths;
-    }
-
-    public String getIsOpen() {
-        return isOpen;
-    }
-
-    public void setIsOpen(String isOpen) {
-        this.isOpen = isOpen;
-    }
-
-    public static String getJwtPrefix() {
-        return JWT_PREFIX;
-    }
-
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
-    }
-
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
-    public Long getExpiration() {
-        return expiration;
-    }
-
-    public void setExpiration(Long expiration) {
-        this.expiration = expiration;
-    }
-
-    public String getAuthPath() {
-        return authPath;
-    }
-
-    public void setAuthPath(String authPath) {
-        this.authPath = authPath;
-    }
-
-    public String getMd5Key() {
-        return md5Key;
-    }
-
-    public void setMd5Key(String md5Key) {
-        this.md5Key = md5Key;
-    }
+    public Long shiroCacheExpireTime;//Shiro缓存过期时间-5分钟-5*60(秒为单位)(一般设置与AccessToken过期时间一致)
 }

@@ -153,4 +153,7 @@ public class SysUserModel extends BaseModel {
      */
     @TableField("remark_")
     private String remark;
+
+    @TableField(exist = false)
+    private String token;
 }

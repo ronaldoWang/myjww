@@ -1,14 +1,23 @@
 package com.jww.common.jwt;
 
-import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.codec.Base64;
+import cn.hutool.core.date.DateUtil;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.exceptions.SignatureGenerationException;
+import com.auth0.jwt.exceptions.SignatureVerificationException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.jww.common.jwt.configration.JwtProperties;
-import io.jsonwebtoken.*;
+import com.jww.common.jwt.constant.JwtConstant;
+import com.jww.common.jwt.exception.JwtTokenException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * <p>jwt token工具类</p>
@@ -26,115 +35,78 @@ import java.util.Map;
  * @author shadj
  * @date 2018/5/12 11:50
  */
+@Slf4j
 @Component
 public class JwtTokenHelper {
 
     @Autowired
-    private JwtProperties jwtProperties;
+    JwtProperties jwtProperties;
 
     /**
-     * 获取用户名从token中
+     * 校验token是否正确
+     *
+     * @param token Token
+     * @return boolean 是否正确
+     * @author Wang926454
+     * @date 2018/8/31 9:05
      */
-    public String getUsernameFromToken(String token) {
-        return getClaimFromToken(token).getSubject();
-    }
-
-    /**
-     * 获取jwt发布时间
-     */
-    public Date getIssuedAtDateFromToken(String token) {
-        return getClaimFromToken(token).getIssuedAt();
-    }
-
-    /**
-     * 获取jwt失效时间
-     */
-    public Date getExpirationDateFromToken(String token) {
-        return getClaimFromToken(token).getExpiration();
-    }
-
-    /**
-     * 获取jwt接收者
-     */
-    public String getAudienceFromToken(String token) {
-        return getClaimFromToken(token).getAudience();
-    }
-
-    /**
-     * 获取私有的jwt claim
-     */
-    public String getPrivateClaimFromToken(String token, String key) {
-        return getClaimFromToken(token).get(key).toString();
-    }
-
-    /**
-     * 获取md5 key从token中
-     */
-    public String getMd5KeyFromToken(String token) {
-        return getPrivateClaimFromToken(token, jwtProperties.getMd5Key());
-    }
-
-    /**
-     * 获取jwt的payload部分
-     */
-    public Claims getClaimFromToken(String token) {
-        return Jwts.parser()
-                .setSigningKey(jwtProperties.getSecret())
-                .parseClaimsJws(token)
-                .getBody();
-    }
-
-    /**
-     * 解析token是否正确,不正确会报异常<br>
-     */
-    public void parseToken(String token) throws JwtException {
-        Jwts.parser().setSigningKey(jwtProperties.getSecret()).parseClaimsJws(token).getBody();
-    }
-
-    /**
-     * <pre>
-     *  验证token是否失效
-     *  true:过期   false:没过期
-     * </pre>
-     */
-    public Boolean isTokenExpired(String token) {
+    public boolean verify(String token) {
+        // 帐号加JWT私钥解密
+        String secret = getClaim(token, JwtConstant.ACCOUNT) + Base64.decodeStr(jwtProperties.getEncryptJWTKey());
+        Algorithm algorithm = Algorithm.HMAC256(secret);
         try {
-            final Date expiration = getExpirationDateFromToken(token);
-            return expiration.before(new Date());
-        } catch (ExpiredJwtException expiredJwtException) {
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            verifier.verify(token);
             return true;
+        } catch (TokenExpiredException e) {
+            log.error("JWTToken过期异常:" + e.getMessage());
+            throw new TokenExpiredException("JWTToken过期");
+        } catch (Exception e) {
+            log.error("JWTToken认证解密出现UnsupportedEncodingException异常:" + e.getMessage());
+            throw new SignatureVerificationException(algorithm);
         }
     }
 
     /**
-     * 生成token(通过用户名和签名时候用的随机数)
+     * 获得Token中的信息无需secret解密也能获得
+     *
+     * @param token
+     * @param claim
+     * @return java.lang.String
+     * @author Wang926454
+     * @date 2018/9/7 16:54
      */
-    public String generateToken(String userName, String randomKey) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put(jwtProperties.getMd5Key(), randomKey);
-        return doGenerateToken(claims, userName);
+    public static String getClaim(String token, String claim) {
+        try {
+            DecodedJWT jwt = JWT.decode(token);
+            // 只能输出String类型，如果是其他类型返回null
+            return jwt.getClaim(claim).asString();
+        } catch (JWTDecodeException e) {
+            log.error("解密Token中的公共信息出现JWTDecodeException异常:" + e.getMessage());
+            throw new JwtTokenException("解密Token中的公共信息出现JWTDecodeException异常:" + e.getMessage());
+        }
     }
 
     /**
-     * 生成token
+     * 生成签名
+     *
+     * @param account 帐号
+     * @return java.lang.String 返回加密的Token
+     * @author Wang926454
+     * @date 2018/8/31 9:07
      */
-    private String doGenerateToken(Map<String, Object> claims, String subject) {
-        final Date createdDate = new Date();
-        final Date expirationDate = new Date(createdDate.getTime() + jwtProperties.getExpiration() * 1000);
-
-        return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(subject)//主题，用户的唯一标识
-                .setIssuedAt(createdDate)//失效时间
-                .setExpiration(expirationDate)//过期时间
-                .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecret())// 设置签名使用的签名算法和签名使用的秘钥
-                .compact();
-    }
-
-    /**
-     * 获取混淆MD5签名用的随机字符串
-     */
-    public String getRandomKey() {
-        return RandomUtil.randomString(6);
+    public String sign(String account, String currentTimeMillis) {
+        // 帐号加JWT私钥加密
+        String secret = account + Base64.decodeStr(jwtProperties.getEncryptJWTKey());
+        Algorithm algorithm = Algorithm.HMAC256(secret);
+        try {
+            Date date = DateUtil.date(System.currentTimeMillis() + jwtProperties.getAccessTokenExpireTime() * 1000);
+            // 附带account帐号信息
+            return JWT.create().withClaim(JwtConstant.ACCOUNT, account).withClaim(JwtConstant.CURRENT_TIME_MILLIS, currentTimeMillis)
+                    .withExpiresAt(date).sign(algorithm);
+        } catch (Exception e) {
+            log.error("JWTToken加密出现UnsupportedEncodingException异常:" + e.getMessage());
+            throw new SignatureGenerationException(algorithm, e);
+        }
     }
 }
