@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: jww-enterprise-dubbo-provider
+  dubbo:
+    application:
+      name: jww-enterprise-dubbo-provider
+      owner: jww-enterprise-dubbo-provider

@@ -3,27 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>jww</artifactId>
+        <artifactId>jww-ump</artifactId>
         <groupId>com.jww</groupId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jww-ump</artifactId>
+    <artifactId>jww-enterprise-rpc</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
     <modules>
-        <module>jww-ump-common</module>
-        <module>jww-ump-rpc</module>
-        <module>jww-ump-server</module>
-        <module>jww-ump-generator</module>
-        <module>jww-job-rpc</module>
-        <module>jww-customer-rpc</module>
-        <module>jww-api-server</module>
-        <module>jww-enterprise-server</module>
-        <module>jww-enterprise-rpc</module>
+        <module>jww-enterprise-rpc-api</module>
+        <module>jww-enterprise-rpc-service</module>
     </modules>
+
 
 </project>
