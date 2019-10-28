@@ -4,6 +4,7 @@ import com.jww.common.core.Constants;
 import com.jww.common.core.exception.LoginException;
 import com.jww.common.core.model.LoginModel;
 import com.jww.common.jwt.JwtTokenHelper;
+import com.jww.common.jwt.configration.JwtProperties;
 import com.jww.common.jwt.constant.JwtConstant;
 import com.jww.common.redis.helper.RedisHelper;
 import com.jww.common.web.BaseController;
@@ -44,6 +45,9 @@ public class LoginController extends BaseController {
     @Autowired
     RedisHelper redisHelper;
 
+    @Autowired
+    JwtProperties jwtProperties;
+
     /**
      * 登陆
      *
@@ -65,7 +69,11 @@ public class LoginController extends BaseController {
             redisHelper.del(Constants.CacheNamespaceEnum.SHIRO.value() + loginModel.getAccount());
         }
         String currentTimeMillis = String.valueOf(System.currentTimeMillis());
+        redisHelper.set(JwtConstant.PREFIX_SHIRO_REFRESH_TOKEN + loginModel.getAccount(), currentTimeMillis,
+                jwtProperties.getRefreshTokenExpireTime().intValue());
         String token = jwtTokenHelper.sign(loginModel.getAccount(), currentTimeMillis);
+
+
         // 验证通过，返回前端所需的用户信息
         SysUserModel sysUserModel = new SysUserModel();
         sysUserModel.setId(currentUser.getId());
