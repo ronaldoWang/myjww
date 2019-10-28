@@ -17,19 +17,19 @@ import com.jww.common.web.model.ResultModel;
 import com.jww.common.web.util.ResultUtil;
 import ${package.Entity}.${entity}Model;
 import ${package.Service}.${table.serviceName};
-import com.jww.ump.server.annotation.SysLogOpt;
+import com.jww.common.log.annotation.SysLogOpt;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import cn.hutool.core.lang.Assert;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.Reference;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.Arrays;
@@ -58,7 +58,7 @@ public class ${table.controllerName} extends ${superControllerClass} {
 #else
 public class ${table.controllerName} {
 #end
-    @Autowired
+    @Reference(check = false)
     private ${table.serviceName} service;
 
     /**

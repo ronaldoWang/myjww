@@ -1,4 +1,4 @@
-package com.jww.ump.server.annotation;
+package com.jww.common.log.annotation;
 
 import com.jww.common.core.Constants;
 

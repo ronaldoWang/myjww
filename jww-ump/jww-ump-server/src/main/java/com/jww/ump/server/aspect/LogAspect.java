@@ -4,19 +4,18 @@ import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSON;
 import com.jww.common.core.Constants;
 import com.jww.common.core.util.RegexUtil;
+import com.jww.common.log.annotation.SysLogOpt;
 import com.jww.common.web.model.ResultModel;
 import com.jww.common.web.util.WebUtil;
 import com.jww.ump.model.SysLogModel;
 import com.jww.ump.model.SysUserModel;
 import com.jww.ump.rpc.api.SysLogService;
-import com.jww.ump.server.annotation.SysLogOpt;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -44,7 +43,7 @@ public class LogAspect {
     @Reference(check = false)
     private SysLogService logService;
 
-    @Pointcut("execution(* *..controller..*.*(..)) && @annotation(com.jww.ump.server.annotation.SysLogOpt)")
+    @Pointcut("execution(* *..controller..*.*(..)) && @annotation(com.jww.common.log.annotation.SysLogOpt)")
     public void logPointCut() {
 
     }
